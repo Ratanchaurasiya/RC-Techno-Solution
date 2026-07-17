@@ -1,0 +1,104 @@
+/* Portfolio Section Styles */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.portfolio-card {
+    background: var(--clr-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    border: 1px solid var(--clr-glass-border);
+}
+
+.portfolio-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.portfolio-img {
+    overflow: hidden;
+    position: relative;
+}
+
+.portfolio-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-card:hover .portfolio-img img {
+    transform: scale(1.1);
+}
+
+.portfolio-info {
+    padding: 20px;
+}
+
+.portfolio-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--clr-text-dark);
+}
+
+.portfolio-info p {
+    color: var(--clr-text);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.portfolio-info .btn-small {
+    background: var(--clr-light);
+    color: var(--clr-primary);
+    font-weight: 600;
+}
+
+.portfolio-info .btn-small:hover {
+    background: var(--clr-primary);
+    color: var(--clr-white);
+}
+
+#portfolio .section-title {
+    color: var(--clr-primary) !important;
+    transition: var(--transition);
+    display: inline-block;
+    cursor: pointer;
+}
+
+#portfolio .section-title:hover {
+    color: var(--clr-accent) !important;
+    transform: translateY(-5px) scale(1.05);
+    text-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+}
+
+/* -----------------------
+   RESPONSIVE QUERIES (Mobile-First)
+----------------------- */
+@media (min-width: 768px) {
+    .portfolio-grid {
+        gap: 30px;
+    }
+    .portfolio-img img {
+        height: 250px;
+    }
+    .portfolio-info {
+        padding: 25px;
+    }
+}
+\n
+/* ==========================================================================
+   PORTFOLIO RESPONSIVE OVERRIDES
+   ========================================================================== */
+@media (max-width: 992px) {
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+}
+@media (max-width: 768px) {
+    .portfolio-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .portfolio-filters { flex-wrap: wrap !important; justify-content: center !important; }
+    .filter-btn { margin: 5px !important; }
+}
+\n

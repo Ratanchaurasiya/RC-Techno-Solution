@@ -1,0 +1,274 @@
+/* -----------------------
+   PREMIUM HERO SECTION (REDESIGN)
+----------------------- */
+.hero {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+    background-color: #030308; /* Ultra dark tech background */
+}
+
+/* Glowing Orbs */
+.hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    width: 50vw;
+    height: 50vw;
+    max-width: 600px;
+    max-height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+    opacity: 0.5;
+    animation: orbPulse 10s ease-in-out infinite alternate;
+}
+.hero::before {
+    top: -10%;
+    left: -10%;
+    background: rgba(0, 255, 255, 0.2); /* Cyan */
+}
+.hero::after {
+    bottom: -10%;
+    right: -10%;
+    background: rgba(138, 43, 226, 0.2); /* Purple */
+    animation-delay: -5s;
+}
+
+@keyframes orbPulse {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+    100% { transform: scale(1.2) translate(30px, 30px); opacity: 0.6; }
+}
+
+/* 3D Animated Background Styles */
+.hero-bg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #090914 0%, #030308 100%);
+}
+
+#three-hero-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+#three-hero-container canvas {
+    display: block;
+    outline: none;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 20px 5%;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-family: 'Outfit', 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #ffffff 20%, #00ffff 80%, #8a2be2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 4px 15px rgba(0, 255, 255, 0.3));
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    margin: 0 auto 35px;
+    max-width: 85%;
+    color: #a0aec0;
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.8);
+    font-weight: 400;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+}
+
+/* Premium Button Styling */
+.hero-buttons .btn {
+    width: 100%;
+    padding: 16px 28px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(5px);
+}
+.hero-buttons .btn-primary {
+    background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+}
+.hero-buttons .btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.6);
+}
+.hero-buttons .btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+.hero-buttons .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.hero-image {
+    flex: 1.1;
+    display: flex;
+    justify-content: center;
+    perspective: 1200px;
+    z-index: 2;
+}
+
+.hero-image img {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 255, 255, 0.15);
+    animation: float3dPremium 8s ease-in-out infinite;
+    transform-style: preserve-3d;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes float3dPremium {
+    0%, 100% {
+        transform: translateY(0) rotateX(2deg) rotateY(-2deg);
+        box-shadow: -10px 20px 40px rgba(0, 255, 255, 0.15);
+    }
+    50% {
+        transform: translateY(-15px) rotateX(-2deg) rotateY(2deg);
+        box-shadow: 10px 30px 60px rgba(138, 43, 226, 0.2);
+    }
+}
+
+/* Premium Stats Grid (Glassmorphism 2.0) */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.stat-card {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 35px 25px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.02), 0 8px 32px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    transform: skewX(-25deg);
+    transition: 0.5s;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 255, 255, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 255, 255, 0.15), inset 0 0 15px rgba(0, 255, 255, 0.05);
+}
+.stat-card:hover::before {
+    left: 200%;
+}
+
+.stat-card h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #00ffff, #3a7bd5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-card p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* -----------------------
+   RESPONSIVE QUERIES (Mobile-First)
+----------------------- */
+@media (min-width: 768px) {
+    .hero {
+        min-height: 100vh;
+        padding-top: 100px;
+        padding-bottom: 40px;
+    }
+    .hero-container {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 98px 5%;
+        gap: 60px;
+        margin-bottom: 60px;
+    }
+    .hero-content p {
+        margin: 0 0 40px;
+    }
+    .hero-buttons {
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    }
+    .hero-buttons .btn {
+        width: auto;
+    }
+    .hero-image img {
+        max-width: 700px;
+    }
+}
