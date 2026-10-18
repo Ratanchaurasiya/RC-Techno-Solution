@@ -78,16 +78,18 @@
 }
 
 #team .section-title {
-    color: var(--clr-primary) !important;
+    color: #ffffff !important;
     transition: var(--transition);
-    display: inline-block;
+    display: block;
+    margin-bottom: 10px;
     cursor: pointer;
+    font-weight: 800;
 }
 
 #team .section-title:hover {
-    color: var(--clr-accent) !important;
-    transform: translateY(-5px) scale(1.05);
-    text-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+    color: #38bdf8 !important;
+    transform: translateY(-2px);
+    text-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
 }
 
 /* Gallery Section Styles */

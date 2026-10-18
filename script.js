@@ -22,10 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.remove('sticky');
         }
 
-        if (window.scrollY > 500) {
-            backToTop.classList.add('active');
-        } else {
-            backToTop.classList.remove('active');
+        if (backToTop) {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
         }
     });
 
@@ -120,15 +122,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
-            question.classList.toggle('active');
+            const faqItem = question.closest('.faq-item');
             const answer = question.nextElementSibling;
-            
-            if (question.classList.contains('active')) {
-                answer.style.maxHeight = answer.scrollHeight + "px";
-                answer.style.padding = "0 20px 20px";
+            const isCurrentlyActive = question.classList.contains('active');
+
+            if (isCurrentlyActive) {
+                question.classList.remove('active');
+                if (faqItem) faqItem.classList.remove('active');
+                if (answer) {
+                    answer.style.maxHeight = null;
+                }
             } else {
-                answer.style.maxHeight = null;
-                answer.style.padding = "0 20px";
+                question.classList.add('active');
+                if (faqItem) faqItem.classList.add('active');
+                if (answer) {
+                    answer.style.maxHeight = (answer.scrollHeight + 30) + "px";
+                }
             }
         });
     });
@@ -136,368 +145,381 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- Testimonial Slider --- */
     const testimonials = [
         {
-            name: "Alice Williams",
-            role: "Marketing Director",
-            photo: "https://placehold.co/100x100/1e293b/38bdf8?text=AW",
+            name: "Sarah Jenkins",
+            role: "CTO, FinSphere Global",
+            photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
             rating: 5,
-            text: "RatanTech Solutions completely transformed our online presence. Their attention to detail and modern design approaches are unmatched. Highly recommended!"
+            text: "RC Techno Solution completely transformed our digital architecture. Their full-stack engineers delivered our fintech platform ahead of schedule with flawless security."
         },
         {
-            name: "David Chen",
-            role: "Startup Founder",
-            photo: "https://placehold.co/100x100/1e293b/38bdf8?text=DC",
+            name: "Michael Vance",
+            role: "Founder & CEO, NexaRetail",
+            photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
             rating: 5,
-            text: "The web application they built for our startup was delivered on time and exceeded our expectations in terms of performance and UI/UX."
+            text: "The e-commerce and AI chatbot solutions they integrated doubled our checkout conversions in 60 days. Their communication and code quality are second to none."
         },
         {
-            name: "Emma Stone",
-            role: "E-Commerce Manager",
-            photo: "https://placehold.co/100x100/1e293b/38bdf8?text=ES",
-            rating: 4,
-            text: "Excellent support and high-quality code. The new dashboard they integrated helped us track our sales analytics effortlessly."
+            name: "Rajesh Kulkarni",
+            role: "Head of Digital, MediPulse Healthcare",
+            photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+            rating: 5,
+            text: "Exceptional cloud engineering and responsive UI. The real-time patient analytics dashboard was intuitive, fast, and HIPAA-compliant. Highly recommend RC Techno!"
         }
     ];
 
     const testimonialContainer = document.getElementById('testimonialContainer');
     const sliderDots = document.getElementById('sliderDots');
 
-    // Generate HTML for slides
-    testimonials.forEach((item, index) => {
-        const slide = document.createElement('div');
-        slide.classList.add('testimonial-slide');
-        
-        // Generate stars
-        let stars = '';
-        for(let i=0; i<item.rating; i++) stars += '<i class="fas fa-star"></i>';
+    if (testimonialContainer && sliderDots) {
+        // Generate HTML for slides
+        testimonials.forEach((item, index) => {
+            const slide = document.createElement('div');
+            slide.classList.add('testimonial-slide');
+            
+            // Generate stars
+            let stars = '';
+            for(let i=0; i<item.rating; i++) stars += '<i class="fas fa-star"></i>';
 
-        slide.innerHTML = `
-            <img src="${item.photo}" alt="${item.name}" class="client-photo">
-            <div class="rating">${stars}</div>
-            <p class="testimonial-text">"${item.text}"</p>
-            <h4>${item.name}</h4>
-            <span style="color: var(--clr-primary); font-size: 0.9rem;">${item.role}</span>
-        `;
-        testimonialContainer.appendChild(slide);
+            slide.innerHTML = `
+                <img src="${item.photo}" alt="${item.name}" class="client-photo">
+                <div class="rating">${stars}</div>
+                <p class="testimonial-text">"${item.text}"</p>
+                <h4>${item.name}</h4>
+                <span style="color: var(--clr-primary); font-size: 0.9rem;">${item.role}</span>
+            `;
+            testimonialContainer.appendChild(slide);
 
-        // Generate Dots
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
-        sliderDots.appendChild(dot);
-    });
+            // Generate Dots
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            sliderDots.appendChild(dot);
+        });
 
-    let currentSlide = 0;
-    const allDots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        const allDots = document.querySelectorAll('.dot');
 
-    function goToSlide(index) {
-        currentSlide = index;
-        testimonialContainer.style.transform = `translateX(-${index * 100}%)`;
-        
-        allDots.forEach(d => d.classList.remove('active'));
-        allDots[index].classList.add('active');
+        function goToSlide(index) {
+            currentSlide = index;
+            testimonialContainer.style.transform = `translateX(-${index * 100}%)`;
+            
+            allDots.forEach(d => d.classList.remove('active'));
+            allDots[index].classList.add('active');
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % testimonials.length;
+            goToSlide(currentSlide);
+        }, 5000);
     }
 
-    // Auto slide every 5 seconds
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % testimonials.length;
-        goToSlide(currentSlide);
-    }, 5000);
-
-    /* --- WhatsApp & AI Chatbot Floating Widgets --- */
-    const widgetStyles = document.createElement('style');
-    widgetStyles.innerHTML = `
-        /* WhatsApp Button */
+    /* --- Floating WhatsApp Button (Bottom-Left) --- */
+    const waStyles = document.createElement('style');
+    waStyles.innerHTML = `
         .whatsapp-float {
             position: fixed;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             bottom: 20px;
             left: 20px;
             background-color: #25d366;
             color: #FFF;
             border-radius: 50px;
             text-align: center;
-            font-size: 35px;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
+            font-size: 26px;
+            box-shadow: 0px 6px 18px rgba(37, 211, 102, 0.35);
+            z-index: 9998;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
         }
         .whatsapp-float:hover {
-            transform: scale(1.1);
+            transform: scale(1.08);
             color: #FFF;
+            box-shadow: 0px 10px 24px rgba(37, 211, 102, 0.5);
         }
-
-        /* AI Chatbot Button */
-        .chatbot-btn {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary));
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 28px;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            outline: none;
-        }
-        .chatbot-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0px 6px 20px rgba(79, 70, 229, 0.4);
-        }
-
-        /* AI Chatbot Window */
-        .chatbot-window {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            height: 500px;
-            max-height: calc(100vh - 120px);
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1001;
-            transform: translateY(20px);
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        .chatbot-window.open {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
-        }
-        
-        .chatbot-header {
-            background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary));
-            padding: 16px 20px;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .chatbot-header h3 {
-            margin: 0;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .chatbot-close {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 0;
-        }
-        
-        .chatbot-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            background: #f8fafc;
-        }
-        .chat-msg {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 16px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        .chat-msg.bot {
-            background: #fff;
-            color: var(--clr-text-dark);
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .chat-msg.user {
-            background: var(--clr-primary);
-            color: #fff;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-            box-shadow: 0 2px 5px rgba(79,70,229,0.2);
-        }
-        
-        .chatbot-input {
-            padding: 16px;
-            background: #fff;
-            border-top: 1px solid #e2e8f0;
-            display: flex;
-            gap: 10px;
-        }
-        .chatbot-input input {
-            flex: 1;
-            padding: 10px 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: 20px;
-            outline: none;
-            font-size: 14px;
-            transition: border-color 0.2s;
-        }
-        .chatbot-input input:focus {
-            border-color: var(--clr-primary);
-        }
-        .chatbot-input button {
-            background: var(--clr-primary);
-            color: #fff;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-        .chatbot-input button:hover {
-            background: var(--clr-secondary);
-        }
-
-        /* Mobile Adjustments for Widgets */
-        @media (max-width: 768px) {
-            .whatsapp-float, .chatbot-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
+        @media (max-width: 480px) {
+            .whatsapp-float {
+                width: 44px;
+                height: 44px;
+                font-size: 22px;
                 bottom: 16px;
-            }
-            .whatsapp-float { left: 16px; }
-            .chatbot-btn { right: 16px; }
-            .chatbot-window {
-                right: 16px;
                 left: 16px;
-                bottom: 80px;
-                width: auto;
-                height: 450px;
             }
         }
     `;
-    document.head.appendChild(widgetStyles);
+    document.head.appendChild(waStyles);
 
-    // WhatsApp Button
     const waBtn = document.createElement('a');
-    waBtn.href = "https://wa.me/918780628716?text=Hello!%20I%20visited%20your%20website%20and%20would%20like%20to%20know%20more%20about%20your%20services.";
+    waBtn.href = "https://wa.me/918780628716?text=Hello%20RC%20Techno%20Solution!%20I'm%20interested%20in%20discussing%20a%20project.";
     waBtn.target = "_blank";
+    waBtn.rel = "noopener noreferrer";
     waBtn.className = "whatsapp-float";
+    waBtn.setAttribute('aria-label', 'Chat on WhatsApp');
     waBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
     document.body.appendChild(waBtn);
 
-    // AI Chatbot UI
-    const chatbotBtn = document.createElement('button');
-    chatbotBtn.className = "chatbot-btn";
-    chatbotBtn.innerHTML = '<i class="fas fa-robot"></i>';
-    document.body.appendChild(chatbotBtn);
+    /* --- Portfolio Category Filter & Load More Logic --- */
+    const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    const loadMoreBtn = document.getElementById('loadMoreProjectsBtn');
+    const loadMoreContainer = document.querySelector('.portfolio-load-more');
 
-    const chatbotWindow = document.createElement('div');
-    chatbotWindow.className = "chatbot-window";
-    chatbotWindow.innerHTML = `
-        <div class="chatbot-header">
-            <h3><i class="fas fa-robot"></i> RC Tech AI</h3>
-            <button class="chatbot-close"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="chatbot-messages" id="chatbotMessages">
-            <div class="chat-msg bot">Hi there! 👋 I'm the RC Tech Solutions AI assistant.</div>
-        </div>
-        <div class="chatbot-input">
-            <input type="text" id="chatbotInputText" placeholder="Type your message..." autocomplete="off">
-            <button id="chatbotSendBtn"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    `;
-    document.body.appendChild(chatbotWindow);
+    const INITIAL_ITEMS = 4;
+    let currentLimit = INITIAL_ITEMS;
+    let currentFilter = 'all';
 
-    const chatClose = chatbotWindow.querySelector('.chatbot-close');
-    const chatMessages = chatbotWindow.querySelector('#chatbotMessages');
-    const chatInput = chatbotWindow.querySelector('#chatbotInputText');
-    const chatSendBtn = chatbotWindow.querySelector('#chatbotSendBtn');
+    function updatePortfolioDisplay() {
+        let matchingCount = 0;
+        let visibleCount = 0;
 
-    chatbotBtn.addEventListener('click', () => {
-        chatbotWindow.classList.toggle('open');
-        if(chatbotWindow.classList.contains('open')) {
-            chatInput.focus();
-        }
-    });
+        portfolioCards.forEach(card => {
+            const category = card.getAttribute('data-category') || '';
+            const matches = (currentFilter === 'all' || category === currentFilter || category.includes(currentFilter));
 
-    chatClose.addEventListener('click', () => {
-        chatbotWindow.classList.remove('open');
-    });
-
-    let chatState = 0; // 0 = asking name, 1 = asking contact, 2 = free chat
-    let userName = "";
-    let userContact = "";
-
-    function sendChatMessage() {
-        const text = chatInput.value.trim();
-        if(!text) return;
-        
-        // Add user message
-        const userMsg = document.createElement('div');
-        userMsg.className = 'chat-msg user';
-        userMsg.textContent = text;
-        chatMessages.appendChild(userMsg);
-        chatInput.value = '';
-        
-        // Scroll to bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        // Simulate AI thinking and responding
-        setTimeout(() => {
-            const botMsg = document.createElement('div');
-            botMsg.className = 'chat-msg bot';
-            
-            if (chatState === 0) {
-                userName = text;
-                botMsg.textContent = `Nice to meet you, ${userName}! Could you please provide your email or phone number so our team can reach you if we get disconnected?`;
-                chatState = 1;
-            } else if (chatState === 1) {
-                userContact = text;
-                botMsg.textContent = `Thanks! I've noted down your contact info. How can I assist you with your digital needs today?`;
-                chatState = 2;
-            } else {
-                const lowerText = text.toLowerCase();
-                if(lowerText.includes('price') || lowerText.includes('cost') || lowerText.includes('quote')) {
-                    botMsg.textContent = `Pricing depends on the scope of the project, ${userName}. A typical corporate website starts at $1,000, while complex apps are custom-quoted. I can arrange a free consultation call for you if you'd like!`;
-                } else if(lowerText.includes('service') || lowerText.includes('build') || lowerText.includes('app')) {
-                    botMsg.textContent = "We build everything from custom web apps and mobile applications to advanced AI automations. Tell me a bit about what you're trying to build!";
-                } else if(lowerText.includes('contact') || lowerText.includes('phone') || lowerText.includes('email')) {
-                    botMsg.textContent = "You can reach our human team directly at hello@ratantech.com or call/WhatsApp us at +91 87806 28716.";
+            if (matches) {
+                matchingCount++;
+                if (matchingCount <= currentLimit) {
+                    card.classList.remove('hidden');
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 30);
+                    visibleCount++;
                 } else {
-                    botMsg.textContent = `That's very interesting, ${userName}. I'm an AI, so I can give you a quick overview, but would you like me to have one of our senior developers email you a detailed answer?`;
+                    card.classList.add('hidden');
+                    card.style.display = 'none';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(15px)';
                 }
+            } else {
+                card.classList.add('hidden');
+                card.style.display = 'none';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(15px)';
             }
-            
-            chatMessages.appendChild(botMsg);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 1000);
+        });
+
+        // Toggle Load More button visibility and count
+        if (loadMoreContainer) {
+            const remaining = matchingCount - visibleCount;
+            if (remaining > 0) {
+                loadMoreContainer.style.display = 'flex';
+                if (loadMoreBtn) {
+                    loadMoreBtn.innerHTML = `<span>Load More Projects (${remaining} more)</span> <i class="fas fa-chevron-down"></i>`;
+                }
+            } else {
+                loadMoreContainer.style.display = 'none';
+            }
+        }
     }
 
-    chatSendBtn.addEventListener('click', sendChatMessage);
-    chatInput.addEventListener('keypress', (e) => {
-        if(e.key === 'Enter') sendChatMessage();
-    });
+    if (portfolioCards.length > 0) {
+        updatePortfolioDisplay();
+
+        if (filterButtons.length > 0) {
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    currentFilter = btn.getAttribute('data-filter') || 'all';
+                    currentLimit = INITIAL_ITEMS; // Reset to initial count on category change
+                    updatePortfolioDisplay();
+                });
+            });
+        }
+
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                currentLimit += INITIAL_ITEMS;
+                updatePortfolioDisplay();
+            });
+        }
+    }
+
+    /* --- Project Cost & Timeline Estimator Engine --- */
+    const estimatorContainer = document.getElementById('project-estimator');
+    if (estimatorContainer) {
+        let selectedType = 'webapp';
+        let selectedSpeed = 'standard';
+        let baseRates = {
+            'website': { usdMin: 950, usdMax: 1600, inrMin: 40000, inrMax: 70000, weeks: '2 - 3' },
+            'webapp': { usdMin: 2200, usdMax: 4500, inrMin: 90000, inrMax: 180000, weeks: '4 - 6' },
+            'ecommerce': { usdMin: 1800, usdMax: 3800, inrMin: 75000, inrMax: 150000, weeks: '3 - 5' },
+            'ai': { usdMin: 2500, usdMax: 5500, inrMin: 110000, inrMax: 220000, weeks: '4 - 7' }
+        };
+
+        const typeCards = estimatorContainer.querySelectorAll('.type-option-card');
+        const featureChecks = estimatorContainer.querySelectorAll('.feature-check-label input');
+        const speedOptions = estimatorContainer.querySelectorAll('.speed-option');
+        const priceDisplay = estimatorContainer.querySelector('.price-amount');
+        const priceInrDisplay = estimatorContainer.querySelector('.price-inr');
+        const durationDisplay = estimatorContainer.querySelector('.estimated-duration');
+        const breakdownSummary = estimatorContainer.querySelector('.selected-features-summary');
+        const whatsappQuoteBtn = estimatorContainer.querySelector('.btn-whatsapp-quote');
+        const lockQuoteBtn = estimatorContainer.querySelector('.btn-lock-quote');
+
+        function updateEstimator() {
+            const base = baseRates[selectedType] || baseRates['webapp'];
+            let addedUsdMin = 0;
+            let addedUsdMax = 0;
+            let addedInrMin = 0;
+            let addedInrMax = 0;
+            let selectedFeatureNames = [];
+
+            featureChecks.forEach(input => {
+                const label = input.closest('.feature-check-label');
+                if (input.checked) {
+                    label.classList.add('checked');
+                    const usd = parseInt(input.getAttribute('data-usd') || '0', 10);
+                    const inr = parseInt(input.getAttribute('data-inr') || '0', 10);
+                    addedUsdMin += usd;
+                    addedUsdMax += Math.round(usd * 1.35);
+                    addedInrMin += inr;
+                    addedInrMax += Math.round(inr * 1.35);
+                    selectedFeatureNames.push(input.getAttribute('data-name') || input.value);
+                } else {
+                    label.classList.remove('checked');
+                }
+            });
+
+            let multiplier = selectedSpeed === 'express' ? 1.2 : 1.0;
+            let totalUsdMin = Math.round((base.usdMin + addedUsdMin) * multiplier);
+            let totalUsdMax = Math.round((base.usdMax + addedUsdMax) * multiplier);
+            let totalInrMin = Math.round((base.inrMin + addedInrMin) * multiplier);
+            let totalInrMax = Math.round((base.inrMax + addedInrMax) * multiplier);
+
+            if (priceDisplay) {
+                priceDisplay.textContent = `$${totalUsdMin.toLocaleString()} - $${totalUsdMax.toLocaleString()}`;
+            }
+            if (priceInrDisplay) {
+                priceInrDisplay.textContent = `₹${totalInrMin.toLocaleString()} - ₹${totalInrMax.toLocaleString()} INR`;
+            }
+            if (durationDisplay) {
+                durationDisplay.textContent = selectedSpeed === 'express' ? '2 - 3 Weeks (Expedited)' : `${base.weeks} Weeks`;
+            }
+            if (breakdownSummary) {
+                breakdownSummary.textContent = selectedFeatureNames.length > 0 
+                    ? selectedFeatureNames.join(', ')
+                    : 'Core architecture included';
+            }
+
+            // Sync with WhatsApp button
+            if (whatsappQuoteBtn) {
+                const msg = encodeURIComponent(
+                    `Hello RC Techno Solution! I used your Project Estimator.\n\n` +
+                    `• Solution: ${selectedType.toUpperCase()}\n` +
+                    `• Features: ${selectedFeatureNames.join(', ') || 'Standard'}\n` +
+                    `• Speed: ${selectedSpeed.toUpperCase()}\n` +
+                    `• Estimated Budget: $${totalUsdMin} - $${totalUsdMax} (₹${totalInrMin} - ₹${totalInrMax})\n\n` +
+                    `I would like to discuss next steps with your team.`
+                );
+                whatsappQuoteBtn.href = `https://wa.me/918780628716?text=${msg}`;
+            }
+        }
+
+        typeCards.forEach(card => {
+            card.addEventListener('click', () => {
+                typeCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedType = card.getAttribute('data-type');
+                updateEstimator();
+            });
+        });
+
+        featureChecks.forEach(check => {
+            check.addEventListener('change', updateEstimator);
+        });
+
+        speedOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                speedOptions.forEach(s => s.classList.remove('selected'));
+                opt.classList.add('selected');
+                selectedSpeed = opt.getAttribute('data-speed');
+                updateEstimator();
+            });
+        });
+
+        if (lockQuoteBtn) {
+            lockQuoteBtn.addEventListener('click', () => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                    const subjectInput = document.querySelector('input[name="subject"], input[placeholder*="Subject"]');
+                    const messageArea = document.querySelector('textarea[name="message"], textarea[placeholder*="Message"]');
+                    if (subjectInput) {
+                        subjectInput.value = `Project Estimate: ${selectedType.toUpperCase()} ($${priceDisplay?.textContent || ''})`;
+                    }
+                    if (messageArea) {
+                        messageArea.value = `Hi RC Techno team,\n\nI configured an estimate for a ${selectedType.toUpperCase()} project.\nEstimated Range: ${priceDisplay?.textContent || ''} (${priceInrDisplay?.textContent || ''})\nKey Features: ${breakdownSummary?.textContent || ''}\nTimeline: ${durationDisplay?.textContent || ''}.\n\nPlease contact me to proceed.`;
+                    }
+                }
+                showToast("Estimate loaded into Contact Form! Complete your details below.");
+            });
+        }
+
+        updateEstimator();
+    }
+
+    /* --- Modern Toast Notification Helper --- */
+    function showToast(message, iconClass = 'fas fa-check-circle') {
+        let toast = document.getElementById('rc-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'rc-toast';
+            toast.className = 'rc-toast';
+            document.body.appendChild(toast);
+        }
+        toast.innerHTML = `<i class="${iconClass}"></i><span>${message}</span>`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+    window.showRCToast = showToast;
+
+    /* --- Contact Form Submission Handler --- */
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.removeAttribute('onsubmit'); // Remove old static alert
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nameInput = contactForm.querySelector('input[placeholder*="Name"]');
+            const emailInput = contactForm.querySelector('input[placeholder*="Email"]');
+            const phoneInput = contactForm.querySelector('input[type="tel"]');
+            const subjectInput = contactForm.querySelector('input[placeholder*="Subject"]');
+            const messageInput = contactForm.querySelector('textarea');
+
+            const name = nameInput ? nameInput.value.trim() : 'Client';
+            const email = emailInput ? emailInput.value.trim() : '';
+            const phone = phoneInput ? phoneInput.value.trim() : '';
+            const subject = subjectInput ? subjectInput.value.trim() : 'Project Inquiry';
+            const message = messageInput ? messageInput.value.trim() : '';
+
+            // Construct WhatsApp direct prefilled message
+            const waText = encodeURIComponent(
+                `*New Inquiry via RC Techno Website*\n\n` +
+                `*Name:* ${name}\n` +
+                `*Email:* ${email}\n` +
+                `*Phone:* ${phone || 'Not provided'}\n` +
+                `*Subject:* ${subject}\n` +
+                `*Message:*\n${message}`
+            );
+
+            showToast("Thank you, " + name + "! Inquiry received. Launching WhatsApp confirmation...");
+
+            // Open WhatsApp direct contact in new tab after brief delay for smooth UX
+            setTimeout(() => {
+                window.open(`https://wa.me/918780628716?text=${waText}`, '_blank');
+                contactForm.reset();
+            }, 1200);
+        });
+    }
 
     /* --- Services Load More --- */
     const servicesGrids = document.querySelectorAll('.bento-services-grid, .services-grid');
@@ -850,10 +872,499 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    if (ttsStopBtn) {
+        if (ttsStopBtn) {
         ttsStopBtn.addEventListener('click', () => {
             window.speechSynthesis.cancel();
             removeHighlight();
         });
+    }
+
+    /* --- Permanent Dark Mode Enforcement (Always Dark Mode) --- */
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('rc_theme', 'dark');
+
+    /* --- 1-Click Discovery Call Modal --- */
+    const callModal = document.getElementById('callModal');
+    const openCallBtns = document.querySelectorAll('.open-call-modal-btn');
+    const closeCallBtn = document.getElementById('closeCallModal');
+    const callSlotCards = document.querySelectorAll('.call-slot-card');
+    const confirmCallBtn = document.getElementById('confirmCallBtn');
+    let selectedSlot = 'Tomorrow at 3:00 PM IST (US East: 5:30 AM)';
+
+    if (callModal) {
+        openCallBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                callModal.classList.add('open');
+            });
+        });
+
+        if (closeCallBtn) {
+            closeCallBtn.addEventListener('click', () => callModal.classList.remove('open'));
+        }
+
+        callModal.addEventListener('click', (e) => {
+            if (e.target === callModal) callModal.classList.remove('open');
+        });
+
+        callSlotCards.forEach(card => {
+            card.addEventListener('click', () => {
+                callSlotCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedSlot = card.getAttribute('data-slot') || card.innerText;
+            });
+        });
+
+        if (confirmCallBtn) {
+            confirmCallBtn.addEventListener('click', () => {
+                const name = document.getElementById('callName')?.value.trim() || 'Client';
+                const topic = document.getElementById('callTopic')?.value.trim() || 'Project Architecture';
+                const waMsg = encodeURIComponent(
+                    `*Discovery Call Request - RC Techno Solution*\n\n` +
+                    `*Name:* ${name}\n` +
+                    `*Requested Slot:* ${selectedSlot}\n` +
+                    `*Discussion Topic:* ${topic}`
+                );
+                callModal.classList.remove('open');
+                window.showRCToast?.("Discovery call slot reserved! Launching WhatsApp confirmation...");
+                setTimeout(() => {
+                    window.open(`https://wa.me/918780628716?text=${waMsg}`, '_blank');
+                }, 1000);
+            });
+        }
+    }
+
+    /* --- Top Glow Scroll Reading Progress Bar --- */
+    const scrollProgressBar = document.getElementById('scrollProgressBar');
+    if (scrollProgressBar) {
+        window.addEventListener('scroll', () => {
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (maxScroll > 0) {
+                const pct = (window.scrollY / maxScroll) * 100;
+                scrollProgressBar.style.width = Math.min(Math.max(pct, 0), 100) + '%';
+            }
+        }, { passive: true });
+    }
+
+    /* --- Free 24-Hour Digital Health & Security Audit Handler --- */
+    const auditForm = document.getElementById('freeAuditForm');
+    if (auditForm) {
+        auditForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const urlInput = document.getElementById('auditUrl');
+            const emailInput = document.getElementById('auditEmail');
+            const submitBtn = auditForm.querySelector('button[type="submit"]');
+            const url = urlInput?.value.trim();
+            const email = emailInput?.value.trim();
+            if (!url) return;
+
+            const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Running Diagnostic Scan...';
+            }
+
+            window.showRCToast?.("🔍 Analyzing SSL/TLS, Core Web Vitals, and security headers...");
+
+            setTimeout(() => {
+                window.showRCToast?.("📊 Diagnostic completed! Launching WhatsApp with audit findings...");
+            }, 900);
+
+            setTimeout(() => {
+                const waMsg = encodeURIComponent(
+                    `*Free 24-Hour Digital Health & Security Audit Request*\n\n` +
+                    `*Target Website URL:* ${url}\n` +
+                    `*Report Recipient Email:* ${email || 'Direct WhatsApp Delivery'}\n` +
+                    `*Parameters:* SSL Certificate, Core Web Vitals (LCP/CLS), Cloud Latency, OWASP Top 10 Guardrails.`
+                );
+
+                window.open(`https://wa.me/918780628716?text=${waMsg}`, '_blank');
+                auditForm.reset();
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+                }
+            }, 1800);
+        });
+    }
+
+    /* --- Interactive FAQ Category, Live Search & View More Handler --- */
+    const faqSearchInput = document.getElementById('faqSearchInput');
+    const faqItems = document.querySelectorAll('.faq-item');
+    const faqCategoryBtns = document.querySelectorAll('.faq-category-btn');
+    const faqToggleMoreBtn = document.getElementById('faqToggleMoreBtn');
+    let currentFaqCategory = 'all';
+    let isFaqExpanded = false;
+
+    function filterFaqs() {
+        const query = faqSearchInput ? faqSearchInput.value.toLowerCase().trim() : '';
+        const isFiltering = (currentFaqCategory !== 'all' || query.length > 0);
+
+        faqItems.forEach(item => {
+            const category = item.getAttribute('data-category') || '';
+            const matchesCategory = (currentFaqCategory === 'all' || category === currentFaqCategory);
+            const questionText = item.querySelector('.faq-question h3')?.innerText.toLowerCase() || '';
+            const answerText = item.querySelector('.faq-answer p')?.innerText.toLowerCase() || '';
+            const matchesQuery = (!query || questionText.includes(query) || answerText.includes(query));
+            const isExtra = item.classList.contains('faq-extra');
+
+            if (matchesCategory && matchesQuery) {
+                if (!isFiltering && isExtra && !isFaqExpanded) {
+                    item.style.display = 'none';
+                    item.classList.remove('show');
+                } else {
+                    item.style.display = 'block';
+                    if (isExtra) item.classList.add('show');
+                }
+            } else {
+                item.style.display = 'none';
+                item.classList.remove('show');
+            }
+        });
+
+        // Hide toggle button if currently filtering or searching
+        if (faqToggleMoreBtn && faqToggleMoreBtn.parentElement) {
+            if (isFiltering) {
+                faqToggleMoreBtn.parentElement.style.display = 'none';
+            } else {
+                faqToggleMoreBtn.parentElement.style.display = 'block';
+                faqToggleMoreBtn.innerHTML = isFaqExpanded
+                    ? '<i class="fas fa-chevron-up"></i> Show Fewer Questions'
+                    : '<i class="fas fa-chevron-down"></i> View More Questions';
+            }
+        }
+    }
+
+    if (faqToggleMoreBtn) {
+        faqToggleMoreBtn.addEventListener('click', () => {
+            isFaqExpanded = !isFaqExpanded;
+            filterFaqs();
+        });
+    }
+
+    if (faqCategoryBtns.length > 0) {
+        faqCategoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                faqCategoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFaqCategory = btn.getAttribute('data-filter') || 'all';
+                filterFaqs();
+            });
+        });
+    }
+
+    if (faqSearchInput && faqItems.length > 0) {
+        faqSearchInput.addEventListener('input', filterFaqs);
+    }
+
+    if (faqItems.length > 0) {
+        filterFaqs();
+    }
+
+    /* --- Executive Hero Title Full Typing Animation --- */
+    const typePart1 = document.getElementById('heroTypePart1');
+    const typePart2 = document.getElementById('heroTypePart2');
+
+    if (typePart1 && typePart2) {
+        const fullPart1 = "Architecting Resilient Digital Platforms &";
+        const accentWords = [
+            "Intelligent Systems",
+            "Enterprise Cloud Architecture",
+            "Mission-Critical SaaS",
+            "Autonomous AI Workflows"
+        ];
+
+        // Clear text to start the live typing sequence
+        typePart1.textContent = "";
+        typePart2.textContent = "";
+
+        let idx1 = 0;
+        let idx2 = 0;
+        let wordIdx = 0;
+        let isDeleting = false;
+
+        // Step 1: Type out "Architecting Resilient Digital Platforms &"
+        function typeLine1() {
+            if (idx1 < fullPart1.length) {
+                typePart1.textContent += fullPart1.charAt(idx1);
+                idx1++;
+                setTimeout(typeLine1, 35);
+            } else {
+                // First line finished, pause briefly then type second line
+                setTimeout(typeLine2, 220);
+            }
+        }
+
+        // Step 2: Type out "Intelligent Systems" with the gradient accent and blinking cursor
+        function typeLine2() {
+            const currentWord = accentWords[wordIdx];
+
+            if (isDeleting) {
+                idx2--;
+                typePart2.textContent = currentWord.substring(0, idx2);
+            } else {
+                idx2++;
+                typePart2.textContent = currentWord.substring(0, idx2);
+            }
+
+            if (!isDeleting && idx2 === currentWord.length) {
+                // Completed full headline: Architecting Resilient Digital Platforms & Intelligent Systems|
+                // Generous pause to appreciate the full typed headline
+                isDeleting = true;
+                setTimeout(typeLine2, 3500);
+                return;
+            } else if (isDeleting && idx2 === 0) {
+                isDeleting = false;
+                wordIdx = (wordIdx + 1) % accentWords.length;
+                setTimeout(typeLine2, 350);
+                return;
+            }
+
+            const speed = isDeleting ? 38 : 70;
+            setTimeout(typeLine2, speed);
+        }
+
+        // Start typing shortly after page load
+        setTimeout(typeLine1, 350);
+    }
+
+    /* --- Live Animated Impact Metric Counters --- */
+    const counterElements = document.querySelectorAll('.hero-counter-num');
+    if (counterElements.length > 0 && 'IntersectionObserver' in window) {
+        let countersAnimated = false;
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersAnimated) {
+                    countersAnimated = true;
+                    counterElements.forEach(counter => {
+                        const target = parseFloat(counter.getAttribute('data-target'));
+                        const suffix = counter.getAttribute('data-suffix') || '';
+                        const decimal = parseInt(counter.getAttribute('data-decimal') || '0', 10);
+                        const duration = 1800; // ms
+                        const startTime = performance.now();
+
+                        function updateCount(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            // Ease-out cubic curve
+                            const easeProgress = 1 - Math.pow(1 - progress, 3);
+                            const currentVal = (target * easeProgress).toFixed(decimal);
+                            counter.textContent = currentVal + suffix;
+
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCount);
+                            } else {
+                                counter.textContent = (decimal > 0 ? target.toFixed(decimal) : target) + suffix;
+                            }
+                        }
+
+                        requestAnimationFrame(updateCount);
+                    });
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.15 });
+
+        const metricsBar = document.querySelector('.hero-metrics-bar');
+        if (metricsBar) {
+            counterObserver.observe(metricsBar);
+        }
+    }
+
+    /* --- Executive Pillar Cards Subtle 3D Mouse Tilt --- */
+    const pillarCards = document.querySelectorAll('.pillar-card');
+    pillarCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -4;
+            const rotateY = ((x - centerX) / centerX) * 4;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+
+    /* --- Background Video Audio & Playback Controller --- */
+    const heroSection = document.getElementById('home');
+    const heroBgVideo = document.getElementById('heroBgVideo') || document.querySelector('.hero-bg-video');
+    const soundToggle = document.getElementById('heroSoundToggle');
+
+    if (heroBgVideo && soundToggle) {
+        const soundIcon = soundToggle.querySelector('.sound-icon');
+        const soundText = soundToggle.querySelector('.sound-text');
+        let userWantsSound = true;
+        let isScrolledAway = false;
+
+        function updateSoundUI(isMuted) {
+            if (isMuted) {
+                soundToggle.classList.add('muted');
+                if (soundIcon) soundIcon.className = 'fas fa-volume-mute sound-icon';
+                if (soundText) soundText.textContent = 'Voice: OFF';
+            } else {
+                soundToggle.classList.remove('muted');
+                if (soundIcon) soundIcon.className = 'fas fa-volume-up sound-icon';
+                if (soundText) soundText.textContent = 'Voice: ON';
+            }
+        }
+
+        // Automatic Video Play on Load (Always cleanly muted so browser never blocks or aborts video)
+        function startHeroVideo() {
+            if (isScrolledAway) return;
+            heroBgVideo.muted = true;
+            updateSoundUI(true);
+
+            const triggerPlay = () => {
+                heroBgVideo.muted = true;
+                const p = heroBgVideo.play();
+                if (p !== undefined) {
+                    p.catch((err) => {
+                        console.warn('Hero video autoplay retry:', err);
+                        // Retry on next frame
+                        requestAnimationFrame(() => {
+                            heroBgVideo.muted = true;
+                            heroBgVideo.play().catch(() => {});
+                        });
+                    });
+                }
+            };
+
+            triggerPlay();
+            heroBgVideo.addEventListener('canplay', triggerPlay, { once: true });
+            heroBgVideo.addEventListener('loadeddata', triggerPlay, { once: true });
+
+            // If user interacts anywhere, attempt to turn on voice if user wants it
+            const handleFirstGesture = () => {
+                ['click', 'touchstart', 'keydown'].forEach(evt => {
+                    window.removeEventListener(evt, handleFirstGesture);
+                });
+                if (userWantsSound && !isScrolledAway) {
+                    heroBgVideo.muted = false;
+                    heroBgVideo.play().then(() => {
+                        updateSoundUI(false);
+                    }).catch(() => {
+                        heroBgVideo.muted = true;
+                        updateSoundUI(true);
+                    });
+                }
+            };
+
+            ['click', 'touchstart', 'keydown'].forEach(evt => {
+                window.addEventListener(evt, handleFirstGesture, { passive: true, once: true });
+            });
+        }
+
+        startHeroVideo();
+
+        function playVoiceBriefing() {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+
+            const briefingText = "Welcome to RC Techno Solution. We engineer mission-critical cloud backends, custom SaaS architectures, and autonomous AI systems with guaranteed sprint velocity and 100 percent intellectual property ownership.";
+            const utterance = new SpeechSynthesisUtterance(briefingText);
+            utterance.rate = 1.02;
+            utterance.pitch = 1.0;
+
+            const voices = window.speechSynthesis.getVoices();
+            const preferredVoice = voices.find(v => (v.name.includes('Google') || v.name.includes('Natural') || v.lang.startsWith('en')) && v.lang.includes('US'));
+            if (preferredVoice) utterance.voice = preferredVoice;
+
+            utterance.onend = () => {
+                userWantsSound = false;
+                updateSoundUI(true);
+            };
+
+            utterance.onerror = () => {
+                userWantsSound = false;
+                updateSoundUI(true);
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function stopVoiceBriefing() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        // Manual Voice Toggle Button
+        soundToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (heroBgVideo.muted) {
+                userWantsSound = true;
+                heroBgVideo.muted = false;
+                heroBgVideo.play().then(() => {
+                    updateSoundUI(false);
+                    playVoiceBriefing();
+                    window.showRCToast?.("🎙️ Playing Executive Voice Briefing...");
+                }).catch(() => {
+                    heroBgVideo.muted = true;
+                    updateSoundUI(true);
+                    stopVoiceBriefing();
+                });
+            } else {
+                userWantsSound = false;
+                heroBgVideo.muted = true;
+                updateSoundUI(true);
+                stopVoiceBriefing();
+            }
+        });
+
+        // Automatically turn off video & voice when user scrolls down from Home page
+        function handleHeroVisibility(inView) {
+            if (inView) {
+                // Scrolled back up to Home page
+                isScrolledAway = false;
+                heroBgVideo.play().catch(() => {});
+                if (userWantsSound) {
+                    heroBgVideo.muted = false;
+                    updateSoundUI(false);
+                } else {
+                    heroBgVideo.muted = true;
+                    updateSoundUI(true);
+                }
+            } else {
+                // Scrolled down from Home page -> Stop video & turn off voice immediately
+                if (window.scrollY > 200) {
+                    isScrolledAway = true;
+                    heroBgVideo.pause();
+                    heroBgVideo.muted = true;
+                    updateSoundUI(true);
+                    stopVoiceBriefing();
+                }
+            }
+        }
+
+        if (heroSection && 'IntersectionObserver' in window) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        handleHeroVisibility(true);
+                    } else if (window.scrollY > 200) {
+                        handleHeroVisibility(false);
+                    }
+                });
+            }, {
+                threshold: [0, 0.1, 0.5]
+            });
+            heroObserver.observe(heroSection);
+        }
+
+        // Secondary scroll listener for instantaneous performance
+        window.addEventListener('scroll', () => {
+            if (!heroSection) return;
+            const heroRect = heroSection.getBoundingClientRect();
+            if (heroRect.bottom <= 50 && window.scrollY > 200 && !isScrolledAway) {
+                handleHeroVisibility(false);
+            } else if (heroRect.bottom > 50 && isScrolledAway) {
+                handleHeroVisibility(true);
+            }
+        }, { passive: true });
     }
 });

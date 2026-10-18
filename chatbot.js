@@ -1,311 +1,283 @@
-// chatbot.js - RatanTech AI Assistant Logic
+// ==========================================================================
+// RC TECHNO SOLUTION - OFFICIAL AI ASSISTANT (RC Techno AI)
+// Intelligent, fast, multi-turn assistant with built-in knowledge base,
+// Speech Synthesis (Voice Readout) & Speech Recognition (Voice Input).
+// ==========================================================================
 
-const GEMINI_API_KEY = 'AQ.Ab8RN6LI1Iv-ChZejgRgXrih8WXT7hjVr0RYLc3iZAZQZx59uw'; // Replace with your actual Gemini API key
+const RC_GEMINI_API_KEY = ''; // Optional: insert valid Gemini key if desired
 
-const SYSTEM_PROMPT = `
-You are **RatanTech AI**, the official AI assistant for **RatanTech**, a modern software development and AI solutions company.
+const RC_COMPANY_KNOWLEDGE = {
+    name: "RC Techno Solution",
+    email: "hello@rctechsolutions.com",
+    phone: "+91 87806 28716",
+    whatsapp: "https://wa.me/918780628716",
+    address: "Vastral, Ahmedabad, Gujarat, India",
+    services: [
+        "Custom Website Development (React, Next.js, responsive, SEO-ready)",
+        "Scalable Web Applications & SaaS Platforms (Node.js, Python, PostgreSQL)",
+        "E-Commerce & High-Conversion Storefronts (Stripe, Razorpay, Shopify)",
+        "AI Chatbots, LLM Agents & Workflow Automation (Gemini, OpenAI, LangChain)",
+        "REST & GraphQL API Integration & Microservices",
+        "Cloud Infrastructure & DevOps CI/CD (AWS, GCP, Docker, Kubernetes)",
+        "Database Architecture & Optimization (PostgreSQL, MongoDB, Redis)",
+        "UI/UX Design Systems & WebGL 3D Interactive Experiences"
+    ],
+    pricing: "Our corporate websites typically start from $1,000 (approx. ₹45,000), while custom web applications, SaaS platforms, and AI automations are scoped based on your specific requirements. We offer free consultation calls to deliver a tailored proposal.",
+    timelines: "Standard websites take 2–4 weeks; full-stack web applications and SaaS platforms typically take 4–8 weeks."
+};
 
-Your mission is to provide a friendly, professional, and efficient experience for every website visitor while helping generate qualified business leads.
-
---------------------------------------------------
-🎯 PRIMARY GOALS
---------------------------------------------------
-1. Welcome every visitor professionally.
-2. Collect the visitor's Name.
-3. Collect their Email Address or Phone Number.
-4. Understand their business requirements.
-5. Explain RatanTech services clearly.
-6. Answer pricing and contact questions.
-7. Encourage users to schedule a free consultation.
-8. Maintain a warm, trustworthy, and premium brand image.
-
---------------------------------------------------
-💬 CONVERSATION FLOW
---------------------------------------------------
-### Step 1 – Greeting
-Always begin with:
-"👋 Hi there! Welcome to RatanTech.
-I'm RatanTech AI, your virtual assistant.
-Before we begin, may I know your name?"
-
-### Step 2 – Ask Contact Information
-After receiving the user's name:
-"Nice to meet you, {{name}}! 😊
-Could you please share your email address or phone number?
-This helps our team reconnect with you if our chat gets disconnected."
-
-### Step 3 – Thank the User
-After receiving contact details:
-"Thank you, {{name}}!
-I've noted your contact information.
-Now, how can I help you with your digital project today?"
-
---------------------------------------------------
-🏢 COMPANY KNOWLEDGE
---------------------------------------------------
-Company Name: RatanTech
-Services:
-• Custom Website Development
-• Business Websites
-• E-Commerce Websites
-• Portfolio Websites
-• Landing Pages
-• Progressive Web Apps (PWA)
-• Custom Web Applications
-• Mobile App Development
-• REST API Development
-• Backend Development
-• Admin Dashboards
-• CRM Development
-• ERP Solutions
-• SaaS Product Development
-• AI Chatbots
-• AI Agents
-• AI Workflow Automation
-• OpenAI Integration
-• Gemini Integration
-• Claude Integration
-• API Integration
-• Cloud Deployment
-• Database Design
-• Cybersecurity
-• UI/UX Design
-• Website Maintenance
-• Website Optimization
-• Performance Optimization
-• SEO Optimization
-• Technical Consulting
-
---------------------------------------------------
-💰 PRICING
---------------------------------------------------
-If asked about pricing:
-"Our typical corporate websites start at **$1,000**.
-Complex web applications, AI solutions, and custom software are quoted based on project requirements.
-We also offer a FREE consultation call to understand your needs."
-Never invent prices.
-
---------------------------------------------------
-📞 CONTACT INFORMATION
---------------------------------------------------
-Email: hello@ratantech.com
-Phone / WhatsApp: +91 87806 28716
-
---------------------------------------------------
-❓ FAQ RESPONSES
---------------------------------------------------
-If asked: "What services do you provide?"
-Reply: "We specialize in: • Custom Websites • Web Applications • Mobile Apps • AI Chatbots • AI Automation • API Integration • Cloud Solutions • Custom Software Development"
-
-If asked: "Do you build AI solutions?"
-Reply: "Yes! We build intelligent AI-powered solutions including: • AI Chatbots • AI Agents • Workflow Automation • Customer Support Bots • Lead Generation Systems • OpenAI Integrations • Gemini Integrations • Custom AI Applications"
-
-If asked: "How long does a website take?"
-Reply: "The timeline depends on the project. Typical websites usually take between 2–6 weeks, while larger custom applications require additional planning."
-
-If asked: "Can you redesign my existing website?"
-Reply: "Absolutely! We can modernize your website with improved design, speed, SEO, security, and better user experience."
-
-If asked: "Do you provide support?"
-Reply: "Yes. We offer ongoing maintenance, updates, bug fixes, security monitoring, and technical support after project delivery."
-
-If asked: "Do you work internationally?"
-Reply: "Yes! We work with businesses and startups worldwide."
-
-If asked something outside your knowledge:
-Reply exactly: "That's a great question, {{name}}. I'm an AI assistant, so I can provide a general overview. Would you like one of our senior developers to contact you with detailed information?"
-Never invent information.
-
---------------------------------------------------
-🗣️ RESPONSE STYLE
---------------------------------------------------
-Always:
-✔ Friendly
-✔ Professional
-✔ Short
-✔ Clear
-✔ Helpful
-✔ Positive
-✔ Business-focused
-Use emojis sparingly.
-Never use large paragraphs.
-Prefer bullet points.
-Keep responses mobile-friendly.
-
---------------------------------------------------
-📱 MOBILE OPTIMIZATION
---------------------------------------------------
-Each response should:
-• Be under 3 short sentences whenever possible.
-• Use bullet points instead of long paragraphs.
-• Avoid unnecessary technical explanations.
-• End with one clear question.
-
---------------------------------------------------
-⚡ QUICK REPLY BUTTONS
---------------------------------------------------
-Always include 2–4 relevant quick reply suggestions at the end of your response inside square brackets like this: [Pricing], [Services], [Book Call]
-
---------------------------------------------------
-🚀 PERFORMANCE ISSUES
---------------------------------------------------
-If the visitor mentions: Website is slow, Loading problem, Chat not working, Performance issue
-Reply: "Sorry about that. For immediate assistance, please contact our support team: 📧 hello@ratantech.com 📱 WhatsApp: +91 87806 28716. Would you like me to connect you with our team?"
-
---------------------------------------------------
-🚫 IMPORTANT RULES
---------------------------------------------------
-Never invent pricing. Never invent company policies. Never promise unavailable features. Never provide fake timelines. Never pretend a human has already received information. Always ask for missing information politely. Always use the user's name after it is known. Always end with a question that keeps the conversation moving. Always include quick reply suggestions. Maintain a premium software company tone throughout the conversation.
-`;
-
-class RatanTechChatbot {
+class RCTechChatbot {
     constructor() {
         this.history = [];
         this.isOpen = false;
         this.isInitialized = false;
+        this.userName = '';
+        this.userContact = '';
+        this.chatStep = 0; // 0: greeting, 1: asking contact, 2: open inquiry
+        this.isVoiceMuted = false;
+        this.isListening = false;
+        this.recognition = null;
+        this.initSpeechRecognition();
         this.initUI();
     }
 
+    initSpeechRecognition() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            this.recognition = new SpeechRecognition();
+            this.recognition.continuous = false;
+            this.recognition.interimResults = false;
+            this.recognition.lang = 'en-US';
+
+            this.recognition.onstart = () => {
+                this.isListening = true;
+                if (this.micBtn) {
+                    this.micBtn.classList.add('listening');
+                    this.micBtn.innerHTML = '<i class="fas fa-waveform-lines fa-fade"></i>';
+                }
+            };
+
+            this.recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                if (transcript && this.inputField) {
+                    this.inputField.value = transcript;
+                    this.handleSend();
+                }
+            };
+
+            this.recognition.onerror = () => {
+                this.stopListening();
+            };
+
+            this.recognition.onend = () => {
+                this.stopListening();
+            };
+        }
+    }
+
+    stopListening() {
+        this.isListening = false;
+        if (this.micBtn) {
+            this.micBtn.classList.remove('listening');
+            this.micBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+        }
+    }
+
+    toggleListening() {
+        if (!this.recognition) {
+            window.showRCToast?.("Voice input is not supported in this browser. Please use Chrome, Edge, or Safari.");
+            return;
+        }
+        if (this.isListening) {
+            this.recognition.stop();
+        } else {
+            try {
+                this.recognition.start();
+            } catch (err) {
+                console.warn("Speech recognition error:", err);
+            }
+        }
+    }
+
+    speak(text) {
+        if (this.isVoiceMuted || !('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel(); // Cancel any ongoing speech
+
+        // Strip markdown and emojis for clean speech
+        const cleanText = text
+            .replace(/\*\*(.*?)\*\*/g, '$1')
+            .replace(/•/g, '')
+            .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+            .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
+            .trim();
+
+        if (!cleanText) return;
+
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.rate = 1.05;
+        utterance.pitch = 1.0;
+        
+        // Prefer natural voices if available
+        const voices = window.speechSynthesis.getVoices();
+        const preferredVoice = voices.find(v => (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha') || v.lang.startsWith('en')) && v.lang.includes('US'));
+        if (preferredVoice) utterance.voice = preferredVoice;
+
+        window.speechSynthesis.speak(utterance);
+    }
+
     initUI() {
-        // Create widget HTML structure
-        const widgetHtml = \`
-            <div class="rt-chat-widget" id="rt-chat-widget">
-                <button class="rt-chat-toggle" id="rt-chat-toggle">
-                    <i class="fas fa-comment-dots"></i>
+        // Prevent duplicate instances
+        if (document.getElementById('rc-chat-widget')) return;
+
+        const widgetHtml = `
+            <div class="rc-chat-widget" id="rc-chat-widget">
+                <button class="rc-chat-toggle" id="rc-chat-toggle" aria-label="Open AI Assistant">
+                    <i class="fas fa-robot"></i>
+                    <span class="rc-chat-ping"></span>
                 </button>
-                <div class="rt-chat-window">
-                    <div class="rt-chat-header">
-                        <div class="rt-chat-header-info">
-                            <div class="rt-chat-avatar"><i class="fas fa-robot"></i></div>
+                <div class="rc-chat-window" id="rc-chat-window">
+                    <div class="rc-chat-header">
+                        <div class="rc-chat-header-info">
+                            <div class="rc-chat-avatar"><i class="fas fa-brain"></i></div>
                             <div>
-                                <h3 class="rt-chat-title">RatanTech AI</h3>
-                                <p class="rt-chat-subtitle">Online</p>
+                                <h3 class="rc-chat-title">RC Techno AI</h3>
+                                <p class="rc-chat-subtitle"><span class="rc-status-dot"></span> Online &bull; Ready to help</p>
                             </div>
                         </div>
-                        <button class="rt-chat-close" id="rt-chat-close">&times;</button>
+                        <div class="rc-chat-header-actions">
+                            <button class="rc-chat-voice-toggle" id="rc-chat-voice-toggle" aria-label="Toggle Voice Readout" title="Toggle AI Voice Readout">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <button class="rc-chat-close" id="rc-chat-close" aria-label="Close Chat">&times;</button>
+                        </div>
                     </div>
-                    <div class="rt-chat-messages" id="rt-chat-messages">
-                        <!-- Messages will appear here -->
+                    <div class="rc-chat-messages" id="rc-chat-messages">
+                        <!-- Messages dynamically rendered -->
                     </div>
-                    <div class="rt-chat-input-area">
-                        <input type="text" class="rt-chat-input" id="rt-chat-input" placeholder="Type your message..." />
-                        <button class="rt-chat-send" id="rt-chat-send"><i class="fas fa-paper-plane"></i></button>
+                    <div class="rc-chat-quick-replies" id="rc-quick-replies">
+                        <button class="rc-qr-btn" data-query="What services do you offer?">Services</button>
+                        <button class="rc-qr-btn" data-query="How much does a project cost?">Pricing</button>
+                        <button class="rc-qr-btn" data-query="How long does development take?">Timeline</button>
+                        <button class="rc-qr-btn" data-query="How do I get a quote?">Get Quote</button>
+                    </div>
+                    <div class="rc-chat-input-area">
+                        <input type="text" class="rc-chat-input" id="rc-chat-input" placeholder="Ask about services, pricing, tech stack..." autocomplete="off" />
+                        <button class="rc-chat-mic-btn" id="rc-chat-mic-btn" aria-label="Voice Input" title="Speak question" type="button">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="rc-chat-send" id="rc-chat-send" aria-label="Send Message"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
             </div>
-        \`;
+        `;
 
         document.body.insertAdjacentHTML('beforeend', widgetHtml);
 
-        // Bind events
-        this.widget = document.getElementById('rt-chat-widget');
-        this.messagesContainer = document.getElementById('rt-chat-messages');
-        this.inputField = document.getElementById('rt-chat-input');
-        this.sendBtn = document.getElementById('rt-chat-send');
-        
-        document.getElementById('rt-chat-toggle').addEventListener('click', () => this.toggleChat());
-        document.getElementById('rt-chat-close').addEventListener('click', () => this.toggleChat());
-        
+        // Bind DOM elements
+        this.widget = document.getElementById('rc-chat-widget');
+        this.window = document.getElementById('rc-chat-window');
+        this.messagesContainer = document.getElementById('rc-chat-messages');
+        this.inputField = document.getElementById('rc-chat-input');
+        this.sendBtn = document.getElementById('rc-chat-send');
+        this.micBtn = document.getElementById('rc-chat-mic-btn');
+        this.voiceToggleBtn = document.getElementById('rc-chat-voice-toggle');
+        this.toggleBtn = document.getElementById('rc-chat-toggle');
+        this.closeBtn = document.getElementById('rc-chat-close');
+        this.quickRepliesContainer = document.getElementById('rc-quick-replies');
+
+        this.toggleBtn.addEventListener('click', () => this.toggleChat());
+        this.closeBtn.addEventListener('click', () => this.toggleChat());
         this.sendBtn.addEventListener('click', () => this.handleSend());
+        if (this.micBtn) {
+            this.micBtn.addEventListener('click', () => this.toggleListening());
+        }
+        if (this.voiceToggleBtn) {
+            this.voiceToggleBtn.addEventListener('click', () => {
+                this.isVoiceMuted = !this.isVoiceMuted;
+                if (this.isVoiceMuted) {
+                    window.speechSynthesis?.cancel();
+                    this.voiceToggleBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    this.voiceToggleBtn.classList.add('muted');
+                    window.showRCToast?.("AI Voice Readout muted");
+                } else {
+                    this.voiceToggleBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    this.voiceToggleBtn.classList.remove('muted');
+                    window.showRCToast?.("AI Voice Readout enabled");
+                }
+            });
+        }
         this.inputField.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.handleSend();
+        });
+
+        // Quick reply listeners
+        this.quickRepliesContainer.querySelectorAll('.rc-qr-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const query = btn.getAttribute('data-query');
+                this.inputField.value = query;
+                this.handleSend();
+            });
         });
     }
 
     toggleChat() {
         this.isOpen = !this.isOpen;
         if (this.isOpen) {
-            this.widget.classList.add('open');
+            this.window.classList.add('open');
+            this.toggleBtn.classList.add('active');
             if (!this.isInitialized) {
                 this.startConversation();
                 this.isInitialized = true;
             }
-            this.inputField.focus();
+            setTimeout(() => this.inputField.focus(), 250);
         } else {
-            this.widget.classList.remove('open');
+            this.window.classList.remove('open');
+            this.toggleBtn.classList.remove('active');
+            window.speechSynthesis?.cancel();
         }
     }
 
     startConversation() {
-        this.addMessage("👋 Hi there! Welcome to RatanTech.\n\nI'm RatanTech AI, your virtual assistant.\n\nBefore we begin, may I know your name?", 'bot');
-        this.history.push({
-            role: 'user',
-            parts: [{ text: "Hi, I just opened the chat." }]
-        });
-        this.history.push({
-            role: 'model',
-            parts: [{ text: "👋 Hi there! Welcome to RatanTech.\n\nI'm RatanTech AI, your virtual assistant.\n\nBefore we begin, may I know your name?" }]
-        });
+        const welcome = "👋 Hello and welcome to **RC Techno Solution**!\n\nI am **RC Techno AI**, your software architect assistant. I can answer questions about our services, estimates, tech stack, and connect you with our engineering pod.\n\nTo get started, may I have your name?";
+        this.addMessage(welcome, 'bot');
+        this.speak("Hello and welcome to RC Techno Solution! I am your AI project consultant. To get started, may I have your name?");
     }
 
     addMessage(text, sender) {
         const msgDiv = document.createElement('div');
-        msgDiv.className = \`rt-msg \${sender}\`;
-        
-        // Handle quick replies formatted as [Reply]
-        let formattedText = text;
-        const quickReplies = [];
-        
-        if (sender === 'bot') {
-            const qrRegex = /\\[(.*?)\\]/g;
-            let match;
-            while ((match = qrRegex.exec(text)) !== null) {
-                quickReplies.push(match[1]);
-            }
-            // Remove quick replies from main text
-            formattedText = text.replace(/\\[.*?\\]/g, '').trim();
-            
-            // Format basic markdown (bold, bullet points)
-            formattedText = formattedText
-                .replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')
-                .replace(/\\n/g, '<br>')
-                .replace(/• (.*?)(<br>|$)/g, '<li>$1</li>');
-            
-            if (formattedText.includes('<li>')) {
-                formattedText = formattedText.replace(/(<li>.*<\\/li>)/s, '<ul>$1</ul>');
-            }
-        }
-        
-        msgDiv.innerHTML = formattedText;
-        this.messagesContainer.appendChild(msgDiv);
-        
-        // Add quick reply buttons if present
-        if (quickReplies.length > 0) {
-            const qrContainer = document.createElement('div');
-            qrContainer.className = 'rt-quick-replies';
-            quickReplies.forEach(qr => {
-                const btn = document.createElement('button');
-                btn.className = 'rt-quick-reply-btn';
-                btn.innerText = qr;
-                btn.onclick = () => {
-                    this.inputField.value = qr;
-                    this.handleSend();
-                };
-                qrContainer.appendChild(btn);
-            });
-            this.messagesContainer.appendChild(qrContainer);
+        msgDiv.className = `rc-msg ${sender}`;
+
+        let formattedText = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n\n/g, '<br><br>')
+            .replace(/\n/g, '<br>')
+            .replace(/• (.*?)(<br>|$)/g, '<li>$1</li>');
+
+        if (formattedText.includes('<li>')) {
+            formattedText = formattedText.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
         }
 
+        msgDiv.innerHTML = formattedText;
+        this.messagesContainer.appendChild(msgDiv);
         this.scrollToBottom();
     }
 
     showTyping() {
+        this.hideTyping();
         const typingDiv = document.createElement('div');
-        typingDiv.className = 'rt-msg bot rt-typing-container';
-        typingDiv.id = 'rt-typing-indicator';
-        typingDiv.innerHTML = \`
-            <div class="rt-typing">
-                <div class="rt-dot"></div>
-                <div class="rt-dot"></div>
-                <div class="rt-dot"></div>
-            </div>
-        \`;
+        typingDiv.className = 'rc-msg bot rc-typing';
+        typingDiv.id = 'rc-typing-indicator';
+        typingDiv.innerHTML = `
+            <span class="rc-dot"></span>
+            <span class="rc-dot"></span>
+            <span class="rc-dot"></span>
+        `;
         this.messagesContainer.appendChild(typingDiv);
         this.scrollToBottom();
     }
 
     hideTyping() {
-        const indicator = document.getElementById('rt-typing-indicator');
+        const indicator = document.getElementById('rc-typing-indicator');
         if (indicator) indicator.remove();
     }
 
@@ -317,77 +289,96 @@ class RatanTechChatbot {
         const text = this.inputField.value.trim();
         if (!text) return;
 
-        // Display user message
+        // Display user query
         this.addMessage(text, 'user');
         this.inputField.value = '';
         this.inputField.disabled = true;
         this.sendBtn.disabled = true;
-        
-        this.history.push({
-            role: 'user',
-            parts: [{ text: text }]
-        });
 
         this.showTyping();
 
-        try {
-            if (GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY') {
-                setTimeout(() => {
-                    this.hideTyping();
-                    this.addMessage("⚠️ **Error**: Please add your Gemini API Key in `chatbot.js` to enable AI responses.\n[How to get API Key]", 'bot');
-                    this.inputField.disabled = false;
-                    this.sendBtn.disabled = false;
-                    this.inputField.focus();
-                }, 1000);
-                return;
-            }
-
-            const response = await fetch(\`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=\${GEMINI_API_KEY}\`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    system_instruction: {
-                        parts: [{ text: SYSTEM_PROMPT }]
-                    },
-                    contents: this.history,
-                    generationConfig: {
-                        temperature: 0.2,
-                        maxOutputTokens: 250
-                    }
-                })
-            });
-
-            const data = await response.json();
+        // Simulate intelligent response delay
+        setTimeout(async () => {
+            const reply = await this.generateResponse(text);
             this.hideTyping();
-
-            if (data.error) {
-                throw new Error(data.error.message);
-            }
-
-            const botReply = data.candidates[0].content.parts[0].text;
-            
-            this.history.push({
-                role: 'model',
-                parts: [{ text: botReply }]
-            });
-
-            this.addMessage(botReply, 'bot');
-
-        } catch (error) {
-            this.hideTyping();
-            this.addMessage("Sorry, I'm having trouble connecting right now. Please email us at hello@ratantech.com.", 'bot');
-            console.error("Chatbot error:", error);
-        } finally {
+            this.addMessage(reply, 'bot');
+            this.speak(reply);
             this.inputField.disabled = false;
             this.sendBtn.disabled = false;
             this.inputField.focus();
+        }, 550);
+    }
+
+    async generateResponse(userText) {
+        const lower = userText.toLowerCase();
+
+        // Conversation Step Management
+        if (this.chatStep === 0) {
+            this.userName = userText.trim();
+            this.chatStep = 1;
+            return `Pleased to meet you, **${this.userName}**! 😊\n\nCould you please share your **email address** or **phone number**? This ensures our senior tech team can follow up with your project specifications.`;
         }
+
+        if (this.chatStep === 1) {
+            this.userContact = userText.trim();
+            this.chatStep = 2;
+            return `Thank you, **${this.userName}**! I've saved your contact info.\n\nNow, how can RC Techno Solution help elevate your business today? Are you looking for a **new web app**, **e-commerce store**, **AI integration**, or **cloud deployment**?`;
+        }
+
+        // Knowledge Base Matching
+        if (lower.includes('service') || lower.includes('what do you do') || lower.includes('offer')) {
+            return `Here are the primary services we provide at **RC Techno Solution**:\n\n• **Modern Website Development**: High-performance, SEO-optimized business sites.\n• **SaaS & Web App Development**: Scalable full-stack apps built with React, Node.js & Python.\n• **E-Commerce Solutions**: Secure payment gateways, Shopify, and custom stores.\n• **AI Agents & Integrations**: Custom chatbots, workflow automations, and LLM integrations.\n• **Cloud Deployment & DevOps**: AWS, GCP, Docker, Kubernetes & CI/CD pipelines.\n\nWould you like a quote or details on a specific service?`;
+        }
+
+        if (lower.includes('price') || lower.includes('cost') || lower.includes('rate') || lower.includes('charge') || lower.includes('budget')) {
+            return `💰 **Investment & Pricing Guide**:\n\n• **Corporate & Business Websites**: Starting at **$1,000** (~₹45,000).\n• **Custom Web Applications & SaaS**: Typically ranges between **$2,500 - $8,000** depending on user roles, APIs, and complexity.\n• **AI Integrations & Chatbots**: Starting at **$800**.\n\nYou can also check out our interactive **Project Cost Estimator** on this page for a live custom quote!`;
+        }
+
+        if (lower.includes('time') || lower.includes('how long') || lower.includes('duration') || lower.includes('weeks')) {
+            return `⏱️ **Delivery Timelines**:\n\n• Standard Websites: **2–4 weeks**\n• Full-Stack Web Applications: **4–8 weeks**\n• MVP / Rapid Prototypes: **2–3 weeks**\n\nWe provide weekly sprint updates and a dedicated staging server so you can review real-time progress.`;
+        }
+
+        if (lower.includes('contact') || lower.includes('whatsapp') || lower.includes('call') || lower.includes('email') || lower.includes('reach')) {
+            return `📞 **Direct Contact Information**:\n\n• **WhatsApp / Phone**: [+91 87806 28716](https://wa.me/918780628716)\n• **Email**: [hello@rctechsolutions.com](mailto:hello@rctechsolutions.com)\n• **Office**: Vastral, Ahmedabad, Gujarat, India\n\nFeel free to ping us on WhatsApp anytime for an instant response!`;
+        }
+
+        if (lower.includes('tech') || lower.includes('stack') || lower.includes('react') || lower.includes('python')) {
+            return `💻 **Our Engineering Tech Stack**:\n\n• **Frontend**: React.js, Next.js, TypeScript, TailwindCSS, Three.js (WebGL)\n• **Backend**: Node.js, Express, Python (FastAPI/Django), REST, GraphQL\n• **Databases**: PostgreSQL, MongoDB, Redis, Supabase\n• **Cloud & DevOps**: AWS, GCP, Docker, Kubernetes, GitHub Actions, Vercel`;
+        }
+
+        if (lower.includes('hire') || lower.includes('start') || lower.includes('quote') || lower.includes('consultation')) {
+            return `🚀 **Let's kick off your project!**\n\nYou can fill out our **Contact Form** below with your requirements, or chat directly with our tech lead on WhatsApp at **+91 87806 28716**. We reply within 2 business hours!`;
+        }
+
+        // Optional Gemini API Call if Key is provided
+        if (RC_GEMINI_API_KEY && RC_GEMINI_API_KEY.length > 20) {
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${RC_GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            role: 'user',
+                            parts: [{ text: `You are RC Techno AI, representative for RC Techno Solution. Company info: ${JSON.stringify(RC_COMPANY_KNOWLEDGE)}. User query: ${userText}` }]
+                        }]
+                    })
+                });
+                const data = await response.json();
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    return data.candidates[0].content.parts[0].text;
+                }
+            } catch (err) {
+                console.warn("AI fallback active:", err);
+            }
+        }
+
+        // Intelligent Default
+        const nameGreeting = this.userName ? `, ${this.userName}` : '';
+        return `That's a great question${nameGreeting}! At **RC Techno Solution**, our senior engineers specialize in custom digital development. Would you like us to schedule a quick 15-minute discovery call, or would you prefer a direct quote sent to your email?`;
     }
 }
 
-// Initialize when DOM is ready
+// Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-    window.ratanTechChatbot = new RatanTechChatbot();
+    window.rcTechChatbot = new RCTechChatbot();
 });

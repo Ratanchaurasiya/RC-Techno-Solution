@@ -14,7 +14,6 @@
 
 .contact-info > p {
     margin-bottom: 30px;
-    background-color: aqua;
     color: var(--clr-text);
 }
 
@@ -53,8 +52,8 @@
     background: var(--clr-white);
     padding: 40px;
     border-radius: 16px;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--clr-glass-border);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--clr-border);
 }
 
 .contact-form .form-group {
@@ -66,13 +65,14 @@
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    padding: 14px 18px;
+    border: 1px solid var(--clr-border);
+    border-radius: 10px;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: var(--transition);
     background: var(--clr-light);
+    color: var(--clr-text-dark);
 }
 
 .contact-form textarea {
@@ -85,7 +85,7 @@
     outline: none;
     border-color: var(--clr-primary);
     background: var(--clr-white);
-    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.1);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
 }
 
 .map-container {

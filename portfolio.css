@@ -63,16 +63,18 @@
 }
 
 #portfolio .section-title {
-    color: var(--clr-primary) !important;
+    color: #ffffff !important;
     transition: var(--transition);
-    display: inline-block;
+    display: block;
+    margin-bottom: 10px;
     cursor: pointer;
+    font-weight: 800;
 }
 
 #portfolio .section-title:hover {
-    color: var(--clr-accent) !important;
-    transform: translateY(-5px) scale(1.05);
-    text-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+    color: #38bdf8 !important;
+    transform: translateY(-2px);
+    text-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
 }
 
 /* -----------------------
@@ -80,13 +82,16 @@
 ----------------------- */
 @media (min-width: 768px) {
     .portfolio-grid {
-        gap: 30px;
+        gap: 20px;
+    }
+    .portfolio-img {
+        height: 145px;
     }
     .portfolio-img img {
-        height: 250px;
+        height: 100%;
     }
     .portfolio-info {
-        padding: 25px;
+        padding: 14px 16px;
     }
 }
 \n

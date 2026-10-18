@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <title>
-            RC Tech Solutions - Modern IT Services
+            RC Techno Solution - Modern IT Services
         </title>
         <!-- Google Fonts: Poppins & Outfit -->
         <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -21,11 +21,11 @@
         <link href="home.css" rel="stylesheet" />
         <link href="about.css" rel="stylesheet" /><link href="services.css"
             rel="stylesheet" /><link href="portfolio.css"
-            rel="stylesheet" /><link href="team.css" rel="stylesheet" /><link
-            href="testimonials.css" rel="stylesheet" /><link href="faq.css"
+            rel="stylesheet" /><link href="team.css" rel="stylesheet" /><link href="faq.css"
             rel="stylesheet" /><link href="contact.css" rel="stylesheet" />
         <link href="chatbot.css" rel="stylesheet" />
         <link href="responsive-core.css" rel="stylesheet" />
+        <link href="pro-enhancements.css" rel="stylesheet" />
 
         <!-- Three.js Import Map -->
         <script type="importmap">
@@ -38,16 +38,19 @@
 </script>
     </head>
     <body>
+        <!-- Top Glow Scroll Reading Progress Bar -->
+        <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
+
         <div id="preloader">
             <div class="loader-circle">
             </div>
         </div>
         <header id="header">
             <div class="container nav-container">
-                <a class="logo" href="#">
-                    <span class="ratan">RC</span>
-                    <span class="tech">Tech</span>
-                    <span class="solutions">Solutions</span>
+                <a class="logo" href="#home">
+                    <span class="logo-badge"><i class="fas fa-layer-group"></i></span>
+                    <span class="brand-text">RC <span>Techno</span></span>
+                    <span class="brand-studio">Solution</span>
                 </a>
                 <nav class="nav-menu">
                     <ul class="nav-list">
@@ -62,13 +65,13 @@
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="#team">
-                                Team
+                            <a class="nav-link" href="#estimator">
+                                Estimator
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="#testimonials">
-                                Testimonials
+                            <a class="nav-link" href="#team">
+                                Team
                             </a>
                         </li>
                         <li>
@@ -93,80 +96,166 @@
             </div>
         </header>
         <section class="hero" id="home">
-            <!-- 3D Animated Background -->
-            <div class="hero-bg-wrapper">
-                <div id="three-hero-container"></div>
+            <!-- Background Video Layer (70% Visible + Audio Enabled) -->
+            <div class="hero-video-wrapper" aria-hidden="true">
+                <video id="heroBgVideo" class="hero-bg-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+                    <source src="hero-bg.mp4" type="video/mp4">
+                </video>
+                <div class="hero-video-overlay"></div>
             </div>
+
+            <!-- Floating Video Audio Controller -->
+            <button id="heroSoundToggle" class="hero-sound-toggle muted" aria-label="Toggle Video Voice">
+                <span class="sound-wave-anim">
+                    <span></span><span></span><span></span>
+                </span>
+                <i class="fas fa-volume-mute sound-icon"></i>
+                <span class="sound-text">Voice: OFF</span>
+            </button>
+
+            <!-- Ambient Floating Glowing Orbs -->
+            <div class="hero-ambient-orb orb-1"></div>
+            <div class="hero-ambient-orb orb-2"></div>
+
             <div class="container hero-container">
-                <div class="reveal hero-content">
-                    <h1>
-                        Building Modern Websites &amp; Smart Software Solutions
+                <div class="hero-content reveal">
+                    <div class="hero-eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        <span>Enterprise Software Engineering &amp; Cloud Advisory</span>
+                    </div>
+                    <h1 class="hero-title" id="heroMainTitle">
+                        <span id="heroTypePart1">Architecting Resilient Digital Platforms &amp;</span><br>
+                        <span class="title-accent" id="heroTypePart2">Intelligent Systems</span><span class="hero-title-cursor">|</span>
                     </h1>
-                    <p>
-                        At RC Tech Solutions, we create modern websites, custom
-                        web applications, software solutions, and digital
-                        experiences that help businesses grow.
+                    <p class="hero-subtitle">
+                        RC Techno Solution partners with ambitious technology leaders and enterprises to engineer mission-critical cloud backends, custom SaaS platforms, and enterprise AI automation with guaranteed sprint velocity and 100% intellectual property ownership.
                     </p>
-                    <div class="hero-buttons">
-                        <a class="btn btn-primary pulse-anim"
-                            href="contact.html">
-                            Get Started
+                    <div class="hero-actions">
+                        <a class="btn-corporate-primary open-call-modal-btn" href="#">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Schedule Technical Consultation</span>
                         </a>
-                        <a class="btn btn-secondary" href="portfolio.html">
-                            View Portfolio
+                        <a class="btn-corporate-secondary" href="#services">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Explore Capabilities Matrix</span>
                         </a>
+                    </div>
+                    
+                    <!-- Enterprise Governance & Trust Strip -->
+                    <div class="hero-trust-bar">
+                        <div class="trust-badge-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span><strong>100% IP Ownership</strong> &bull; Complete Source Rights</span>
+                        </div>
+                        <div class="trust-badge-item">
+                            <i class="fas fa-certificate"></i>
+                            <span><strong>60-Day SLA Warranty</strong> &bull; Zero Defect Guarantee</span>
+                        </div>
+                        <div class="trust-badge-item">
+                            <i class="fas fa-file-contract"></i>
+                            <span><strong>Bilateral Mutual NDA</strong> &bull; Enterprise Compliance</span>
+                        </div>
+                        <div class="trust-badge-item">
+                            <i class="fas fa-clock"></i>
+                            <span><strong>24/7 SLA Support</strong> &bull; Dedicated Pods</span>
+                        </div>
                     </div>
                 </div>
-                  <div class="reveal delay-1 hero-image">
-                      <img alt="RatanTech Solutions Hero" class="float-anim"
-                          src="hero.png?v=3"
-                          style="border-radius: 20px; box-shadow: 0 10px 30px rgba(56,189,248, 0.3); border: 2px solid rgba(56,189,248, 0.2);" />
-                  </div>
             </div>
-            <!-- Load Three.js Hero Script -->
-            <script type="module" src="three-hero.js"></script>
-            <!-- Hero Stats -->
+        </section>
+
+        <!-- Executive Capabilities & Enterprise Ecosystem -->
+        <section class="section bg-light" id="capabilities">
             <div class="container">
-                <div class="stats-grid reveal delay-2">
-                    <div class="stat-card reveal reveal-zoom">
-                        <h3>
-                            100+</h3>
-                        <p>
-                            Projects
-                        </p>
-                        <a href="#" class="btn btn-small see-more-btn"
-                            style="margin-top: 15px; display: inline-block;">See
-                            More</a>
+                <!-- Problem-to-Solution Executive Capabilities (Accenture / ThoughtWorks Style) -->
+                <div class="hero-pillars-grid reveal delay-1">
+                    <div class="pillar-card">
+                        <div class="pillar-icon-box">
+                            <i class="fas fa-cloud-arrow-up"></i>
+                        </div>
+                        <div class="pillar-kicker">Core Modernization</div>
+                        <h3>Cloud &amp; Platform Architecture</h3>
+                        <p>Eliminate architectural bottlenecks and legacy technical debt. We design auto-scaling, event-driven microservices, resilient APIs, and enterprise cloud databases that never go down.</p>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag">AWS &bull; GCP</span>
+                            <span class="pillar-tag">PostgreSQL</span>
+                            <span class="pillar-tag">Kubernetes</span>
+                            <span class="pillar-tag">Docker</span>
+                        </div>
                     </div>
-                    <div class="stat-card reveal reveal-zoom">
-                        <h3>
-                            50+</h3>
-                        <p>
-                            Happy Clients
-                        </p>
-                        <a href="#" class="btn btn-small see-more-btn"
-                            style="margin-top: 15px; display: inline-block;">See
-                            More</a>
+
+                    <div class="pillar-card">
+                        <div class="pillar-icon-box">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="pillar-kicker">High-Throughput Delivery</div>
+                        <h3>Custom SaaS &amp; Web Systems</h3>
+                        <p>Sub-second page speeds, dynamic server-side rendering, and production-grade frontend architectures built for enterprise workflows, compliance, and user retention.</p>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag">Next.js 15</span>
+                            <span class="pillar-tag">React</span>
+                            <span class="pillar-tag">TypeScript</span>
+                            <span class="pillar-tag">GraphQL</span>
+                        </div>
                     </div>
-                    <div class="stat-card reveal reveal-zoom">
-                        <h3>
-                            24/7</h3>
-                        <p>
-                            Support
-                        </p>
-                        <a href="#" class="btn btn-small see-more-btn"
-                            style="margin-top: 15px; display: inline-block;">See
-                            More</a>
+
+                    <div class="pillar-card">
+                        <div class="pillar-icon-box">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="pillar-kicker">Applied Intelligence</div>
+                        <h3>Enterprise AI &amp; Automation</h3>
+                        <p>Move beyond proof-of-concepts into production LLM agents, intelligent document automation, custom fine-tuned workflows, and vector search systems with strict enterprise security guardrails.</p>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag">Gemini API</span>
+                            <span class="pillar-tag">RAG Pipelines</span>
+                            <span class="pillar-tag">Python</span>
+                            <span class="pillar-tag">Vector DBs</span>
+                        </div>
                     </div>
-                    <div class="stat-card reveal reveal-zoom">
-                        <h3>
-                            99%</h3>
-                        <p>
-                            Client Satisfaction
-                        </p>
-                        <a href="#" class="btn btn-small see-more-btn"
-                            style="margin-top: 15px; display: inline-block;">See
-                            More</a>
+                </div>
+
+                <!-- Enterprise Ecosystem Tech Marquee (Infinite Smooth Track) -->
+                <div class="hero-ecosystem-section reveal delay-2">
+                    <div class="ecosystem-title">Enterprise Cloud Ecosystem &amp; Supported Frameworks</div>
+                    <div class="ecosystem-marquee-wrapper">
+                        <div class="ecosystem-track">
+                            <div class="eco-item"><i class="fab fa-aws"></i> Amazon Web Services</div>
+                            <div class="eco-item"><i class="fab fa-google"></i> Google Cloud</div>
+                            <div class="eco-item"><i class="fab fa-microsoft"></i> Microsoft Azure</div>
+                            <div class="eco-item"><i class="fab fa-react"></i> React &amp; Next.js</div>
+                            <div class="eco-item"><i class="fab fa-node-js"></i> Node.js &amp; TS</div>
+                            <div class="eco-item"><i class="fab fa-python"></i> Python &amp; AI</div>
+                            <div class="eco-item"><i class="fab fa-docker"></i> Docker &amp; K8s</div>
+                            <!-- Duplicated for seamless infinite loop -->
+                            <div class="eco-item"><i class="fab fa-aws"></i> Amazon Web Services</div>
+                            <div class="eco-item"><i class="fab fa-google"></i> Google Cloud</div>
+                            <div class="eco-item"><i class="fab fa-microsoft"></i> Microsoft Azure</div>
+                            <div class="eco-item"><i class="fab fa-react"></i> React &amp; Next.js</div>
+                            <div class="eco-item"><i class="fab fa-node-js"></i> Node.js &amp; TS</div>
+                            <div class="eco-item"><i class="fab fa-python"></i> Python &amp; AI</div>
+                            <div class="eco-item"><i class="fab fa-docker"></i> Docker &amp; K8s</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verified Impact Metrics with Live Animated Counters -->
+                <div class="hero-metrics-bar reveal delay-3">
+                    <div class="metric-item">
+                        <h4 class="hero-counter-num" data-target="100" data-suffix="+">100+</h4>
+                        <span>Production Releases</span>
+                    </div>
+                    <div class="metric-item">
+                        <h4 class="hero-counter-num" data-target="99.8" data-decimal="1" data-suffix="%">99.8%</h4>
+                        <span>Sprint Delivery Rate</span>
+                    </div>
+                    <div class="metric-item">
+                        <h4 class="hero-counter-num" data-target="50" data-suffix="+">50+</h4>
+                        <span>Enterprise Partners</span>
+                    </div>
+                    <div class="metric-item">
+                        <h4>24/7</h4>
+                        <span>Managed SLA Support</span>
                     </div>
                 </div>
             </div>
@@ -183,7 +272,7 @@
                     <!-- Main Bio Box -->
                     <div class="bento-card bento-main">
                         <h3 class="bento-title">Who We Are</h3>
-                        <p><strong>RC Tech Solutions</strong> is a premier
+                        <p><strong>RC Techno Solution</strong> is a premier
                             technology partner specializing in high-performance
                             web applications, AI integrations, data analytics
                             dashboards, and enterprise-grade software systems.
@@ -454,15 +543,13 @@
                         <div class="service-glow-blob"></div>
                         <div class="bento-service-content">
                             <div class="bento-service-icon"><i
-                                    class="fas fa-graduation-cap"></i></div>
+                                    class="fas fa-cubes"></i></div>
                             <h3>
-                                College Projects</h3>
-                            <p>Portfolios, resumes, and academic project
-                                assistance.</p>
-                            <a href="service-college-projects.html"
+                                Enterprise SaaS & Systems</h3>
+                            <p>Bespoke software platforms, CRM/ERP systems, and scalable cloud microservices.</p>
+                            <a href="service-software-development.html"
                                 class="btn btn-small see-more-btn"
-                                style="margin-top: 15px; display: inline-block;">See
-                                More</a>
+                                style="margin-top: 15px; display: inline-block;">Explore Solution</a>
                         </div>
                     </div>
 
@@ -486,316 +573,836 @@
                 </div>
                 <div class="tech-grid reveal delay-1">
                     <div class="tech-card">
-                        <i class="fab fa-html5">
-                        </i>
-                        <span>
-                            HTML5
-                        </span>
+                        <i class="fab fa-react"></i>
+                        <span>React / Next.js</span>
                     </div>
                     <div class="tech-card">
-                        <i class="fab fa-css3-alt">
-                        </i>
-                        <span>
-                            CSS3
-                        </span>
+                        <i class="fab fa-node"></i>
+                        <span>Node.js</span>
                     </div>
                     <div class="tech-card">
-                        <i class="fab fa-js">
-                        </i>
-                        <span>
-                            JavaScript
-                        </span>
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
                     </div>
                     <div class="tech-card">
-                        <i class="fab fa-react">
-                        </i>
-                        <span>
-                            React
-                        </span>
+                        <i class="fab fa-js"></i>
+                        <span>TypeScript</span>
                     </div>
                     <div class="tech-card">
-                        <i class="fab fa-node">
-                        </i>
-                        <span>
-                            Node.js
-                        </span>
+                        <i class="fab fa-aws"></i>
+                        <span>AWS Cloud</span>
                     </div>
                     <div class="tech-card">
-                        <i class="fas fa-server">
-                        </i>
-                        <span>
-                            Express.js
-                        </span>
+                        <i class="fab fa-docker"></i>
+                        <span>Docker</span>
                     </div>
                     <div class="tech-card">
-                        <i class="fab fa-python">
-                        </i>
-                        <span>
-                            Python
-                        </span>
+                        <i class="fas fa-database"></i>
+                        <span>PostgreSQL</span>
                     </div>
                     <div class="tech-card">
-                        <i class="fas fa-database">
-                        </i>
-                        <span>
-                            MySQL
-                        </span>
+                        <i class="fas fa-leaf"></i>
+                        <span>MongoDB</span>
                     </div>
                     <div class="tech-card">
-                        <i class="fas fa-leaf">
-                        </i>
-                        <span>
-                            MongoDB
-                        </span>
+                        <i class="fas fa-robot"></i>
+                        <span>AI & LLMs</span>
                     </div>
                     <div class="tech-card">
-                        <i class="fab fa-git-alt">
-                        </i>
-                        <span>
-                            Git
-                        </span>
+                        <i class="fab fa-git-alt"></i>
+                        <span>Git & CI/CD</span>
                     </div>
                     <div class="tech-card">
-                        <i class="fab fa-github">
-                        </i>
-                        <span>
-                            GitHub
-                        </span>
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Cybersecurity</span>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
                     </div>
                 </div>
             </div>
-        </section><section class="section bg-light" id="portfolio">
+        </section>
+
+        <!-- Animated Tech Stack Ribbon -->
+        <div class="tech-marquee-section">
+            <div class="tech-marquee-title">Trusted Enterprise Architecture & Modern Tooling</div>
+            <div class="tech-marquee-track">
+                <div class="tech-badge"><i class="fab fa-react"></i> React 19 & Next.js</div>
+                <div class="tech-badge"><i class="fab fa-node-js"></i> Node.js & Express</div>
+                <div class="tech-badge"><i class="fab fa-python"></i> Python & FastAPI</div>
+                <div class="tech-badge"><i class="fab fa-aws"></i> AWS Architecture</div>
+                <div class="tech-badge"><i class="fab fa-docker"></i> Docker & Kubernetes</div>
+                <div class="tech-badge"><i class="fas fa-database"></i> PostgreSQL & Redis</div>
+                <div class="tech-badge"><i class="fas fa-brain"></i> OpenAI & Gemini API</div>
+                <div class="tech-badge"><i class="fab fa-stripe"></i> Stripe Payments</div>
+                <div class="tech-badge"><i class="fas fa-cubes"></i> Microservices</div>
+                <!-- Duplicate for seamless infinite loop -->
+                <div class="tech-badge"><i class="fab fa-react"></i> React 19 & Next.js</div>
+                <div class="tech-badge"><i class="fab fa-node-js"></i> Node.js & Express</div>
+                <div class="tech-badge"><i class="fab fa-python"></i> Python & FastAPI</div>
+                <div class="tech-badge"><i class="fab fa-aws"></i> AWS Architecture</div>
+                <div class="tech-badge"><i class="fab fa-docker"></i> Docker & Kubernetes</div>
+                <div class="tech-badge"><i class="fas fa-database"></i> PostgreSQL & Redis</div>
+                <div class="tech-badge"><i class="fas fa-brain"></i> OpenAI & Gemini API</div>
+                <div class="tech-badge"><i class="fab fa-stripe"></i> Stripe Payments</div>
+                <div class="tech-badge"><i class="fas fa-cubes"></i> Microservices</div>
+            </div>
+        </div>
+
+        <section class="section bg-light" id="portfolio">
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="section-title">
-                        Our Portfolio
+                        Featured Client Work
                     </h2>
                     <p class="section-subtitle">
-                        Recent Projects
+                        Proven Production Deliveries
                     </p>
                 </div>
+
+                <!-- Portfolio Category Filter Tabs -->
+                <div class="portfolio-filters reveal delay-1">
+                    <button class="portfolio-filter-btn active" data-filter="all"><i class="fas fa-border-all"></i> All Projects</button>
+                    <button class="portfolio-filter-btn" data-filter="webapp"><i class="fas fa-layer-group"></i> Web Apps &amp; SaaS</button>
+                    <button class="portfolio-filter-btn" data-filter="ecommerce"><i class="fas fa-shopping-bag"></i> E-Commerce</button>
+                    <button class="portfolio-filter-btn" data-filter="ai"><i class="fas fa-microchip"></i> Cloud &amp; AI</button>
+                </div>
+
                 <div class="portfolio-grid">
                     <!-- Project 1 -->
-                    <div class="portfolio-card reveal">
+                    <div class="portfolio-card reveal" data-category="webapp">
                         <div class="portfolio-img">
-                            <img alt="Project 1"
-                                src="https://placehold.co/600x400/0f172a/38bdf8?text=E-Commerce+App" />
+                            <span class="portfolio-badge">Enterprise SaaS</span>
+                            <img alt="CloudScale Enterprise SaaS"
+                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" />
                         </div>
                         <div class="portfolio-info">
-                            <h3>
-                                E-Commerce Platform</h3>
-                            <p>
-                                A full-featured online store with payment
-                                integration.
-                            </p>
-                            <a class="btn btn-small" href="#">
-                                View Project
-                            </a>
+                            <div class="portfolio-tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">AWS</span>
+                            </div>
+                            <h3>CloudScale Analytics</h3>
+                            <div class="portfolio-roi-bar">
+                                <span class="roi-pill"><i class="fas fa-arrow-trend-up"></i> -$18k/mo Cloud Cost</span>
+                                <span class="roi-pill"><i class="fas fa-bolt"></i> Real-Time Telemetry</span>
+                            </div>
+                            <p>Multi-tenant BI platform with instant telemetry and automated Stripe billing.</p>
+                            <div class="portfolio-actions">
+                                <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+                                <a class="btn btn-secondary btn-small open-call-modal-btn" href="#">Case Study</a>
+                            </div>
                         </div>
                     </div>
+
                     <!-- Project 2 -->
-                    <div class="portfolio-card reveal delay-1">
+                    <div class="portfolio-card reveal delay-1" data-category="ecommerce">
                         <div class="portfolio-img">
-                            <img alt="Project 2"
-                                src="https://placehold.co/600x400/0f172a/38bdf8?text=Healthcare+Dashboard" />
+                            <span class="portfolio-badge">Headless Commerce</span>
+                            <img alt="Nexus Global Commerce"
+                                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" />
                         </div>
                         <div class="portfolio-info">
-                            <h3>
-                                Healthcare Dashboard
-                            </h3>
-                            <p>
-                                Analytics dashboard for patient data management.
-                            </p>
-                            <a class="btn btn-small" href="#">
-                                View Project
-                            </a>
+                            <div class="portfolio-tech-tags">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Shopify API</span>
+                                <span class="tech-tag">Tailwind</span>
+                                <span class="tech-tag">Stripe</span>
+                            </div>
+                            <h3>Nexus Storefront</h3>
+                            <div class="portfolio-roi-bar">
+                                <span class="roi-pill"><i class="fas fa-arrow-trend-up"></i> +42% Conversions</span>
+                                <span class="roi-pill"><i class="fas fa-gauge-high"></i> 0.8s Mobile LCP</span>
+                            </div>
+                            <p>Ultra-fast headless shopping platform with instant checkout and real-time inventory sync.</p>
+                            <div class="portfolio-actions">
+                                <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+                                <a class="btn btn-secondary btn-small open-call-modal-btn" href="#">Case Study</a>
+                            </div>
                         </div>
                     </div>
+
                     <!-- Project 3 -->
-                    <div class="portfolio-card reveal delay-2">
+                    <div class="portfolio-card reveal delay-2" data-category="webapp">
                         <div class="portfolio-img">
-                            <img alt="Project 3"
-                                src="https://placehold.co/600x400/0f172a/38bdf8?text=Real+Estate+Portal" />
+                            <span class="portfolio-badge">Digital Health</span>
+                            <img alt="OmniHealth Telemedicine"
+                                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" />
                         </div>
                         <div class="portfolio-info">
-                            <h3>
-                                Real Estate Portal
-                            </h3>
-                            <p>
-                                Property listing website with advanced search.
-                            </p>
-                            <a class="btn btn-small" href="#">
-                                View Project
-                            </a>
+                            <div class="portfolio-tech-tags">
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">WebRTC</span>
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">HIPAA Cloud</span>
+                            </div>
+                            <h3>OmniHealth Care Hub</h3>
+                            <div class="portfolio-roi-bar">
+                                <span class="roi-pill"><i class="fas fa-users"></i> 10k+ Patients</span>
+                                <span class="roi-pill"><i class="fas fa-shield-halved"></i> 99.99% Uptime</span>
+                            </div>
+                            <p>HIPAA-certified telehealth portal with HD video visits and encrypted e-prescriptions.</p>
+                            <div class="portfolio-actions">
+                                <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+                                <a class="btn btn-secondary btn-small open-call-modal-btn" href="#">Case Study</a>
+                            </div>
                         </div>
                     </div>
+
                     <!-- Project 4 -->
-                    <div class="portfolio-card reveal">
+                    <div class="portfolio-card reveal" data-category="ai">
                         <div class="portfolio-img">
-                            <img alt="Project 4"
-                                src="https://placehold.co/600x400/0f172a/38bdf8?text=EdTech+Platform" />
+                            <span class="portfolio-badge">Enterprise AI</span>
+                            <img alt="Aura Enterprise AI Agent"
+                                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" />
                         </div>
                         <div class="portfolio-info">
-                            <h3>
-                                EdTech Platform
-                            </h3>
-                            <p>
-                                LMS solution for online courses and learning.
-                            </p>
-                            <a class="btn btn-small" href="#">
-                                View Project
-                            </a>
+                            <div class="portfolio-tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Gemini API</span>
+                                <span class="tech-tag">FastAPI</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                            <h3>Aura AI Copilot</h3>
+                            <div class="portfolio-roi-bar">
+                                <span class="roi-pill"><i class="fas fa-robot"></i> 70% Inquiries Handled</span>
+                                <span class="roi-pill"><i class="fas fa-stopwatch"></i> &lt;180ms Latency</span>
+                            </div>
+                            <p>Autonomous AI support agent resolving support tickets instantly with live CRM sync.</p>
+                            <div class="portfolio-actions">
+                                <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+                                <a class="btn btn-secondary btn-small open-call-modal-btn" href="#">Case Study</a>
+                            </div>
                         </div>
                     </div>
+
                     <!-- Project 5 -->
-                    <div class="portfolio-card reveal delay-1">
+                    <div class="portfolio-card reveal delay-1" data-category="webapp">
                         <div class="portfolio-img">
-                            <img alt="Project 5"
-                                src="https://placehold.co/600x400/0f172a/38bdf8?text=AI+Chatbot" />
+                            <span class="portfolio-badge">FinTech</span>
+                            <img alt="FinFlow Core Banking App"
+                                src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" />
                         </div>
                         <div class="portfolio-info">
-                            <h3>
-                                AI Customer Support
-                            </h3>
-                            <p>
-                                Intelligent chatbot integration for businesses.
-                            </p>
-                            <a class="btn btn-small" href="#">
-                                View Project
-                            </a>
+                            <div class="portfolio-tech-tags">
+                                <span class="tech-tag">React Native</span>
+                                <span class="tech-tag">Go Microservices</span>
+                                <span class="tech-tag">Redis</span>
+                                <span class="tech-tag">AWS KMS</span>
+                            </div>
+                            <h3>FinFlow Mobile Pay</h3>
+                            <div class="portfolio-roi-bar">
+                                <span class="roi-pill"><i class="fas fa-fingerprint"></i> Biometric Auth</span>
+                                <span class="roi-pill"><i class="fas fa-shield-alt"></i> Zero Fraud</span>
+                            </div>
+                            <p>Military-grade mobile wallet featuring instantaneous peer-to-peer transfers and biometric KYC.</p>
+                            <div class="portfolio-actions">
+                                <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+                                <a class="btn btn-secondary btn-small open-call-modal-btn" href="#">Case Study</a>
+                            </div>
                         </div>
                     </div>
+
                     <!-- Project 6 -->
-                    <div class="portfolio-card reveal delay-2">
+                    <div class="portfolio-card reveal delay-2" data-category="ecommerce">
                         <div class="portfolio-img">
-                            <img alt="Project 6"
-                                src="https://placehold.co/600x400/0f172a/38bdf8?text=FinTech+App" />
+                            <span class="portfolio-badge">PropTech Market</span>
+                            <img alt="PropTech Realty Network"
+                                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" />
                         </div>
                         <div class="portfolio-info">
-                            <h3>
-                                FinTech Application
-                            </h3>
-                            <p>
-                                Secure mobile banking and wallet solution.
-                            </p>
-                            <a class="btn btn-small" href="#">
-                                View Project
+                            <div class="portfolio-tech-tags">
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Mapbox GL</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Next.js</span>
+                            </div>
+                            <h3>PropTech Global Engine</h3>
+                            <div class="portfolio-roi-bar">
+                                <span class="roi-pill"><i class="fas fa-chart-line"></i> 350k Monthly Active</span>
+                                <span class="roi-pill"><i class="fas fa-map-location-dot"></i> Interactive GIS</span>
+                            </div>
+                            <p>High-scale real estate search portal with geospatial clustering and automated broker matching.</p>
+                            <div class="portfolio-actions">
+                                <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+                                <a class="btn btn-secondary btn-small open-call-modal-btn" href="#">Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 7 (Added: Cloud Infrastructure & DevOps) -->
+                    <div class="portfolio-card reveal delay-1" data-category="ai">
+                        <div class="portfolio-img">
+                            <span class="portfolio-badge">Cloud Platform</span>
+                            <img alt="Kubernetes Multi-Region Mesh"
+                                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" />
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-tech-tags">
+                                <span class="tech-tag">Kubernetes</span>
+                                <span class="tech-tag">Terraform</span>
+                                <span class="tech-tag">GCP</span>
+                                <span class="tech-tag">Prometheus</span>
+                            </div>
+                            <h3>Nexus Cloud Mesh</h3>
+                            <div class="portfolio-roi-bar">
+                                <span class="roi-pill"><i class="fas fa-shield-virus"></i> 99.999% SLA Uptime</span>
+                                <span class="roi-pill"><i class="fas fa-gauge"></i> 10x Auto-Scaling</span>
+                            </div>
+                            <p>Multi-region Kubernetes cloud infrastructure with zero-downtime blue/green CI/CD deployment.</p>
+                            <div class="portfolio-actions">
+                                <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+                                <a class="btn btn-secondary btn-small open-call-modal-btn" href="#">Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 8 (Added: B2B Wholesale Commerce) -->
+                    <div class="portfolio-card reveal delay-2" data-category="ecommerce">
+                        <div class="portfolio-img">
+                            <span class="portfolio-badge">B2B Commerce</span>
+                            <img alt="SupplyChain Pro Network"
+                                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" />
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-tech-tags">
+                                <span class="tech-tag">GraphQL</span>
+                                <span class="tech-tag">Next.js 14</span>
+                                <span class="tech-tag">Redis</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                            </div>
+                            <h3>SupplyChain B2B Portal</h3>
+                            <div class="portfolio-roi-bar">
+                                <span class="roi-pill"><i class="fas fa-money-bill-trend-up"></i> $2.4M Volume/Mo</span>
+                                <span class="roi-pill"><i class="fas fa-boxes-stacked"></i> Auto PO Routing</span>
+                            </div>
+                            <p>Enterprise wholesale procurement platform with automated purchase orders and Tiered ERP pricing.</p>
+                            <div class="portfolio-actions">
+                                <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+                                <a class="btn btn-secondary btn-small open-call-modal-btn" href="#">Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More Projects Button -->
+                <div class="portfolio-load-more reveal">
+                    <button id="loadMoreProjectsBtn" class="btn-load-more">
+                        <span>Load More Projects</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand New: Interactive Project Cost & Scope Estimator -->
+        <section class="section" id="estimator">
+            <div class="container" id="project-estimator">
+                <div class="section-header reveal">
+                    <h2 class="section-title">
+                        Interactive Project Cost Estimator
+                    </h2>
+                    <p class="section-subtitle">
+                        Transparent Scope &amp; Pricing Calculator
+                    </p>
+                </div>
+
+                <div class="estimator-wrapper reveal delay-1">
+                    <div class="estimator-config">
+                        <!-- Step 1: Solution Type -->
+                        <div class="estimator-step">
+                            <div class="estimator-step-title">
+                                <span class="step-num">1</span> Choose Project Architecture
+                            </div>
+                            <div class="estimator-type-grid">
+                                <div class="type-option-card" data-type="website">
+                                    <i class="fas fa-desktop"></i>
+                                    <h4>Corporate Website</h4>
+                                    <p>High-converting, responsive brand presence.</p>
+                                </div>
+                                <div class="type-option-card selected" data-type="webapp">
+                                    <i class="fas fa-layer-group"></i>
+                                    <h4>Web Application / SaaS</h4>
+                                    <p>Custom workflows, database &amp; dashboard.</p>
+                                </div>
+                                <div class="type-option-card" data-type="ecommerce">
+                                    <i class="fas fa-shopping-bag"></i>
+                                    <h4>E-Commerce Platform</h4>
+                                    <p>Storefront, cart, inventory &amp; checkout.</p>
+                                </div>
+                                <div class="type-option-card" data-type="ai">
+                                    <i class="fas fa-robot"></i>
+                                    <h4>AI Agent &amp; Automation</h4>
+                                    <p>Smart LLM assistant &amp; process automation.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Key Features -->
+                        <div class="estimator-step">
+                            <div class="estimator-step-title">
+                                <span class="step-num">2</span> Select Features &amp; Capabilities
+                            </div>
+                            <div class="estimator-feature-grid">
+                                <label class="feature-check-label checked">
+                                    <input type="checkbox" checked data-name="Auth & Roles" data-usd="250" data-inr="12000" />
+                                    <span>User Auth &amp; Role Management</span>
+                                </label>
+                                <label class="feature-check-label checked">
+                                    <input type="checkbox" checked data-name="Payment Gateway" data-usd="300" data-inr="15000" />
+                                    <span>Payment Gateway / Subscriptions</span>
+                                </label>
+                                <label class="feature-check-label checked">
+                                    <input type="checkbox" checked data-name="Custom APIs" data-usd="350" data-inr="18000" />
+                                    <span>Custom REST / GraphQL APIs</span>
+                                </label>
+                                <label class="feature-check-label">
+                                    <input type="checkbox" data-name="AI Chatbot" data-usd="450" data-inr="22000" />
+                                    <span>AI Assistant / Smart Chatbot</span>
+                                </label>
+                                <label class="feature-check-label">
+                                    <input type="checkbox" data-name="DevOps CI/CD" data-usd="300" data-inr="15000" />
+                                    <span>AWS Cloud Deployment &amp; CI/CD</span>
+                                </label>
+                                <label class="feature-check-label">
+                                    <input type="checkbox" data-name="SEO & Analytics" data-usd="200" data-inr="10000" />
+                                    <span>Advanced SEO &amp; Core Web Vitals</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Speed -->
+                        <div class="estimator-step">
+                            <div class="estimator-step-title">
+                                <span class="step-num">3</span> Delivery Speed
+                            </div>
+                            <div class="estimator-speed-row">
+                                <div class="speed-option selected" data-speed="standard">
+                                    <h5>Standard Sprint</h5>
+                                    <span>Thorough testing &amp; QA</span>
+                                </div>
+                                <div class="speed-option" data-speed="express">
+                                    <h5>Expedited Delivery (+20%)</h5>
+                                    <span>Priority engineering team</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary Column -->
+                    <div class="estimator-summary">
+                        <div class="summary-header">
+                            <h3>Estimated Investment</h3>
+                            <p>Based on typical production deployments</p>
+                        </div>
+
+                        <div class="price-display-box">
+                            <div class="price-label">Estimated Budget Range</div>
+                            <div class="price-amount">$3,100 - $6,300</div>
+                            <div class="price-inr">&#8377;1,35,000 - &#8377;2,60,000 INR</div>
+                        </div>
+
+                        <div class="summary-breakdown">
+                            <div class="breakdown-row">
+                                <span>Estimated Timeline:</span>
+                                <span class="estimated-duration">4 - 6 Weeks</span>
+                            </div>
+                            <div class="breakdown-row">
+                                <span>Selected Stack:</span>
+                                <span class="selected-features-summary">Auth, Payments, APIs</span>
+                            </div>
+                            <div class="breakdown-row">
+                                <span>Consultation:</span>
+                                <span style="color: #38bdf8;">100% Free Discovery Call</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-actions">
+                            <a class="btn-whatsapp-quote" href="https://wa.me/918780628716" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Quote Directly
                             </a>
+                            <button class="btn btn-secondary btn-lock-quote" type="button" style="color: #fff; border-color: rgba(255,255,255,0.4);">
+                                <i class="fas fa-file-invoice-dollar" style="margin-right: 8px;"></i> Pre-fill Contact Form
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </section><section class="section bg-light" id="team">
+        </section>
+
+        <!-- Our 4-Step Engineering Playbook -->
+        <section class="section" id="playbook">
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="section-title">
-                        Our Team
+                        Our 4-Step Engineering Playbook
                     </h2>
                     <p class="section-subtitle">
-                        A dedicated team of 7 to 49 experts driving digital
-                        transformation
+                        How We Build &amp; Ship High-Velocity Software
                     </p>
-                    <a href="#" class="btn btn-small see-more-btn"
-                        style="margin-top: 15px; display: inline-block;">See
-                        More</a>
+                </div>
+
+                <div class="playbook-grid reveal delay-1">
+                    <!-- Step 1 -->
+                    <div class="playbook-card">
+                        <div class="playbook-num">01</div>
+                        <div class="playbook-icon"><i class="fas fa-compass-drafting"></i></div>
+                        <h3>Discovery &amp; Blueprint</h3>
+                        <p>We analyze user flows, database schemas, and architectural trade-offs to map a production blueprint with no hidden surprises.</p>
+                        <span class="playbook-tag">Deliverable: System Architecture</span>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="playbook-card">
+                        <div class="playbook-num">02</div>
+                        <div class="playbook-icon"><i class="fas fa-code"></i></div>
+                        <h3>Agile Sprints &amp; Live Demos</h3>
+                        <p>High-speed 2-week agile sprints. You receive private staging environment links to test real working features weekly.</p>
+                        <span class="playbook-tag">Deliverable: Weekly Staging Demos</span>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="playbook-card">
+                        <div class="playbook-num">03</div>
+                        <div class="playbook-icon"><i class="fas fa-shield-virus"></i></div>
+                        <h3>Rigorous QA &amp; Security</h3>
+                        <p>Penetration audits, automated test suites, responsive breakpoint testing, and Core Web Vitals optimization before launch.</p>
+                        <span class="playbook-tag">Deliverable: Security &amp; QA Audit</span>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="playbook-card">
+                        <div class="playbook-num">04</div>
+                        <div class="playbook-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Zero-Downtime Launch &amp; SLA</h3>
+                        <p>Automated CI/CD deployment to AWS/GCP, DNS transition, automated backups, and 60 days of guaranteed bug-free warranty.</p>
+                        <span class="playbook-tag">Deliverable: Production Deployment</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- "Why Choose RC Tech" Comparison Matrix -->
+        <section class="section bg-light" id="why-us">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">
+                        Why Choose RC Techno Solution
+                    </h2>
+                    <p class="section-subtitle">
+                        Built for Modern Startups &amp; Enterprise Leaders
+                    </p>
+                </div>
+
+                <div class="matrix-mobile-hint">
+                    <i class="fas fa-arrows-left-right"></i> Swipe horizontally to compare options
+                </div>
+
+                <div class="comparison-table-wrapper reveal delay-1">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th class="matrix-feature-header">
+                                    <span class="matrix-caption">ENGINEERING BENCHMARK</span>
+                                    <span class="matrix-heading">Delivery Criteria</span>
+                                </th>
+                                <th class="matrix-hero-col">
+                                    <div class="matrix-badge">
+                                        <i class="fas fa-crown"></i> RECOMMENDED
+                                    </div>
+                                    <div class="matrix-hero-title">RC Techno Solution</div>
+                                    <div class="matrix-hero-subtitle">Dedicated Engineering Squad</div>
+                                </th>
+                                <th class="matrix-alt-col">
+                                    <div class="matrix-alt-icon"><i class="fas fa-user"></i></div>
+                                    <div class="matrix-alt-title">Freelancers / Solo Devs</div>
+                                    <div class="matrix-alt-subtitle">Single Point of Failure</div>
+                                </th>
+                                <th class="matrix-alt-col">
+                                    <div class="matrix-alt-icon"><i class="fas fa-building"></i></div>
+                                    <div class="matrix-alt-title">Traditional Agencies</div>
+                                    <div class="matrix-alt-subtitle">High Margin Overhead</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="matrix-criteria">
+                                    <i class="fas fa-user-tie criteria-icon"></i>
+                                    <span>Engineering Talent</span>
+                                </td>
+                                <td class="matrix-hero-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-check"><i class="fas fa-check"></i></span>
+                                        <span>Senior Fullstack Architects</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Hit-or-miss solo skillsets</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Junior devs managed by account execs</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="matrix-criteria">
+                                    <i class="fas fa-bolt criteria-icon"></i>
+                                    <span>Delivery Speed</span>
+                                </td>
+                                <td class="matrix-hero-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-check"><i class="fas fa-check"></i></span>
+                                        <span>2–6 Weeks Rapid Sprints</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Unpredictable ghosting risks</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>6–12 Months of bloated overhead</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="matrix-criteria">
+                                    <i class="fas fa-lock criteria-icon"></i>
+                                    <span>Code &amp; IP Ownership</span>
+                                </td>
+                                <td class="matrix-hero-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-check"><i class="fas fa-check"></i></span>
+                                        <span>100% Client Ownership (Day 1)</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Undocumented or messy handoff</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Proprietary lock-in &amp; license fees</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="matrix-criteria">
+                                    <i class="fas fa-comments criteria-icon"></i>
+                                    <span>Communication Channel</span>
+                                </td>
+                                <td class="matrix-hero-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-check"><i class="fas fa-check"></i></span>
+                                        <span>Direct WhatsApp &amp; Slack with Lead Tech</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Delayed or irregular messaging</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Rigid ticket queues &amp; account reps</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="matrix-criteria">
+                                    <i class="fas fa-shield-halved criteria-icon"></i>
+                                    <span>Post-Launch Warranty</span>
+                                </td>
+                                <td class="matrix-hero-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-check"><i class="fas fa-check"></i></span>
+                                        <span>60-Day Guaranteed Bug-Fix SLA</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Disappears after final invoice</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Expensive hourly retainers for minor fixes</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="matrix-criteria">
+                                    <i class="fas fa-cloud-arrow-up criteria-icon"></i>
+                                    <span>Architecture &amp; Scale</span>
+                                </td>
+                                <td class="matrix-hero-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-check"><i class="fas fa-check"></i></span>
+                                        <span>Enterprise AWS, Docker &amp; Microservices</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Basic shared hosting templates</span>
+                                    </div>
+                                </td>
+                                <td class="matrix-alt-cell">
+                                    <div class="matrix-cell-content">
+                                        <span class="matrix-cross"><i class="fas fa-times"></i></span>
+                                        <span>Monolithic legacy frameworks</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="comparison-footer-bar">
+                        <div class="footer-bar-info">
+                            <i class="fas fa-shield-halved"></i>
+                            <span>Zero Vendor Lock-in &bull; Full IP Ownership &bull; 60-Day Warranty SLA</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-small">Schedule Free Architecture Call <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="team">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">
+                        Executive Engineering Team
+                    </h2>
+                    <p class="section-subtitle">
+                        Senior Software Engineers &amp; Cloud Architects
+                    </p>
                 </div>
                 <div class="team-grid">
                     <!-- Team 1 -->
                     <div class="team-card reveal">
-                        <div class="team-img">
-                            <img alt="Team Member"
-                                src="https://placehold.co/400x400/1e293b/38bdf8?text=CEO" />
+                        <div class="team-card-banner">
+                            <span class="team-badge">Founder &amp; Lead</span>
+                        </div>
+                        <div class="team-avatar-wrap">
+                            <img alt="Ratan Chauhan - Founder &amp; Principal Architect"
+                                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" />
                         </div>
                         <div class="team-info">
-                            <h4>
-                                Jane Doe
-                            </h4>
-                            <p>
-                                CEO &amp; Founder
-                            </p>
+                            <h4>Ratan Chauhan</h4>
+                            <p class="team-role">Founder &amp; Principal Architect</p>
+                            <div class="team-specialties">
+                                <span class="tech-tag">System Design</span>
+                                <span class="tech-tag">Cloud Scale</span>
+                            </div>
+                            <p class="team-bio">Directs tech roadmap, high-availability distributed architecture, and zero-defect delivery.</p>
                             <div class="social-icons">
-                                <a href="#">
-                                    <i class="fab fa-linkedin">
-                                    </i>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="#">
-                                    <i class="fab fa-twitter">
-                                    </i>
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
+
                     <!-- Team 2 -->
                     <div class="team-card reveal delay-1">
-                        <div class="team-img">
-                            <img alt="Team Member"
-                                src="https://placehold.co/400x400/1e293b/38bdf8?text=CTO" />
+                        <div class="team-card-banner">
+                            <span class="team-badge">Cloud &amp; DevOps</span>
+                        </div>
+                        <div class="team-avatar-wrap">
+                            <img alt="Aman Sharma - VP of Engineering"
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" />
                         </div>
                         <div class="team-info">
-                            <h4>
-                                John Smith
-                            </h4>
-                            <p>
-                                CTO
-                            </p>
+                            <h4>Aman Sharma</h4>
+                            <p class="team-role">VP of Engineering &amp; Cloud</p>
+                            <div class="team-specialties">
+                                <span class="tech-tag">Kubernetes</span>
+                                <span class="tech-tag">AWS &amp; GCP</span>
+                            </div>
+                            <p class="team-bio">Spearheads container orchestration, blue/green CI/CD pipelines, and 99.999% SLA infrastructure.</p>
                             <div class="social-icons">
-                                <a href="#">
-                                    <i class="fab fa-linkedin">
-                                    </i>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="#">
-                                    <i class="fab fa-github">
-                                    </i>
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
+
                     <!-- Team 3 -->
                     <div class="team-card reveal delay-2">
-                        <div class="team-img">
-                            <img alt="Team Member"
-                                src="https://placehold.co/400x400/1e293b/38bdf8?text=Lead+Dev" />
+                        <div class="team-card-banner">
+                            <span class="team-badge">Product Design</span>
+                        </div>
+                        <div class="team-avatar-wrap">
+                            <img alt="Priya Patel - Lead UI/UX Architect"
+                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" />
                         </div>
                         <div class="team-info">
-                            <h4>
-                                Sarah Lee
-                            </h4>
-                            <p>
-                                Lead Developer
-                            </p>
+                            <h4>Priya Patel</h4>
+                            <p class="team-role">Lead UI/UX &amp; Frontend Architect</p>
+                            <div class="team-specialties">
+                                <span class="tech-tag">Design Systems</span>
+                                <span class="tech-tag">Next.js 14</span>
+                            </div>
+                            <p class="team-bio">Engineers responsive micro-interactions, high-converting checkout flows, and accessible web systems.</p>
                             <div class="social-icons">
-                                <a href="#">
-                                    <i class="fab fa-linkedin">
-                                    </i>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="#">
-                                    <i class="fab fa-github">
-                                    </i>
+                                <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">
+                                    <i class="fab fa-dribbble"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
+
                     <!-- Team 4 -->
                     <div class="team-card reveal delay-3">
-                        <div class="team-img">
-                            <img alt="Team Member"
-                                src="https://placehold.co/400x400/1e293b/38bdf8?text=Designer" />
+                        <div class="team-card-banner">
+                            <span class="team-badge">AI &amp; MLOps</span>
+                        </div>
+                        <div class="team-avatar-wrap">
+                            <img alt="Vikram Singh - Lead AI Engineer"
+                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" />
                         </div>
                         <div class="team-info">
-                            <h4>
-                                Mike Johnson
-                            </h4>
-                            <p>
-                                Lead UI/UX Designer
-                            </p>
+                            <h4>Vikram Singh</h4>
+                            <p class="team-role">Lead AI &amp; Systems Engineer</p>
+                            <div class="team-specialties">
+                                <span class="tech-tag">FastAPI</span>
+                                <span class="tech-tag">LLM Agents</span>
+                            </div>
+                            <p class="team-bio">Builds autonomous multi-agent pipelines, real-time telemetry, and low-latency API integrations.</p>
                             <div class="social-icons">
-                                <a href="#">
-                                    <i class="fab fa-linkedin">
-                                    </i>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="#">
-                                    <i class="fab fa-dribbble">
-                                    </i>
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
                                 </a>
                             </div>
                         </div>
@@ -808,125 +1415,109 @@
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="section-title">
-                        Life at RC Tech
+                        Life at RC Techno
                     </h2>
                     <p class="section-subtitle">
                         Our vibrant workspace and team culture
                     </p>
                 </div>
                 <div class="gallery-grid reveal delay-1" id="galleryGrid">
+                    <!-- Moment 1 -->
                     <div class="gallery-item">
-                        <img
-                            src="https://media.istockphoto.com/id/2193065344/photo/diverse-team-discussing-business-in-a-modern-meeting-room.jpg?s=612x612&w=0&k=20&c=nW6Gt9SgOO7VtZX_EPwcBmgc0BUV6A2ld2OevzMr_Nw="
-                            alt="Team Meeting">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                            <span>View Image</span>
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                            alt="Agile Architecture Sprint">
+                        <span class="gallery-pill-badge"><i class="fas fa-code-commit"></i> Agile Sprint</span>
+                        <div class="gallery-caption-overlay">
+                            <h4>Architecture Sprints</h4>
+                            <p>Cross-functional system design &amp; rapid feature planning</p>
+                        </div>
+                        <div class="gallery-hover-action">
+                            <span class="view-pill"><i class="fas fa-expand"></i> View</span>
                         </div>
                     </div>
+
+                    <!-- Moment 2 -->
                     <div class="gallery-item">
-                        <img
-                            src="https://www.ivalueplus.com/wp-content/uploads/2025/04/setting-up-office-in-india-scaled.webp"
-                            alt="Workspace">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                            <span>View Image</span>
+                        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80"
+                            alt="High-Velocity Engineering Pods">
+                        <span class="gallery-pill-badge"><i class="fas fa-laptop-code"></i> Engineering Hub</span>
+                        <div class="gallery-caption-overlay">
+                            <h4>Developer Pods</h4>
+                            <p>Multi-display developer workstations &amp; ergonomic pods</p>
+                        </div>
+                        <div class="gallery-hover-action">
+                            <span class="view-pill"><i class="fas fa-expand"></i> View</span>
                         </div>
                     </div>
+
+                    <!-- Moment 3 -->
                     <div class="gallery-item">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0qaGW39jCjixGTiwC--wuHj1v6T2HrFqkQIzkmSCbxQ&s"
-                            alt="Team Lunch">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                            <span>View Image</span>
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80"
+                            alt="Quarterly Milestone Dinners">
+                        <span class="gallery-pill-badge"><i class="fas fa-champagne-glasses"></i> Milestones</span>
+                        <div class="gallery-caption-overlay">
+                            <h4>Team Celebrations</h4>
+                            <p>Honoring zero-downtime releases &amp; enterprise client wins</p>
+                        </div>
+                        <div class="gallery-hover-action">
+                            <span class="view-pill"><i class="fas fa-expand"></i> View</span>
                         </div>
                     </div>
+
+                    <!-- Moment 4 -->
                     <div class="gallery-item">
-                        <img
-                            src="https://www.shutterstock.com/image-photo/indian-group-friends-collaborating-brainstorming-260nw-2590934433.jpg"
-                            alt="Brainstorming">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                            <span>View Image</span>
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+                            alt="Technical Hackathons & Pair Programming">
+                        <span class="gallery-pill-badge"><i class="fas fa-lightbulb"></i> Innovation Day</span>
+                        <div class="gallery-caption-overlay">
+                            <h4>Internal Hackathons</h4>
+                            <p>Exploring cutting-edge LLMs, GenAI tools &amp; frameworks</p>
+                        </div>
+                        <div class="gallery-hover-action">
+                            <span class="view-pill"><i class="fas fa-expand"></i> View</span>
                         </div>
                     </div>
+
+                    <!-- Moment 5 -->
                     <div class="gallery-item">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTihZJQgt824-OKWMwJHVOoPn6nMMiWSuaftcyhSnAMKg&s=10"
-                            alt="Awards">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                            <span>View Image</span>
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80"
+                            alt="Design Systems & Product Review">
+                        <span class="gallery-pill-badge"><i class="fas fa-compass-drafting"></i> Design Review</span>
+                        <div class="gallery-caption-overlay">
+                            <h4>UX &amp; Prototype Syncs</h4>
+                            <p>Interactive Figma teardowns with frontend architects</p>
+                        </div>
+                        <div class="gallery-hover-action">
+                            <span class="view-pill"><i class="fas fa-expand"></i> View</span>
                         </div>
                     </div>
+
+                    <!-- Moment 6 -->
                     <div class="gallery-item">
-                        <img
-                            src="https://www.dpgapanvel.ac.in/wp-content/uploads/2023/12/Annual-Trip-2023-Grades-6-to-9-28.jpg"
-                            alt="Annual Trip">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                            <span>View Image</span>
+                        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80"
+                            alt="Annual Offsite Retreats">
+                        <span class="gallery-pill-badge"><i class="fas fa-mountain-sun"></i> Annual Offsite</span>
+                        <div class="gallery-caption-overlay">
+                            <h4>Team Bonding Retreats</h4>
+                            <p>Outdoor adventures, unwinding, and collaborative visioning</p>
                         </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img
-                            src="https://placehold.co/600x400/1e293b/38bdf8?text=Coding+Session"
-                            alt="Coding Session">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                            <span>View Image</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img
-                            src="https://placehold.co/600x400/1e293b/38bdf8?text=Client+Meeting"
-                            alt="Client Meeting">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                            <span>View Image</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img
-                            src="https://placehold.co/600x400/1e293b/38bdf8?text=Office+Party"
-                            alt="Office Party">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                            <span>View Image</span>
+                        <div class="gallery-hover-action">
+                            <span class="view-pill"><i class="fas fa-expand"></i> View</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="gallery-actions">
-                    <button
-                        class="btn btn-primary pulse-anim load-more-btn">Load
-                        More</button>
+                    <button class="btn-load-more load-more-btn" id="loadMoreGalleryBtn">
+                        <i class="fas fa-images"></i>
+                        <span>Explore More Moments (3 more)</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="testimonials">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">
-                        Testimonials
-                    </h2>
-                    <p class="section-subtitle">
-                        What Our Clients Say
-                    </p>
-                </div>
-                <div class="testimonial-slider reveal delay-1">
-                    <div class="testimonial-container"
-                        id="testimonialContainer">
-                        <!-- Slides injected by JS -->
-                    </div>
-                    <div class="slider-dots" id="sliderDots">
-                        <!-- Dots injected by JS -->
-                    </div>
-                </div>
-            </div>
-        </section><section class="section bg-light" id="faq">
+        <section class="section bg-light" id="faq">
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="section-title">
@@ -936,76 +1527,161 @@
                         Frequently Asked Questions
                     </p>
                 </div>
+                <!-- FAQ Category Filter Tabs -->
+                <div class="faq-categories reveal">
+                    <button class="faq-category-btn active" data-filter="all"><i class="fas fa-layer-group"></i> All FAQs</button>
+                    <button class="faq-category-btn" data-filter="tech"><i class="fas fa-code"></i> Tech &amp; AI</button>
+                    <button class="faq-category-btn" data-filter="timeline"><i class="fas fa-clock"></i> Timelines &amp; Delivery</button>
+                    <button class="faq-category-btn" data-filter="legal"><i class="fas fa-shield-halved"></i> IP &amp; Security</button>
+                </div>
+
+                <div class="faq-search-wrapper reveal">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="faqSearchInput" class="faq-search-input" placeholder="Search questions (pricing, timelines, AI, IP, NDA)..." />
+                </div>
+
                 <div class="faq-container reveal delay-1">
-                    <div class="faq-item">
+                    <!-- Q1 -->
+                    <div class="faq-item" data-category="tech">
                         <div class="faq-question">
-                            <h3>
-                                What technologies do you use for web
-                                development?
-                            </h3>
-                            <i class="fas fa-chevron-down">
-                            </i>
+                            <div class="faq-icon-badge"><i class="fas fa-code"></i></div>
+                            <div class="faq-question-text">
+                                <h3>What tech stacks do you specialize in?</h3>
+                            </div>
+                            <span class="faq-chevron-wrap"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="faq-answer">
-                            <p>
-                                We use a modern stack including React, Node.js,
-                                Python, and robust databases like MongoDB and
-                                MySQL to build scalable solutions.
-                            </p>
+                            <p>React, Next.js 14, Node.js, Python FastAPI, PostgreSQL, Redis, and containerized Docker deployed across AWS &amp; GCP.</p>
                         </div>
                     </div>
-                    <div class="faq-item">
+
+                    <!-- Q2 -->
+                    <div class="faq-item" data-category="timeline">
                         <div class="faq-question">
-                            <h3>
-                                How long does it take to build a website?
-                            </h3>
-                            <i class="fas fa-chevron-down">
-                            </i>
+                            <div class="faq-icon-badge"><i class="fas fa-clock"></i></div>
+                            <div class="faq-question-text">
+                                <h3>How fast can you build and ship an MVP?</h3>
+                            </div>
+                            <span class="faq-chevron-wrap"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="faq-answer">
-                            <p>
-                                The timeline varies based on complexity. A
-                                standard corporate website can take 2-4 weeks,
-                                while complex web apps may take 2-3 months.
-                            </p>
+                            <p>Rapid MVPs ship in 2–4 weeks; enterprise web platforms launch in 6–10 weeks with weekly staging environment demos.</p>
                         </div>
                     </div>
-                    <div class="faq-item">
+
+                    <!-- Q3 -->
+                    <div class="faq-item" data-category="tech">
                         <div class="faq-question">
-                            <h3>
-                                Do you provide post-launch support?
-                            </h3>
-                            <i class="fas fa-chevron-down">
-                            </i>
+                            <div class="faq-icon-badge"><i class="fas fa-robot"></i></div>
+                            <div class="faq-question-text">
+                                <h3>Can you build custom AI agents &amp; LLM workflows?</h3>
+                            </div>
+                            <span class="faq-chevron-wrap"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="faq-answer">
-                            <p>
-                                Yes, we offer comprehensive 24/7 support and
-                                maintenance packages to ensure your digital
-                                product runs smoothly post-launch.
-                            </p>
+                            <p>Yes. We engineer private RAG pipelines, autonomous agents, and smart copilots with sub-200ms latency integrated into your databases.</p>
                         </div>
                     </div>
-                    <div class="faq-item">
+
+                    <!-- Q4 -->
+                    <div class="faq-item" data-category="timeline">
                         <div class="faq-question">
-                            <h3>
-                                Can you integrate AI into our existing system?
-                            </h3>
-                            <i class="fas fa-chevron-down">
-                            </i>
+                            <div class="faq-icon-badge"><i class="fas fa-headset"></i></div>
+                            <div class="faq-question-text">
+                                <h3>Do you provide post-launch maintenance &amp; SLA support?</h3>
+                            </div>
+                            <span class="faq-chevron-wrap"><i class="fas fa-chevron-down"></i></span>
                         </div>
                         <div class="faq-answer">
-                            <p>
-                                Absolutely. We specialize in AI integration,
-                                from chatbots to advanced data analytics,
-                                seamlessly fitting into your current
-                                architecture.
-                            </p>
+                            <p>Every delivery includes a 60-day bug warranty SLA followed by flexible monthly DevOps and cloud maintenance retainers.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q5 (Extra) -->
+                    <div class="faq-item faq-extra" data-category="legal">
+                        <div class="faq-question">
+                            <div class="faq-icon-badge"><i class="fas fa-lock"></i></div>
+                            <div class="faq-question-text">
+                                <h3>Who owns the source code and intellectual property?</h3>
+                            </div>
+                            <span class="faq-chevron-wrap"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You own 100% of all source code, Git repositories, and cloud environments from Day 1 with zero licensing fees or lock-in.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q6 (Extra) -->
+                    <div class="faq-item faq-extra" data-category="legal">
+                        <div class="faq-question">
+                            <div class="faq-icon-badge"><i class="fas fa-file-signature"></i></div>
+                            <div class="faq-question-text">
+                                <h3>Do you sign mutual NDAs before technical discussions?</h3>
+                            </div>
+                            <span class="faq-chevron-wrap"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, standard practice. We execute mutual NDAs prior to any technical discovery call to safeguard your trade secrets and data.</p>
                         </div>
                     </div>
                 </div>
+
+                <!-- Load More / Show Less Button -->
+                <div class="faq-load-more-wrap reveal">
+                    <button id="faqToggleMoreBtn" class="btn-load-more" type="button">
+                        <i class="fas fa-chevron-down"></i> View More Questions
+                    </button>
+                </div>
+
+                <!-- FAQ Bottom Help Strip -->
+                <div class="faq-cta-box reveal">
+                    <div class="faq-cta-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="faq-cta-text">
+                        <h4>Still have unanswered questions?</h4>
+                        <p>Speak directly with our lead software architect for a free 15-minute consultation.</p>
+                    </div>
+                    <div class="faq-cta-actions">
+                        <a href="https://wa.me/918780628716?text=Hi%20RC%20Techno,%20I%20have%20a%20question%20about%20your%20services" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                        </a>
+                        <a href="contact.html" class="btn btn-secondary btn-small">
+                            <i class="fas fa-envelope"></i> Send an Inquiry
+                        </a>
+                    </div>
+                </div>
             </div>
-        </section><section class="section" id="contact">
+        </section>
+
+        <!-- Free 24-Hour Digital Health & Security Audit Lead Magnet -->
+        <section class="section" id="audit-lead-magnet" style="padding: 40px 0 20px;">
+            <div class="container">
+                <div class="free-audit-card reveal">
+                    <div class="audit-content">
+                        <span class="portfolio-badge" style="position: static; display: inline-block; margin-bottom: 12px;">Zero Risk &bull; 100% Free</span>
+                        <h3>Get a Free 24-Hour Digital Health &amp; Security Audit</h3>
+                        <p>Is your website losing customers due to slow load speeds, broken mobile layouts, or security vulnerabilities? Enter your URL and our senior engineers will deliver a comprehensive 3-point diagnostic report within 24 hours.</p>
+                        <div class="audit-points">
+                            <span class="audit-point"><i class="fas fa-check-circle"></i> Core Web Vitals &amp; Speed Analysis</span>
+                            <span class="audit-point"><i class="fas fa-check-circle"></i> Mobile UX &amp; Conversion Bottlenecks</span>
+                            <span class="audit-point"><i class="fas fa-check-circle"></i> SSL, Headers &amp; Security Flaws</span>
+                        </div>
+                    </div>
+                    <div class="audit-form-box">
+                        <form id="freeAuditForm">
+                            <input type="url" id="auditUrl" placeholder="https://yourwebsite.com *" required />
+                            <input type="email" id="auditEmail" placeholder="Your Work Email *" required />
+                            <button class="btn btn-primary btn-block pulse-anim" type="submit">
+                                <i class="fas fa-bolt" style="margin-right: 8px;"></i> Request Free Audit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="section-title">
@@ -1027,14 +1703,11 @@
                             </i>
                             <div>
                                 <h4>
-                                    Address
+                                    Office Headquarters
                                 </h4>
                                 <p>
-                                    Vastral Gam, Ahmedabad, Gujarat
+                                    Vastral, Ahmedabad, Gujarat, India
                                 </p>
-                                <a href="#" class="btn btn-small see-more-btn"
-                                    style="margin-top: 15px; display: inline-block;">See
-                                    More</a>
                             </div>
                         </div>
                         <div class="info-item">
@@ -1042,10 +1715,10 @@
                             </i>
                             <div>
                                 <h4>
-                                    Email
+                                    Direct Email
                                 </h4>
                                 <p>
-                                    hello@rctechsolutions.com
+                                    <a href="mailto:hello@rctechsolutions.com" style="color: inherit;">hello@rctechsolutions.com</a>
                                 </p>
                             </div>
                         </div>
@@ -1069,33 +1742,32 @@
                             </i>
                             <div>
                                 <h4>
-                                    Business Hours
+                                    Working Hours
                                 </h4>
                                 <p>
-                                    Mon - Fri: 9:00 AM - 6:00 PM
+                                    Mon - Sat: 9:00 AM - 7:00 PM IST
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="contact-form-container reveal delay-1 glass">
-                        <form class="contact-form"
-                            onsubmit="event.preventDefault(); alert('This is a static form. Backend connection required.');">
+                        <form class="contact-form" id="contactForm">
                             <div class="form-group">
-                                <input placeholder="Your Name" required
+                                <input name="name" placeholder="Your Full Name *" required
                                     type="text" />
-                                <input placeholder="Your Email" required
+                                <input name="email" placeholder="Business Email *" required
                                     type="email" />
                             </div>
                             <div class="form-group">
-                                <input placeholder="Phone Number" type="tel" />
-                                <input placeholder="Subject" required
+                                <input name="phone" placeholder="Phone Number / WhatsApp" type="tel" />
+                                <input name="subject" placeholder="Project Subject *" required
                                     type="text" />
                             </div>
-                            <textarea placeholder="Your Message" required
+                            <textarea name="message" placeholder="Tell us about your project requirements, goals, or budget..." required
                                 rows="5"></textarea>
                             <button class="btn btn-primary btn-block pulse-anim"
                                 type="submit">
-                                Send Message
+                                <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Send Inquiry &amp; Launch WhatsApp
                             </button>
                         </form>
                     </div>
@@ -1116,9 +1788,7 @@
                         <span class="ratan">
                             RC
                         </span>
-                        <span class="tech">
-                            Tech
-                        </span>
+                        <span class="tech">Techno</span>
                     </a>
                     <p>
                         Building modern, scalable, and secure digital solutions
@@ -1173,6 +1843,16 @@
                                 Contact
                             </a>
                         </li>
+                        <li>
+                            <a href="terms.html">
+                                Terms &amp; Conditions
+                            </a>
+                        </li>
+                        <li>
+                            <a href="privacy.html">
+                                Privacy Policy
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1214,7 +1894,7 @@
                     <p>
                         <i class="fas fa-envelope">
                         </i>
-                        hello@ratantech.com
+                        hello@rctechsolutions.com
                     </p>
                     <p>
                         <i class="fab fa-whatsapp">
@@ -1228,12 +1908,39 @@
             </div>
             <div class="footer-bottom">
                 <p>
-                    © 2024 RC Tech Solutions. All Rights Reserved.
+                    &copy; 2026 RC Techno Solution. All Rights Reserved. &bull; <a href="terms.html" style="color: inherit;">Terms</a> &bull; <a href="privacy.html" style="color: inherit;">Privacy</a>
                 </p>
             </div>
         </footer>
-        <script src="script.js">
-</script>
+
+        <!-- 1-Click Discovery Call Modal -->
+        <div class="call-modal" id="callModal">
+            <div class="call-modal-content">
+                <div class="call-modal-header">
+                    <h3><i class="fas fa-calendar-check" style="margin-right: 8px; color: var(--primary);"></i> Book a 15-Min Discovery Call</h3>
+                    <button class="call-modal-close" id="closeCallModal" aria-label="Close modal">&times;</button>
+                </div>
+                <div class="call-modal-body">
+                    <p style="font-size: 0.9rem; margin-bottom: 14px; opacity: 0.85;">Speak directly with a Senior Solutions Architect. No sales pitch, just pure technical strategy.</p>
+                    <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Your Name</label>
+                    <input type="text" id="callName" placeholder="Full Name" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 14px; background: var(--bg-card); color: var(--text-main);" />
+                    <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Primary Discussion Topic</label>
+                    <input type="text" id="callTopic" placeholder="e.g. New Web App, SaaS MVP, AI Chatbot" style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 14px; background: var(--bg-card); color: var(--text-main);" />
+                    <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 8px;">Select Preferred Time Slot</label>
+                    <div class="call-slot-grid">
+                        <div class="call-slot-card selected" data-slot="Tomorrow at 3:00 PM IST">Tomorrow 3:00 PM IST</div>
+                        <div class="call-slot-card" data-slot="Tomorrow at 6:30 PM IST">Tomorrow 6:30 PM IST</div>
+                        <div class="call-slot-card" data-slot="In 2 Days at 11:00 AM IST">In 2 Days 11:00 AM IST</div>
+                        <div class="call-slot-card" data-slot="In 2 Days at 4:00 PM IST">In 2 Days 4:00 PM IST</div>
+                    </div>
+                    <button class="btn btn-primary btn-block pulse-anim" id="confirmCallBtn" style="margin-top: 16px;">
+                        <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Confirm Slot via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
         <script src="chatbot.js"></script>
     </body>
 </html>

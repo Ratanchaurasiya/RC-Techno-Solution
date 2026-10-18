@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   RC Tech Solutions - Modern IT Services
+   RC Techno Solution - Modern IT Services
   </title>
   <!-- Google Fonts: Poppins -->
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -27,12 +27,8 @@
      <span class="ratan">
       RC
      </span>
-     <span class="tech">
-      Tech
-     </span>
-     <span class="solutions">
-      Solutions
-     </span>
+     <span class="tech">Techno</span>
+     <span class="solutions">Solution</span>
     </a>
     <nav class="nav-menu">
      <ul class="nav-list">
@@ -62,11 +58,6 @@
        </a>
       </li>
       <li>
-       <a class="nav-link" href="testimonials.html">
-        Testimonials
-       </a>
-      </li>
-      <li>
        <a class="nav-link" href="faq.html">
         FAQ
        </a>
@@ -76,6 +67,8 @@
         Contact
        </a>
       </li>
+                        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
      </ul>
      <a class="btn btn-nav" href="contact.html">
       Get a Quote
@@ -97,107 +90,133 @@
       Recent Projects
      </p>
     </div>
+        <div class="portfolio-filters reveal delay-1" style="margin-top: 20px;">
+        <button class="portfolio-filter-btn active" data-filter="all">All Projects</button>
+        <button class="portfolio-filter-btn" data-filter="webapp">Web Apps & SaaS</button>
+        <button class="portfolio-filter-btn" data-filter="ecommerce">E-Commerce</button>
+        <button class="portfolio-filter-btn" data-filter="ai">Cloud & AI</button>
+    </div>
     <div class="portfolio-grid">
-     <!-- Project 1 -->
-     <div class="portfolio-card reveal">
-      <div class="portfolio-img">
-       <img alt="Project 1" src="https://placehold.co/600x400/0f172a/38bdf8?text=E-Commerce+App"/>
+      <!-- Project 1 -->
+      <div class="portfolio-card reveal" data-category="ecommerce">
+       <div class="portfolio-img">
+        <span class="portfolio-badge">E-Commerce</span>
+        <img alt="Nexus E-Commerce Platform" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"/>
+       </div>
+       <div class="portfolio-info">
+        <div class="portfolio-tech-tags">
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Tailwind</span>
+            <span class="tech-tag">Stripe</span>
+        </div>
+        <h3>Nexus E-Commerce Platform</h3>
+        <p>A high-converting online storefront with secure payment gateways, inventory automation, and sub-second load times.</p>
+        <div class="portfolio-actions">
+            <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+            <a class="btn btn-secondary btn-small" href="contact.html">Get Quote</a>
+        </div>
+       </div>
       </div>
-      <div class="portfolio-info">
-       <h3>
-        E-Commerce Platform
-       </h3>
-       <p>
-        A full-featured online store with payment integration.
-       </p>
-       <a class="btn btn-small" href="#">
-        View Project
-       </a>
+      <!-- Project 2 -->
+      <div class="portfolio-card reveal delay-1" data-category="webapp">
+       <div class="portfolio-img">
+        <span class="portfolio-badge">Healthcare</span>
+        <img alt="Healthcare Telemedicine Suite" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"/>
+       </div>
+       <div class="portfolio-info">
+        <div class="portfolio-tech-tags">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">WebRTC</span>
+            <span class="tech-tag">Node.js</span>
+        </div>
+        <h3>OmniHealth Telemedicine Suite</h3>
+        <p>HIPAA-compliant analytics dashboard and encrypted video consultation system for healthcare clinics.</p>
+        <div class="portfolio-actions">
+            <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+            <a class="btn btn-secondary btn-small" href="contact.html">Get Quote</a>
+        </div>
+       </div>
       </div>
-     </div>
-     <!-- Project 2 -->
-     <div class="portfolio-card reveal delay-1">
-      <div class="portfolio-img">
-       <img alt="Project 2" src="https://placehold.co/600x400/0f172a/38bdf8?text=Healthcare+Dashboard"/>
+      <!-- Project 3 -->
+      <div class="portfolio-card reveal delay-2" data-category="webapp">
+       <div class="portfolio-img">
+        <span class="portfolio-badge">Real Estate</span>
+        <img alt="PropTech Realty Network" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80"/>
+       </div>
+       <div class="portfolio-info">
+        <div class="portfolio-tech-tags">
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Mapbox</span>
+            <span class="tech-tag">PostgreSQL</span>
+        </div>
+        <h3>PropTech Real Estate Portal</h3>
+        <p>Dynamic MLS property portal with advanced geospatial clustering, interactive floorplans, and automated lead capture.</p>
+        <div class="portfolio-actions">
+            <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+            <a class="btn btn-secondary btn-small" href="contact.html">Get Quote</a>
+        </div>
+       </div>
       </div>
-      <div class="portfolio-info">
-       <h3>
-        Healthcare Dashboard
-       </h3>
-       <p>
-        Analytics dashboard for patient data management.
-       </p>
-       <a class="btn btn-small" href="#">
-        View Project
-       </a>
+      <!-- Project 4 -->
+      <div class="portfolio-card reveal" data-category="webapp">
+       <div class="portfolio-img">
+        <span class="portfolio-badge">SaaS</span>
+        <img alt="CloudScale SaaS Intelligence" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"/>
+       </div>
+       <div class="portfolio-info">
+        <div class="portfolio-tech-tags">
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">AWS</span>
+        </div>
+        <h3>CloudScale SaaS Intelligence</h3>
+        <p>Multi-tenant analytics dashboard delivering real-time revenue telemetrics, team permissions, and automated reporting.</p>
+        <div class="portfolio-actions">
+            <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+            <a class="btn btn-secondary btn-small" href="contact.html">Get Quote</a>
+        </div>
+       </div>
       </div>
-     </div>
-     <!-- Project 3 -->
-     <div class="portfolio-card reveal delay-2">
-      <div class="portfolio-img">
-       <img alt="Project 3" src="https://placehold.co/600x400/0f172a/38bdf8?text=Real+Estate+Portal"/>
+      <!-- Project 5 -->
+      <div class="portfolio-card reveal delay-1" data-category="ai">
+       <div class="portfolio-img">
+        <span class="portfolio-badge">AI Automation</span>
+        <img alt="Aura Enterprise AI Agent" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"/>
+       </div>
+       <div class="portfolio-info">
+        <div class="portfolio-tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Gemini API</span>
+            <span class="tech-tag">FastAPI</span>
+        </div>
+        <h3>Aura AI Customer Agent</h3>
+        <p>Autonomous LLM customer support assistant resolving over 70% of tickets with live CRM and database integrations.</p>
+        <div class="portfolio-actions">
+            <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+            <a class="btn btn-secondary btn-small" href="contact.html">Get Quote</a>
+        </div>
+       </div>
       </div>
-      <div class="portfolio-info">
-       <h3>
-        Real Estate Portal
-       </h3>
-       <p>
-        Property listing website with advanced search.
-       </p>
-       <a class="btn btn-small" href="#">
-        View Project
-       </a>
+      <!-- Project 6 -->
+      <div class="portfolio-card reveal delay-2" data-category="webapp">
+       <div class="portfolio-img">
+        <span class="portfolio-badge">FinTech</span>
+        <img alt="FinFlow Core Banking App" src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80"/>
+       </div>
+       <div class="portfolio-info">
+        <div class="portfolio-tech-tags">
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">Redis</span>
+            <span class="tech-tag">Microservices</span>
+        </div>
+        <h3>FinFlow Core Banking App</h3>
+        <p>Bank-grade digital wallet with automated biometric authentication, instant payments, and compliance reporting.</p>
+        <div class="portfolio-actions">
+            <a class="btn btn-primary btn-small" href="contact.html">Live Demo</a>
+            <a class="btn btn-secondary btn-small" href="contact.html">Get Quote</a>
+        </div>
+       </div>
       </div>
-     </div>
-     <!-- Project 4 -->
-     <div class="portfolio-card reveal">
-      <div class="portfolio-img">
-       <img alt="Project 4" src="https://placehold.co/600x400/0f172a/38bdf8?text=EdTech+Platform"/>
-      </div>
-      <div class="portfolio-info">
-       <h3>
-        EdTech Platform
-       </h3>
-       <p>
-        LMS solution for online courses and learning.
-       </p>
-       <a class="btn btn-small" href="#">
-        View Project
-       </a>
-      </div>
-     </div>
-     <!-- Project 5 -->
-     <div class="portfolio-card reveal delay-1">
-      <div class="portfolio-img">
-       <img alt="Project 5" src="https://placehold.co/600x400/0f172a/38bdf8?text=AI+Chatbot"/>
-      </div>
-      <div class="portfolio-info">
-       <h3>
-        AI Customer Support
-       </h3>
-       <p>
-        Intelligent chatbot integration for businesses.
-       </p>
-       <a class="btn btn-small" href="#">
-        View Project
-       </a>
-      </div>
-     </div>
-     <!-- Project 6 -->
-     <div class="portfolio-card reveal delay-2">
-    <div class="portfolio-img">
-        <img src="https://placehold.co/600x400/0f172a/38bdf8?text=Portfolio+Website" alt="Personal Portfolio Website">
-    </div>
-    <div class="portfolio-info">
-        <h3>Personal Portfolio Website</h3>
-        <p>
-            A modern, responsive portfolio website showcasing my skills, projects, certifications, and contact information with a clean UI/UX design.
-        </p>
-        <a href="#" class="btn btn-small">
-            View Project
-        </a>
-    </div>
-    
     </div>
 </div>
     </div>
@@ -210,9 +229,7 @@
       <span class="ratan">
        Ratan
       </span>
-      <span class="tech">
-       Tech
-      </span>
+      <span class="tech">Techno</span>
      </a>
      <p>
       Building modern, scalable, and secure digital solutions for tomorrow's businesses.
@@ -302,12 +319,12 @@
      <p>
       <i class="fas fa-map-marker-alt">
       </i>
-      Innovation City, 10001
+      Vastral, Ahmedabad, Gujarat, India
      </p>
      <p>
       <i class="fas fa-envelope">
       </i>
-      hello@rctech.com
+      hello@rctechsolutions.com
      </p>
      <p>
       <i class="fas fa-phone-alt">
@@ -318,7 +335,7 @@
    </div>
    <div class="footer-bottom">
     <p>
-     &copy; 2024 RC Tech Solutions. All Rights Reserved.
+     &copy; 2026 RC Techno Solution. All Rights Reserved.
     </p>
    </div>
   </footer>

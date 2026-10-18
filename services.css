@@ -87,12 +87,13 @@
 }
 
 .tech-card:hover {
-    transform: scale(1.1);
-    background: rgba(56, 189, 248, 0.1);
+    transform: translateY(-4px);
+    background: var(--clr-primary-light);
+    border-color: var(--clr-primary-border);
 }
 
 .tech-card:hover i {
-    color: var(--clr-white);
+    color: var(--clr-primary);
 }
 
 /* -----------------------
@@ -240,7 +241,7 @@
 }
 
 #services {
-    background-color: rgb(247, 250, 247) !important;
+    background-color: var(--clr-white) !important;
 }
 
 /* -----------------------
@@ -268,7 +269,8 @@
         padding: 20px 30px;
         min-width: 120px;
     }
-}\n
+}
+
 /* ==========================================================================
    SERVICES RESPONSIVE OVERRIDES
    ========================================================================== */
@@ -279,4 +281,3 @@
     .services-grid, .why-us-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
     .service-card { padding: 25px !important; }
 }
-\n
