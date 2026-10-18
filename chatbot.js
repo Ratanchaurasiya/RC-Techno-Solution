@@ -21,8 +21,6 @@ const RC_COMPANY_KNOWLEDGE = {
         "Cloud Infrastructure & DevOps CI/CD (AWS, GCP, Docker, Kubernetes)",
         "Database Architecture & Optimization (PostgreSQL, MongoDB, Redis)",
         "UI/UX Design Systems & WebGL 3D Interactive Experiences"
-    ],
-    pricing: "Our corporate websites typically start from $1,000 (approx. ₹45,000), while custom web applications, SaaS platforms, and AI automations are scoped based on your specific requirements. We offer free consultation calls to deliver a tailored proposal.",
     timelines: "Standard websites take 2–4 weeks; full-stack web applications and SaaS platforms typically take 4–8 weeks."
 };
 
@@ -156,12 +154,12 @@ class RCTechChatbot {
                     </div>
                     <div class="rc-chat-quick-replies" id="rc-quick-replies">
                         <button class="rc-qr-btn" data-query="What services do you offer?">Services</button>
-                        <button class="rc-qr-btn" data-query="How much does a project cost?">Pricing</button>
+                        <button class="rc-qr-btn" data-query="Tell me about your tech stack">Tech Stack</button>
                         <button class="rc-qr-btn" data-query="How long does development take?">Timeline</button>
-                        <button class="rc-qr-btn" data-query="How do I get a quote?">Get Quote</button>
+                        <button class="rc-qr-btn" data-query="How do I get started?">Get Started</button>
                     </div>
                     <div class="rc-chat-input-area">
-                        <input type="text" class="rc-chat-input" id="rc-chat-input" placeholder="Ask about services, pricing, tech stack..." autocomplete="off" />
+                        <input type="text" class="rc-chat-input" id="rc-chat-input" placeholder="Ask about services, tech stack, timelines..." autocomplete="off" />
                         <button class="rc-chat-mic-btn" id="rc-chat-mic-btn" aria-label="Voice Input" title="Speak question" type="button">
                             <i class="fas fa-microphone"></i>
                         </button>
@@ -330,8 +328,8 @@ class RCTechChatbot {
             return `Here are the primary services we provide at **RC Techno Solution**:\n\n• **Modern Website Development**: High-performance, SEO-optimized business sites.\n• **SaaS & Web App Development**: Scalable full-stack apps built with React, Node.js & Python.\n• **E-Commerce Solutions**: Secure payment gateways, Shopify, and custom stores.\n• **AI Agents & Integrations**: Custom chatbots, workflow automations, and LLM integrations.\n• **Cloud Deployment & DevOps**: AWS, GCP, Docker, Kubernetes & CI/CD pipelines.\n\nWould you like a quote or details on a specific service?`;
         }
 
-        if (lower.includes('price') || lower.includes('cost') || lower.includes('rate') || lower.includes('charge') || lower.includes('budget')) {
-            return `💰 **Investment & Pricing Guide**:\n\n• **Corporate & Business Websites**: Starting at **$1,000** (~₹45,000).\n• **Custom Web Applications & SaaS**: Typically ranges between **$2,500 - $8,000** depending on user roles, APIs, and complexity.\n• **AI Integrations & Chatbots**: Starting at **$800**.\n\nYou can also check out our interactive **Project Cost Estimator** on this page for a live custom quote!`;
+        if (lower.includes('price') || lower.includes('cost') || lower.includes('rate') || lower.includes('charge') || lower.includes('budget') || lower.includes('quote')) {
+            return `📋 **Custom Engineering Scoping**:\n\nEvery solution at **RC Techno Solution** is custom-architected based on your specific technical requirements, user scale, integrations, and milestone deliverables. We conduct a free 15-minute technical discovery call to review your specifications and map out your project roadmap.\n\nWould you like to schedule a discovery call or discuss your feature set?`;
         }
 
         if (lower.includes('time') || lower.includes('how long') || lower.includes('duration') || lower.includes('weeks')) {
