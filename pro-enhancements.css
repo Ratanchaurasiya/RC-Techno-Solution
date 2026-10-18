@@ -4341,3 +4341,167 @@ html, body {
         font-size: 0.72rem !important;
     }
 }
+
+
+/* ==========================================================================
+   PERFECT MOBILE VIEWPORT & CLIPPING FIXES (SCREENSHOT SPECIFIC)
+   1. Cleanly separated Sound Toggle in Navbar (Zero overlap with eyebrow)
+   2. Responsive Eyebrow Badge (No line overflows or clipping)
+   3. Scaled Hero Typography with high-contrast drop-shadow
+   4. Hero Video Centered and 100% full-screen behind content
+   5. Bottom Bar cleanly integrated with no duplicate WhatsApp buttons
+   ========================================================================== */
+
+/* Navbar Sound Toggle Button styling */
+.nav-actions .hero-sound-toggle {
+    position: static !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    padding: 7px 14px !important;
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(56, 189, 248, 0.4) !important;
+    border-radius: 9999px !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+.nav-actions .hero-sound-toggle:hover {
+    background: #2563eb !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.5) !important;
+}
+
+.nav-actions .hero-sound-toggle.muted {
+    background: rgba(30, 41, 59, 0.7) !important;
+    color: #94a3b8 !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+@media (max-width: 480px) {
+    .nav-actions .hero-sound-toggle {
+        padding: 6px 10px !important;
+        font-size: 0.72rem !important;
+        gap: 5px !important;
+    }
+}
+
+/* Hero Section Mobile Padding & Sizing */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 100svh !important;
+        min-height: 100vh !important;
+        padding-top: 92px !important;
+        padding-bottom: 74px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    /* Video Full Background Coverage */
+    .hero-video-wrapper {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100% !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+        pointer-events: none !important;
+    }
+
+    .hero-bg-video {
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        opacity: 0.88 !important;
+        display: block !important;
+    }
+
+    .hero-video-overlay {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(
+            180deg,
+            rgba(9, 13, 24, 0.6) 0%,
+            rgba(9, 13, 24, 0.35) 45%,
+            rgba(9, 13, 24, 0.75) 85%,
+            rgba(9, 13, 24, 0.98) 100%
+        ) !important;
+        z-index: 2 !important;
+    }
+
+    .hero-container {
+        position: relative !important;
+        z-index: 10 !important;
+        padding: 0 16px !important;
+        width: 100% !important;
+    }
+
+    .hero-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    /* Eyebrow Badge Mobile Fix (No clipping) */
+    .hero-eyebrow {
+        max-width: 95% !important;
+        font-size: 0.70rem !important;
+        padding: 6px 14px !important;
+        margin-bottom: 18px !important;
+        line-height: 1.4 !important;
+        white-space: normal !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+        background: rgba(15, 23, 42, 0.75) !important;
+        border: 1px solid rgba(56, 189, 248, 0.3) !important;
+        color: #38bdf8 !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /* Hero Headline Mobile Scaling */
+    .hero-title {
+        font-size: clamp(1.65rem, 7vw, 2.25rem) !important;
+        line-height: 1.22 !important;
+        letter-spacing: -0.025em !important;
+        margin-bottom: 14px !important;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+        word-break: break-word !important;
+    }
+
+    .hero-title br {
+        display: inline !important;
+    }
+
+    /* Subtitle text formatting */
+    .hero-subtitle {
+        font-size: 0.88rem !important;
+        line-height: 1.55 !important;
+        color: #cbd5e1 !important;
+        margin-bottom: 22px !important;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
+        max-width: 95% !important;
+    }
+}

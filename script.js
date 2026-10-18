@@ -215,53 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
-    /* --- Floating WhatsApp Button (Bottom-Left) --- */
-    const waStyles = document.createElement('style');
-    waStyles.innerHTML = `
-        .whatsapp-float {
-            position: fixed;
-            width: 50px;
-            height: 50px;
-            bottom: 20px;
-            left: 20px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 26px;
-            box-shadow: 0px 6px 18px rgba(37, 211, 102, 0.35);
-            z-index: 9998;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.08);
-            color: #FFF;
-            box-shadow: 0px 10px 24px rgba(37, 211, 102, 0.5);
-        }
-        @media (max-width: 480px) {
-            .whatsapp-float {
-                width: 44px;
-                height: 44px;
-                font-size: 22px;
-                bottom: 16px;
-                left: 16px;
-            }
-        }
-    `;
-    document.head.appendChild(waStyles);
 
-    const waBtn = document.createElement('a');
-    waBtn.href = "https://wa.me/918780628716?text=Hello%20RC%20Techno%20Solution!%20I'm%20interested%20in%20discussing%20a%20project.";
-    waBtn.target = "_blank";
-    waBtn.rel = "noopener noreferrer";
-    waBtn.className = "whatsapp-float";
-    waBtn.setAttribute('aria-label', 'Chat on WhatsApp');
-    waBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
-    document.body.appendChild(waBtn);
 
     /* --- Portfolio Category Filter & Load More Logic --- */
     const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
