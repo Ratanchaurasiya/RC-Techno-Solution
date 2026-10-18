@@ -4096,3 +4096,130 @@ html, body {
         right: 16px !important;
     }
 }
+
+
+/* ==========================================================================
+   ENHANCEMENTS 1 TO 4 (COMPARISON CARDS, POSTER, TRUST GRID, EVOLUTION TOGGLE)
+   ========================================================================== */
+
+/* --- 2. Hero Video Framing & Poster Handling --- */
+.hero-bg-video {
+    object-fit: cover !important;
+}
+
+@media (max-width: 768px) {
+    .hero-bg-video {
+        object-position: center 30% !important;
+    }
+}
+
+/* --- 3. Hero Mobile Trust Strip 2x2 Compact Grid --- */
+@media (max-width: 600px) {
+    .hero-trust-bar {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px 10px !important;
+        padding: 14px 12px !important;
+        background: rgba(15, 23, 42, 0.75) !important;
+        backdrop-filter: blur(12px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 14px !important;
+    }
+
+    [data-theme="light"] .hero-trust-bar {
+        background: rgba(255, 255, 255, 0.85) !important;
+        border-color: rgba(15, 23, 42, 0.08) !important;
+    }
+
+    .trust-badge-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+    }
+
+    .trust-badge-item i {
+        font-size: 0.95rem !important;
+        color: #38bdf8 !important;
+        flex-shrink: 0 !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero-trust-bar {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+}
+
+/* --- 4. "Before vs After" Evolution Slider Quick Mobile Toggles --- */
+@media (max-width: 768px) {
+    .evolution-quick-toggles {
+        display: flex !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 4px 2px 10px 2px !important;
+        gap: 8px !important;
+        margin-bottom: 16px !important;
+        scrollbar-width: none !important;
+    }
+
+    .evolution-quick-toggles::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .evolution-quick-toggles .evo-btn {
+        flex: 1 0 auto !important;
+        padding: 9px 14px !important;
+        font-size: 0.8rem !important;
+        white-space: nowrap !important;
+        border-radius: 9999px !important;
+        text-align: center !important;
+    }
+}
+
+/* --- 1. Comparison Matrix Mobile Modernization (Table to Stacked Cards) --- */
+@media (max-width: 768px) {
+    .comparison-table-wrapper {
+        border-radius: 16px !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 4px !important;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .comparison-table {
+        min-width: 580px !important;
+        font-size: 0.82rem !important;
+    }
+
+    .matrix-hero-col {
+        background: linear-gradient(180deg, rgba(37, 99, 235, 0.22) 0%, rgba(15, 23, 42, 0.92) 100%) !important;
+        border-left: 2px solid #3b82f6 !important;
+        border-right: 2px solid #3b82f6 !important;
+    }
+
+    .matrix-criteria {
+        font-size: 0.82rem !important;
+        font-weight: 700 !important;
+    }
+
+    .matrix-cell-content {
+        gap: 6px !important;
+    }
+
+    .comparison-footer-bar {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: stretch !important;
+        text-align: center !important;
+        padding: 16px !important;
+    }
+
+    .comparison-footer-bar .btn {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+}
