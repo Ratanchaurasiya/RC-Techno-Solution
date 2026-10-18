@@ -47,59 +47,45 @@
         </div>
         <header id="header">
             <div class="container nav-container">
-                <a class="logo" href="#home">
+                <a class="logo" href="#home" aria-label="RC Techno Solution Home">
                     <span class="logo-badge"><i class="fas fa-layer-group"></i></span>
                     <span class="brand-text">RC <span>Techno</span></span>
-                    <span class="brand-studio">Solution</span>
+                    <span class="brand-studio">Enterprise</span>
                 </a>
-                <nav class="nav-menu">
+
+                <!-- Desktop Center Pill Navigation -->
+                <nav class="nav-menu" id="navMenu">
                     <ul class="nav-list">
-                        <li><a class="nav-link active"
-                                href="#home">Home</a></li>
-                        <li><a class="nav-link" href="#about"> About</a></li>
-                        <li><a class="nav-link" href="#services"> Services</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#portfolio">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#architecture">
-                                Architecture
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#evolution">
-                                Evolution
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#team">
-                                Team
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#faq">
-                                FAQ
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#contact">
-                                Contact
-                            </a>
-                        </li>
+                        <li><a class="nav-link active" href="#home">Home</a></li>
+                        <li><a class="nav-link" href="#services">Services</a></li>
+                        <li><a class="nav-link" href="#portfolio">Work</a></li>
+                        <li><a class="nav-link" href="#architecture">Architecture</a></li>
+                        <li><a class="nav-link" href="#about">About</a></li>
+                        <li><a class="nav-link" href="#faq">FAQ</a></li>
                     </ul>
-                    <button class="btn btn-nav-nda open-nda-modal-btn" type="button" title="Fast-Track Mutual NDA">
+
+                    <!-- Actions shown inside mobile drawer -->
+                    <div class="mobile-nav-actions">
+                        <button class="btn-nav-nda open-nda-modal-btn" type="button">
+                            <i class="fas fa-file-shield"></i> 1-Click Mutual NDA
+                        </button>
+                        <a class="btn-nav-cta" href="#contact">
+                            <span>Get in Touch</span> <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Desktop Right Actions & Mobile Toggle -->
+                <div class="nav-actions">
+                    <button class="btn-nav-nda open-nda-modal-btn" type="button" title="Fast-Track Mutual NDA">
                         <i class="fas fa-file-shield"></i> Instant NDA
                     </button>
-                    <a class="btn btn-nav" href="#contact">
-                        Get in Touch
+                    <a class="btn-nav-cta" href="#contact">
+                        <span>Get in Touch</span> <i class="fas fa-arrow-right"></i>
                     </a>
-                </nav>
-                <div class="hamburger">
-                    <i class="fas fa-bars">
-                    </i>
+                    <button class="hamburger" aria-label="Toggle navigation" type="button">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
             </div>
         </header>
