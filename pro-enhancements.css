@@ -4505,3 +4505,111 @@ html, body {
         max-width: 95% !important;
     }
 }
+
+
+/* ==========================================================================
+   VIDEO RECORDING AUDIT FIXES:
+   1. Fix Evolution Before/After text overlay clash on mobile
+   2. Fix Comparison Matrix column width & responsive headers on mobile
+   3. Fix Reveal animations fallback for mobile browsers
+   4. Ensure all Bento cards and audit form are immediately visible
+   ========================================================================== */
+
+/* --- 1. Evolution Slider Mobile Overhaul --- */
+@media (max-width: 768px) {
+    .evolution-slider-wrapper {
+        min-height: auto !important;
+        height: auto !important;
+        position: relative !important;
+        overflow: visible !important;
+        cursor: default !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+
+    /* On mobile, stack both Before and After cards cleanly or show active preset */
+    .evolution-layer {
+        position: relative !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        padding: 20px 16px !important;
+        border-radius: 16px !important;
+        margin-bottom: 16px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .evolution-before {
+        width: 100% !important;
+        border-right: none !important;
+        display: block !important;
+    }
+
+    .evolution-after {
+        display: block !important;
+    }
+
+    .evolution-handle {
+        display: none !important;
+    }
+
+    .evo-content-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .evo-metric-card {
+        padding: 16px 14px !important;
+    }
+}
+
+/* --- 2. Comparison Matrix Mobile Clean Layout --- */
+@media (max-width: 768px) {
+    .comparison-table-wrapper {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        margin-bottom: 20px !important;
+    }
+
+    .comparison-table {
+        width: 100% !important;
+        min-width: 620px !important;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 14px 12px !important;
+        white-space: normal !important;
+    }
+
+    .matrix-criteria {
+        width: 160px !important;
+    }
+
+    .matrix-hero-col,
+    .matrix-hero-cell {
+        min-width: 180px !important;
+    }
+
+    .matrix-alt-col,
+    .matrix-alt-cell {
+        min-width: 140px !important;
+    }
+}
+
+/* --- 3. Reveal Animation Safety on Mobile (Zero Blank Sections) --- */
+@media (max-width: 768px) {
+    /* If JS fails or scroll lags on mobile, guarantee all content is visible */
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        transition: none !important;
+    }
+}

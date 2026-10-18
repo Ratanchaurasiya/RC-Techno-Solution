@@ -57,24 +57,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* --- Scroll Reveal Animations --- */
+    /* --- Scroll Reveal Animations (High Reliability for Mobile & Desktop) --- */
     const reveals = document.querySelectorAll('.reveal');
 
-    const revealOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        const elementVisible = 100;
-
-        reveals.forEach(reveal => {
-            const elementTop = reveal.getBoundingClientRect().top;
-            if (elementTop < windowHeight - elementVisible) {
-                reveal.classList.add('active');
-            }
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.05,
+            rootMargin: '0px 0px 50px 0px'
         });
-    };
-    
-    window.addEventListener('scroll', revealOnScroll);
-    // Trigger once on load
-    revealOnScroll();
+
+        reveals.forEach(el => revealObserver.observe(el));
+    } else {
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 40) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll, { passive: true });
+        revealOnScroll();
+    }
 
     /* --- Active Navigation Link on Scroll --- */
     const sections = document.querySelectorAll('section');
