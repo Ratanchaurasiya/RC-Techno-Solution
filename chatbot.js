@@ -8,7 +8,7 @@ const RC_GEMINI_API_KEY = ''; // Optional: insert valid Gemini key if desired
 
 const RC_COMPANY_KNOWLEDGE = {
     name: "RC Techno Solution",
-    email: "hello@rctechsolutions.com",
+    email: "rctechnosolutions@gmail.com",
     phone: "+91 87806 28716",
     whatsapp: "https://wa.me/918780628716",
     address: "Vastral, Ahmedabad, Gujarat, India",
@@ -337,7 +337,7 @@ class RCTechChatbot {
         }
 
         if (lower.includes('contact') || lower.includes('whatsapp') || lower.includes('call') || lower.includes('email') || lower.includes('reach')) {
-            return `📞 **Direct Contact Information**:\n\n• **WhatsApp / Phone**: [+91 87806 28716](https://wa.me/918780628716)\n• **Email**: [hello@rctechsolutions.com](mailto:hello@rctechsolutions.com)\n• **Office**: Vastral, Ahmedabad, Gujarat, India\n\nFeel free to ping us on WhatsApp anytime for an instant response!`;
+            return `📞 **Direct Contact Information**:\n\n• **WhatsApp / Phone**: [+91 87806 28716](https://wa.me/918780628716)\n• **Email**: [rctechnosolutions@gmail.com](mailto:rctechnosolutions@gmail.com)\n• **Office**: Vastral, Ahmedabad, Gujarat, India\n\nFeel free to ping us on WhatsApp anytime for an instant response!`;
         }
 
         if (lower.includes('tech') || lower.includes('stack') || lower.includes('react') || lower.includes('python')) {

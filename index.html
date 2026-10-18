@@ -64,7 +64,16 @@
                                 Portfolio
                             </a>
                         </li>
-
+                        <li>
+                            <a class="nav-link" href="#architecture">
+                                Architecture
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#evolution">
+                                Evolution
+                            </a>
+                        </li>
                         <li>
                             <a class="nav-link" href="#team">
                                 Team
@@ -81,8 +90,11 @@
                             </a>
                         </li>
                     </ul>
+                    <button class="btn btn-nav-nda open-nda-modal-btn" type="button" title="Fast-Track Mutual NDA">
+                        <i class="fas fa-file-shield"></i> Instant NDA
+                    </button>
                     <a class="btn btn-nav" href="#contact">
-                        Get a Quote
+                        Get in Touch
                     </a>
                 </nav>
                 <div class="hamburger">
@@ -665,6 +677,22 @@
                     <button class="portfolio-filter-btn" data-filter="ai"><i class="fas fa-microchip"></i> Cloud &amp; AI</button>
                 </div>
 
+                <!-- Feature 6: Interactive Device Viewport Simulator -->
+                <div class="portfolio-device-bar reveal delay-1">
+                    <span class="device-bar-label"><i class="fas fa-display"></i> Viewport Frame:</span>
+                    <div class="device-toggle-group">
+                        <button class="device-toggle-btn active" data-device="desktop" type="button" title="Desktop MacBook Shell">
+                            <i class="fas fa-laptop"></i> Desktop (MacBook)
+                        </button>
+                        <button class="device-toggle-btn" data-device="tablet" type="button" title="Tablet iPad Shell">
+                            <i class="fas fa-tablet-screen-button"></i> Tablet (iPad)
+                        </button>
+                        <button class="device-toggle-btn" data-device="mobile" type="button" title="Mobile iPhone Shell">
+                            <i class="fas fa-mobile-screen"></i> Mobile (iPhone)
+                        </button>
+                    </div>
+                </div>
+
                 <div class="portfolio-grid">
                     <!-- Project 1 -->
                     <div class="portfolio-card reveal" data-category="webapp">
@@ -889,6 +917,312 @@
                         <span>Load More Projects</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 1: Interactive System Architecture Studio -->
+        <section class="section section-architecture" id="architecture">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="kicker-badge"><i class="fas fa-cubes"></i> Interactive Cloud Studio</div>
+                    <h2 class="section-title">
+                        Visual System Architecture Studio
+                    </h2>
+                    <p class="section-subtitle">
+                        Configure your target workload scale, runtime, database, and security topology in real-time.
+                    </p>
+                </div>
+
+                <div class="arch-studio-wrapper reveal delay-1">
+                    <!-- Left: Interactive Configuration Controls -->
+                    <div class="arch-controls-panel">
+                        <!-- Step 1: Solution Workload -->
+                        <div class="arch-step">
+                            <div class="arch-step-header">
+                                <span class="arch-step-badge">1</span>
+                                <h4>Select Solution Workload</h4>
+                            </div>
+                            <div class="arch-options-grid" data-arch-group="workload">
+                                <div class="arch-card selected" data-val="saas" data-title="High-Velocity SaaS" data-desc="Next.js 15, FastAPI, Multi-Tenant RBAC">
+                                    <i class="fas fa-layer-group"></i>
+                                    <h5>High-Velocity SaaS</h5>
+                                    <p>Next.js 15, FastAPI, Multi-Tenant</p>
+                                </div>
+                                <div class="arch-card" data-val="ai" data-title="Autonomous AI Pipeline" data-desc="RAG, Vector Embeddings, Gemini &amp; OpenAI">
+                                    <i class="fas fa-brain"></i>
+                                    <h5>Autonomous AI Pipeline</h5>
+                                    <p>RAG, Vector DB, Agent Workflows</p>
+                                </div>
+                                <div class="arch-card" data-val="ecommerce" data-title="Enterprise Storefront" data-desc="Microservices, Redis Cache, High Concurrency">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <h5>Enterprise Storefront</h5>
+                                    <p>Microservices, High Concurrency</p>
+                                </div>
+                                <div class="arch-card" data-val="mobile-api" data-title="Realtime Mobile Backend" data-desc="GraphQL, WebSockets, Pub/Sub Cluster">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <h5>Realtime Mobile API</h5>
+                                    <p>GraphQL, WebSockets, Pub/Sub</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Target Cloud Runtime -->
+                        <div class="arch-step">
+                            <div class="arch-step-header">
+                                <span class="arch-step-badge">2</span>
+                                <h4>Target Cloud Infrastructure</h4>
+                            </div>
+                            <div class="arch-options-grid arch-grid-3" data-arch-group="cloud">
+                                <div class="arch-card selected" data-val="aws" data-title="Amazon Web Services" data-desc="ECS Fargate, Lambda, S3, CloudFront">
+                                    <i class="fab fa-aws"></i>
+                                    <h5>AWS Cloud</h5>
+                                    <p>ECS Fargate, Lambda, S3</p>
+                                </div>
+                                <div class="arch-card" data-val="gcp" data-title="Google Cloud Platform" data-desc="Cloud Run, BigQuery, Cloud SQL, GCS">
+                                    <i class="fab fa-google"></i>
+                                    <h5>Google Cloud</h5>
+                                    <p>Cloud Run, BigQuery, GCS</p>
+                                </div>
+                                <div class="arch-card" data-val="k8s" data-title="Kubernetes Cluster" data-desc="Docker, Terraform, Self-Healing Pods">
+                                    <i class="fas fa-server"></i>
+                                    <h5>Kubernetes (K8s)</h5>
+                                    <p>Docker, K8s, Terraform</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Database & Caching -->
+                        <div class="arch-step">
+                            <div class="arch-step-header">
+                                <span class="arch-step-badge">3</span>
+                                <h4>Data Persistence &amp; Caching</h4>
+                            </div>
+                            <div class="arch-options-grid arch-grid-3" data-arch-group="db">
+                                <div class="arch-card selected" data-val="postgres-redis" data-title="PostgreSQL + Redis" data-desc="ACID Compliance + Sub-10ms In-Memory Caching">
+                                    <i class="fas fa-database"></i>
+                                    <h5>Postgres + Redis</h5>
+                                    <p>ACID DB + In-Memory Cache</p>
+                                </div>
+                                <div class="arch-card" data-val="mongo-vector" data-title="MongoDB + Pinecone Vector" data-desc="JSON Document Store + High-Dimension Embeddings">
+                                    <i class="fas fa-project-diagram"></i>
+                                    <h5>Mongo + Vector DB</h5>
+                                    <p>Document Store + AI Search</p>
+                                </div>
+                                <div class="arch-card" data-val="replicas" data-title="Distributed Multi-Region" data-desc="Active-Active Read Replicas &amp; Global Failover">
+                                    <i class="fas fa-bolt"></i>
+                                    <h5>Global Replicas</h5>
+                                    <p>Multi-Region Read Scale</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Security & Governance -->
+                        <div class="arch-step">
+                            <div class="arch-step-header">
+                                <span class="arch-step-badge">4</span>
+                                <h4>Security Policies &amp; Hardening</h4>
+                            </div>
+                            <div class="arch-checkbox-grid">
+                                <label class="arch-check-item checked">
+                                    <input type="checkbox" checked data-sec="oauth" />
+                                    <span>OAuth2 &amp; Role-Based Access Control (RBAC)</span>
+                                </label>
+                                <label class="arch-check-item checked">
+                                    <input type="checkbox" checked data-sec="waf" />
+                                    <span>Edge Cloudflare WAF &amp; Rate-Limiting</span>
+                                </label>
+                                <label class="arch-check-item checked">
+                                    <input type="checkbox" checked data-sec="vault" />
+                                    <span>Encrypted Secret Vault &amp; Audit Logs</span>
+                                </label>
+                                <label class="arch-check-item">
+                                    <input type="checkbox" data-sec="soc2" />
+                                    <span>SOC2 &amp; OWASP Top 10 Hardened Pipeline</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Live Interactive Architecture Diagram Canvas -->
+                    <div class="arch-diagram-panel">
+                        <div class="arch-canvas-header">
+                            <div class="arch-canvas-status">
+                                <span class="status-pulse-dot"></span>
+                                <span id="archStatusText">Live Topology: High-Velocity SaaS on AWS</span>
+                            </div>
+                            <div class="arch-metrics-pills">
+                                <span class="metric-pill"><i class="fas fa-gauge-high"></i> Latency: &lt;45ms</span>
+                                <span class="metric-pill"><i class="fas fa-shield-alt"></i> Zero-Trust</span>
+                                <span class="metric-pill"><i class="fas fa-infinity"></i> 99.99% SLA</span>
+                            </div>
+                        </div>
+
+                        <!-- Visual Interactive Node Diagram -->
+                        <div class="arch-visual-canvas" id="archVisualCanvas">
+                            <!-- Visual Topology Nodes dynamically populated by script -->
+                            <div class="arch-node-row">
+                                <div class="arch-node client-node">
+                                    <div class="node-icon"><i class="fas fa-users-viewfinder"></i></div>
+                                    <span class="node-title">Client Traffic</span>
+                                    <span class="node-subtitle">Web, Mobile &amp; API</span>
+                                </div>
+                                <div class="arch-connector-arrow"><i class="fas fa-chevron-right"></i></div>
+                                <div class="arch-node edge-node">
+                                    <div class="node-icon"><i class="fas fa-shield-halved"></i></div>
+                                    <span class="node-title">Edge WAF / CDN</span>
+                                    <span class="node-subtitle">Cloudflare / CloudFront</span>
+                                </div>
+                                <div class="arch-connector-arrow"><i class="fas fa-chevron-right"></i></div>
+                                <div class="arch-node gateway-node">
+                                    <div class="node-icon"><i class="fas fa-network-wired"></i></div>
+                                    <span class="node-title">API Gateway</span>
+                                    <span class="node-subtitle">Reverse Proxy &amp; LB</span>
+                                </div>
+                            </div>
+
+                            <div class="arch-vertical-flow">
+                                <div class="flow-line"></div>
+                            </div>
+
+                            <div class="arch-node-row">
+                                <div class="arch-node compute-node featured" id="archComputeNode">
+                                    <div class="node-icon"><i class="fab fa-aws"></i></div>
+                                    <span class="node-title" id="canvasComputeTitle">AWS ECS Cluster</span>
+                                    <span class="node-subtitle" id="canvasComputeSub">Dockerized Microservices</span>
+                                </div>
+                                <div class="arch-connector-arrow"><i class="fas fa-arrows-left-right"></i></div>
+                                <div class="arch-node cache-node" id="archCacheNode">
+                                    <div class="node-icon"><i class="fas fa-bolt"></i></div>
+                                    <span class="node-title" id="canvasCacheTitle">Redis In-Memory</span>
+                                    <span class="node-subtitle">Sub-10ms Session Cache</span>
+                                </div>
+                                <div class="arch-connector-arrow"><i class="fas fa-database"></i></div>
+                                <div class="arch-node db-node" id="archDbNode">
+                                    <div class="node-icon"><i class="fas fa-server"></i></div>
+                                    <span class="node-title" id="canvasDbTitle">PostgreSQL Cluster</span>
+                                    <span class="node-subtitle">ACID / Automated Backups</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Specification Summary Box -->
+                        <div class="arch-blueprint-summary">
+                            <div class="summary-spec-item">
+                                <span class="spec-label">Architecture:</span>
+                                <span class="spec-value" id="specWorkload">Next.js 15 + FastAPI SaaS</span>
+                            </div>
+                            <div class="summary-spec-item">
+                                <span class="spec-label">Cloud Infrastructure:</span>
+                                <span class="spec-value" id="specCloud">Amazon Web Services (ECS Fargate)</span>
+                            </div>
+                            <div class="summary-spec-item">
+                                <span class="spec-label">Data &amp; Persistence:</span>
+                                <span class="spec-value" id="specDb">PostgreSQL with In-Memory Redis Cache</span>
+                            </div>
+                            <div class="summary-spec-item">
+                                <span class="spec-label">Active Guardrails:</span>
+                                <span class="spec-value" id="specSecurity">OAuth2, Edge WAF, Secret Vault</span>
+                            </div>
+                        </div>
+
+                        <div class="arch-action-buttons">
+                            <button class="btn btn-secondary" id="copyArchBlueprintBtn" type="button">
+                                <i class="fas fa-copy"></i> Copy Technical Blueprint
+                            </button>
+                            <a class="btn btn-primary" id="sendArchWhatsAppBtn" href="#" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-whatsapp"></i> Send Blueprint to Engineers
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 2: "Before vs After" Architecture Evolution Slider -->
+        <section class="section section-evolution" id="evolution">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="kicker-badge"><i class="fas fa-sliders-h"></i> System Transformation</div>
+                    <h2 class="section-title">
+                        Architecture Evolution: Before vs. After
+                    </h2>
+                    <p class="section-subtitle">
+                        Slide interactively to compare legacy monolithic bottlenecks with our modern cloud engineering.
+                    </p>
+                </div>
+
+                <div class="evolution-container reveal delay-1">
+                    <div class="evolution-quick-toggles">
+                        <button class="evo-btn" data-evo="before" type="button"><i class="fas fa-triangle-exclamation"></i> Show Legacy (Before)</button>
+                        <button class="evo-btn active" data-evo="split" type="button"><i class="fas fa-columns"></i> 50/50 Split View</button>
+                        <button class="evo-btn" data-evo="after" type="button"><i class="fas fa-rocket"></i> Show Modern Cloud (After)</button>
+                    </div>
+
+                    <div class="evolution-slider-wrapper" id="evolutionSliderWrapper">
+                        <!-- After Layer (Modern Cloud Infrastructure - Full Width) -->
+                        <div class="evolution-layer evolution-after">
+                            <div class="evo-badge evo-badge-after"><i class="fas fa-check-circle"></i> After RC Techno Engineering</div>
+                            <div class="evo-content-grid">
+                                <div class="evo-metric-card success">
+                                    <span class="evo-num">0.38s</span>
+                                    <span class="evo-lbl">Global Edge TTFB</span>
+                                    <p>Sub-second response time via edge CDN, Brotli compression &amp; HTTP/3 protocol.</p>
+                                </div>
+                                <div class="evo-metric-card success">
+                                    <span class="evo-num">99.99%</span>
+                                    <span class="evo-lbl">Service Availability</span>
+                                    <p>Containerized auto-healing pods with automated failover and zero-downtime rolling deploys.</p>
+                                </div>
+                                <div class="evo-metric-card success">
+                                    <span class="evo-num">Sub-10ms</span>
+                                    <span class="evo-lbl">Cache Hit Rate</span>
+                                    <p>Redis distributed in-memory cache absorbing 92% of redundant database read queries.</p>
+                                </div>
+                                <div class="evo-metric-card success">
+                                    <span class="evo-num">100% CI/CD</span>
+                                    <span class="evo-lbl">Automated Sprints</span>
+                                    <p>Automated linting, integration testing guardrails, and isolated staging environments.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Before Layer (Legacy Monolith - Variable Width Overlay) -->
+                        <div class="evolution-layer evolution-before" id="evolutionBeforeLayer">
+                            <div class="evo-badge evo-badge-before"><i class="fas fa-triangle-exclamation"></i> Typical Legacy Monolith</div>
+                            <div class="evo-content-grid">
+                                <div class="evo-metric-card danger">
+                                    <span class="evo-num">4.8s</span>
+                                    <span class="evo-lbl">Average Page Latency</span>
+                                    <p>Heavy unoptimized scripts, no asset compression, high abandonment and bounce rate.</p>
+                                </div>
+                                <div class="evo-metric-card danger">
+                                    <span class="evo-num">Outage Risk</span>
+                                    <span class="evo-lbl">Single Point of Failure</span>
+                                    <p>Single unmanaged VPS crashes during concurrent marketing campaigns and traffic spikes.</p>
+                                </div>
+                                <div class="evo-metric-card danger">
+                                    <span class="evo-num">94% CPU</span>
+                                    <span class="evo-lbl">Unindexed Queries</span>
+                                    <p>Unindexed database queries lock tables and trigger connection timeouts under stress.</p>
+                                </div>
+                                <div class="evo-metric-card danger">
+                                    <span class="evo-num">Manual FTP</span>
+                                    <span class="evo-lbl">High Technical Debt</span>
+                                    <p>Risky manual file updates directly on production, missing rollback plan, fragile codebase.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Draggable Slider Handle -->
+                        <div class="evolution-handle" id="evolutionHandle">
+                            <div class="handle-line"></div>
+                            <div class="handle-button" aria-label="Drag to compare before and after">
+                                <i class="fas fa-arrows-left-right"></i>
+                            </div>
+                            <div class="handle-line"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1552,6 +1886,23 @@
                         Get In Touch
                     </p>
                 </div>
+
+                <!-- Feature 3: Enterprise NDA Guarantee Banner -->
+                <div class="nda-trust-banner reveal delay-1">
+                    <div class="nda-trust-left">
+                        <div class="nda-shield-icon"><i class="fas fa-shield-halved"></i></div>
+                        <div>
+                            <h4>Need IP Protection Before Sharing Your Technical Idea?</h4>
+                            <p>Generate an instant, digitally pre-signed mutual NDA protecting your intellectual property, trade secrets &amp; roadmap.</p>
+                        </div>
+                    </div>
+                    <div class="nda-trust-right">
+                        <button class="btn btn-secondary open-nda-modal-btn" type="button">
+                            <i class="fas fa-file-contract"></i> Generate 1-Click Mutual NDA
+                        </button>
+                    </div>
+                </div>
+
                 <div class="contact-grid">
                     <div class="contact-info reveal">
                         <h3>
@@ -1579,7 +1930,7 @@
                                     Direct Email
                                 </h4>
                                 <p>
-                                    <a href="mailto:hello@rctechsolutions.com" style="color: inherit;">hello@rctechsolutions.com</a>
+                                    <a href="mailto:rctechnosolutions@gmail.com" style="color: inherit;">rctechnosolutions@gmail.com</a>
                                 </p>
                             </div>
                         </div>
@@ -1755,7 +2106,7 @@
                     <p>
                         <i class="fas fa-envelope">
                         </i>
-                        hello@rctechsolutions.com
+                        rctechnosolutions@gmail.com
                     </p>
                     <p>
                         <i class="fab fa-whatsapp">
@@ -1773,6 +2124,77 @@
                 </p>
             </div>
         </footer>
+
+        <!-- Feature 3: 1-Click Mutual NDA Modal -->
+        <div class="call-modal" id="ndaModal">
+            <div class="call-modal-content nda-modal-content">
+                <div class="call-modal-header">
+                    <h3><i class="fas fa-file-shield" style="margin-right: 8px; color: var(--primary);"></i> Fast-Track Mutual NDA Generator</h3>
+                    <button class="call-modal-close" id="closeNdaModal" aria-label="Close modal">&times;</button>
+                </div>
+                <div class="call-modal-body">
+                    <p style="font-size: 0.88rem; margin-bottom: 12px; opacity: 0.85;">
+                        Instant, digitally pre-signed mutual agreement guaranteeing <strong>100% intellectual property ownership</strong> and strict non-disclosure before project discussions.
+                    </p>
+
+                    <div class="nda-input-row">
+                        <div class="nda-input-field">
+                            <label>Your Legal Name</label>
+                            <input type="text" id="ndaClientName" placeholder="e.g. Rahul Sharma" />
+                        </div>
+                        <div class="nda-input-field">
+                            <label>Company / Startup Name</label>
+                            <input type="text" id="ndaCompanyName" placeholder="e.g. Acme Innovations Inc." />
+                        </div>
+                    </div>
+
+                    <!-- Live NDA Document Preview Sheet -->
+                    <div class="nda-preview-sheet" id="ndaPreviewSheet">
+                        <div class="nda-sheet-header">
+                            <div class="nda-sheet-brand">
+                                <strong>RC TECHNO SOLUTION</strong>
+                                <span>Enterprise Software Engineering &amp; Cloud Advisory</span>
+                            </div>
+                            <div class="nda-sheet-badge">MUTUAL MNDA v2.6</div>
+                        </div>
+
+                        <div class="nda-sheet-title">MUTUAL NON-DISCLOSURE &amp; IP RETENTION AGREEMENT</div>
+                        <div class="nda-sheet-parties">
+                            This Mutual Non-Disclosure Agreement is entered into between <strong>RC TECHNO SOLUTION</strong> (Disclosing/Receiving Party) and <span id="ndaPartySpan" class="nda-highlight">[Client Company / Individual]</span> (Disclosing/Receiving Party).
+                        </div>
+
+                        <div class="nda-clauses">
+                            <p><strong>1. Scope:</strong> "Confidential Information" encompasses all proprietary source code, software architecture, technical roadmaps, database schemas, and business concepts shared between parties.</p>
+                            <p><strong>2. 100% Client IP Ownership:</strong> RC Techno Solution acknowledges that all custom code, technical assets, and deliverables architected specifically for the Client remain the exclusive intellectual property of the Client upon project delivery.</p>
+                            <p><strong>3. Non-Disclosure &amp; Non-Use:</strong> Neither party shall disclose or distribute confidential materials to third parties without prior written consent, maintaining industry-standard encryption and security protocols.</p>
+                            <p><strong>4. Confidentiality Term:</strong> This agreement remains in active force for a period of two (2) years from the effective execution date.</p>
+                        </div>
+
+                        <div class="nda-signatures-grid">
+                            <div class="nda-sig-box">
+                                <span class="sig-role">On Behalf of RC Techno Solution:</span>
+                                <div class="sig-name">Authorized Technical Director</div>
+                                <div class="sig-seal"><i class="fas fa-stamp"></i> Digitally Verified &bull; Active Seal</div>
+                            </div>
+                            <div class="nda-sig-box">
+                                <span class="sig-role">Authorized Client Signatory:</span>
+                                <div class="sig-name" id="ndaSigNameSpan">[Authorized Signatory]</div>
+                                <div class="sig-meta" id="ndaSigCompanySpan">[Your Organization]</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nda-actions-row">
+                        <button class="btn btn-secondary" id="printNdaBtn" type="button">
+                            <i class="fas fa-print"></i> Print / Save PDF Document
+                        </button>
+                        <button class="btn btn-primary" id="confirmNdaWhatsAppBtn" type="button">
+                            <i class="fab fa-whatsapp"></i> Confirm &amp; WhatsApp NDA
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- 1-Click Discovery Call Modal -->
         <div class="call-modal" id="callModal">

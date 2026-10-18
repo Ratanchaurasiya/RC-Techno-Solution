@@ -1209,4 +1209,336 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
     }
+
+    /* --- Feature 1: Interactive System Architecture Studio Controller --- */
+    const archSection = document.getElementById('architecture');
+    if (archSection) {
+        let currentArch = {
+            workload: 'saas',
+            workloadTitle: 'Next.js 15 + FastAPI SaaS',
+            cloud: 'aws',
+            cloudTitle: 'Amazon Web Services (ECS Fargate)',
+            db: 'postgres-redis',
+            dbTitle: 'PostgreSQL with In-Memory Redis Cache',
+            security: ['oauth', 'waf', 'vault']
+        };
+
+        const workloadCards = archSection.querySelectorAll('[data-arch-group="workload"] .arch-card');
+        const cloudCards = archSection.querySelectorAll('[data-arch-group="cloud"] .arch-card');
+        const dbCards = archSection.querySelectorAll('[data-arch-group="db"] .arch-card');
+        const secChecks = archSection.querySelectorAll('.arch-checkbox-grid input');
+
+        const statusText = document.getElementById('archStatusText');
+        const specWorkload = document.getElementById('specWorkload');
+        const specCloud = document.getElementById('specCloud');
+        const specDb = document.getElementById('specDb');
+        const specSecurity = document.getElementById('specSecurity');
+        const canvasComputeTitle = document.getElementById('canvasComputeTitle');
+        const canvasComputeSub = document.getElementById('canvasComputeSub');
+        const canvasCacheTitle = document.getElementById('canvasCacheTitle');
+        const canvasDbTitle = document.getElementById('canvasDbTitle');
+        const copyBlueprintBtn = document.getElementById('copyArchBlueprintBtn');
+        const sendWhatsAppBtn = document.getElementById('sendArchWhatsAppBtn');
+
+        function updateArchUI() {
+            // Update summary specs
+            if (specWorkload) specWorkload.textContent = currentArch.workloadTitle;
+            if (specCloud) specCloud.textContent = currentArch.cloudTitle;
+            if (specDb) specDb.textContent = currentArch.dbTitle;
+
+            const secNames = [];
+            secChecks.forEach(ch => {
+                if (ch.checked) {
+                    const label = ch.closest('.arch-check-item');
+                    label?.classList.add('checked');
+                    const secVal = ch.getAttribute('data-sec');
+                    secNames.push(secVal === 'oauth' ? 'OAuth2 / RBAC' : secVal === 'waf' ? 'Edge WAF' : secVal === 'vault' ? 'Secret Vault' : 'SOC2 / OWASP');
+                } else {
+                    const label = ch.closest('.arch-check-item');
+                    label?.classList.remove('checked');
+                }
+            });
+            if (specSecurity) {
+                specSecurity.textContent = secNames.length > 0 ? secNames.join(', ') : 'Standard HTTPS';
+            }
+
+            // Update Canvas Nodes
+            if (canvasComputeTitle) {
+                if (currentArch.cloud === 'aws') {
+                    canvasComputeTitle.textContent = 'AWS ECS Fargate Cluster';
+                    if (canvasComputeSub) canvasComputeSub.textContent = 'Dockerized Microservices';
+                } else if (currentArch.cloud === 'gcp') {
+                    canvasComputeTitle.textContent = 'Google Cloud Run';
+                    if (canvasComputeSub) canvasComputeSub.textContent = 'Auto-Scaling Serverless Containers';
+                } else {
+                    canvasComputeTitle.textContent = 'Kubernetes (K8s)';
+                    if (canvasComputeSub) canvasComputeSub.textContent = 'Multi-Node Self-Healing Pods';
+                }
+            }
+
+            if (canvasDbTitle && canvasCacheTitle) {
+                if (currentArch.db === 'postgres-redis') {
+                    canvasCacheTitle.textContent = 'Redis Cache';
+                    canvasDbTitle.textContent = 'PostgreSQL Cluster';
+                } else if (currentArch.db === 'mongo-vector') {
+                    canvasCacheTitle.textContent = 'Pinecone Vector DB';
+                    canvasDbTitle.textContent = 'MongoDB Atlas';
+                } else {
+                    canvasCacheTitle.textContent = 'Edge Cache Hit';
+                    canvasDbTitle.textContent = 'Global Read Replicas';
+                }
+            }
+
+            if (statusText) {
+                statusText.textContent = `Live Topology: ${currentArch.workloadTitle} on ${currentArch.cloudTitle}`;
+            }
+
+            // Sync WhatsApp link
+            if (sendWhatsAppBtn) {
+                const waText = encodeURIComponent(
+                    `*New Architecture Blueprint Configuration*\n\n` +
+                    `*Workload:* ${currentArch.workloadTitle}\n` +
+                    `*Cloud Infrastructure:* ${currentArch.cloudTitle}\n` +
+                    `*Data & Cache Layer:* ${currentArch.dbTitle}\n` +
+                    `*Active Guardrails:* ${secNames.join(', ') || 'Standard'}\n\n` +
+                    `Hello RC Techno Solution team, I configured this technical architecture blueprint and would like to discuss next engineering steps.`
+                );
+                sendWhatsAppBtn.href = `https://wa.me/918780628716?text=${waText}`;
+            }
+        }
+
+        function handleGroupClick(cards, propKey, titleKey) {
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    cards.forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    currentArch[propKey] = card.getAttribute('data-val');
+                    currentArch[titleKey] = card.getAttribute('data-title') || card.querySelector('h5')?.innerText;
+                    updateArchUI();
+                });
+            });
+        }
+
+        handleGroupClick(workloadCards, 'workload', 'workloadTitle');
+        handleGroupClick(cloudCards, 'cloud', 'cloudTitle');
+        handleGroupClick(dbCards, 'db', 'dbTitle');
+
+        secChecks.forEach(ch => ch.addEventListener('change', updateArchUI));
+
+        if (copyBlueprintBtn) {
+            copyBlueprintBtn.addEventListener('click', () => {
+                const secSummary = Array.from(secChecks).filter(c => c.checked).map(c => c.getAttribute('data-sec').toUpperCase()).join(', ');
+                const blueprintText = 
+                    `=== RC TECHNO SOLUTION ARCHITECTURE BLUEPRINT ===\n` +
+                    `Workload Architecture: ${currentArch.workloadTitle}\n` +
+                    `Cloud Platform: ${currentArch.cloudTitle}\n` +
+                    `Database & Cache: ${currentArch.dbTitle}\n` +
+                    `Security Policies: ${secSummary || 'Standard Zero-Trust'}\n` +
+                    `Status: 99.99% Target SLA | Sub-45ms Latency\n` +
+                    `Contact: rctechnosolutions@gmail.com | +91 87806 28716\n` +
+                    `=================================================`;
+                navigator.clipboard?.writeText(blueprintText).then(() => {
+                    window.showRCToast?.("📋 Architecture blueprint copied to clipboard!");
+                }).catch(() => {
+                    window.showRCToast?.("Blueprint ready!");
+                });
+            });
+        }
+
+        updateArchUI();
+    }
+
+    /* --- Feature 2: "Before vs After" Evolution Slider Controller --- */
+    const evoWrapper = document.getElementById('evolutionSliderWrapper');
+    const evoBeforeLayer = document.getElementById('evolutionBeforeLayer');
+    const evoHandle = document.getElementById('evolutionHandle');
+    const evoBtns = document.querySelectorAll('.evolution-quick-toggles .evo-btn');
+
+    if (evoWrapper && evoBeforeLayer && evoHandle) {
+        let isDraggingEvo = false;
+
+        function setEvoPosition(percent) {
+            const clamped = Math.max(0, Math.min(100, percent));
+            evoBeforeLayer.style.width = `${clamped}%`;
+            evoHandle.style.left = `${clamped}%`;
+        }
+
+        function handleMove(clientX) {
+            const rect = evoWrapper.getBoundingClientRect();
+            const offset = clientX - rect.left;
+            const percent = (offset / rect.width) * 100;
+            setEvoPosition(percent);
+        }
+
+        evoWrapper.addEventListener('mousedown', (e) => {
+            isDraggingEvo = true;
+            handleMove(e.clientX);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDraggingEvo) return;
+            handleMove(e.clientX);
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDraggingEvo = false;
+        });
+
+        // Touch support for mobile devices
+        evoWrapper.addEventListener('touchstart', (e) => {
+            isDraggingEvo = true;
+            if (e.touches[0]) handleMove(e.touches[0].clientX);
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDraggingEvo || !e.touches[0]) return;
+            handleMove(e.touches[0].clientX);
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            isDraggingEvo = false;
+        });
+
+        // Quick Preset buttons
+        evoBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                evoBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const mode = btn.getAttribute('data-evo');
+                if (mode === 'before') {
+                    setEvoPosition(92);
+                } else if (mode === 'after') {
+                    setEvoPosition(8);
+                } else {
+                    setEvoPosition(50);
+                }
+            });
+        });
+    }
+
+    /* --- Feature 3: 1-Click Mutual NDA Generator Controller --- */
+    const ndaModal = document.getElementById('ndaModal');
+    const openNdaBtns = document.querySelectorAll('.open-nda-modal-btn');
+    const closeNdaBtn = document.getElementById('closeNdaModal');
+    const ndaClientInput = document.getElementById('ndaClientName');
+    const ndaCompanyInput = document.getElementById('ndaCompanyName');
+    const ndaPartySpan = document.getElementById('ndaPartySpan');
+    const ndaSigNameSpan = document.getElementById('ndaSigNameSpan');
+    const ndaSigCompanySpan = document.getElementById('ndaSigCompanySpan');
+    const printNdaBtn = document.getElementById('printNdaBtn');
+    const confirmNdaWhatsAppBtn = document.getElementById('confirmNdaWhatsAppBtn');
+
+    if (ndaModal) {
+        openNdaBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                ndaModal.classList.add('show');
+            });
+        });
+
+        if (closeNdaBtn) {
+            closeNdaBtn.addEventListener('click', () => {
+                ndaModal.classList.remove('show');
+            });
+        }
+
+        ndaModal.addEventListener('click', (e) => {
+            if (e.target === ndaModal) ndaModal.classList.remove('show');
+        });
+
+        function updateNdaPreview() {
+            const clientName = ndaClientInput?.value.trim() || '[Client Legal Signatory]';
+            const companyName = ndaCompanyInput?.value.trim() || '[Client Organization / Individual]';
+            if (ndaPartySpan) ndaPartySpan.textContent = `${companyName} (represented by ${clientName})`;
+            if (ndaSigNameSpan) ndaSigNameSpan.textContent = clientName;
+            if (ndaSigCompanySpan) ndaSigCompanySpan.textContent = companyName;
+        }
+
+        if (ndaClientInput) ndaClientInput.addEventListener('input', updateNdaPreview);
+        if (ndaCompanyInput) ndaCompanyInput.addEventListener('input', updateNdaPreview);
+
+        if (printNdaBtn) {
+            printNdaBtn.addEventListener('click', () => {
+                const sheet = document.getElementById('ndaPreviewSheet');
+                if (!sheet) return;
+                const printWindow = window.open('', '_blank');
+                if (!printWindow) {
+                    window.showRCToast?.("Please allow popups to print/save NDA document");
+                    return;
+                }
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Mutual Non-Disclosure Agreement - RC Techno Solution</title>
+                        <style>
+                            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; padding: 40px; color: #111; line-height: 1.6; max-width: 800px; margin: 0 auto; }
+                            h2 { text-align: center; margin-bottom: 20px; }
+                            .nda-sheet-header { border-bottom: 2px solid #333; padding-bottom: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; }
+                            .nda-sheet-brand strong { font-size: 1.2rem; display: block; }
+                            .nda-sheet-title { text-align: center; font-weight: bold; font-size: 1.1rem; margin: 20px 0 14px 0; }
+                            .nda-sheet-parties { background: #f4f4f5; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; }
+                            .nda-clauses p { margin: 12px 0; font-size: 0.95rem; }
+                            .nda-signatures-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; border-top: 1px dashed #666; padding-top: 20px; }
+                            .nda-sig-box { border-top: 2px solid #111; padding-top: 8px; }
+                            .sig-seal { color: #059669; font-weight: bold; margin-top: 6px; font-size: 0.85rem; }
+                        </style>
+                    </head>
+                    <body>
+                        ${sheet.innerHTML}
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                printWindow.focus();
+                setTimeout(() => {
+                    printWindow.print();
+                }, 350);
+            });
+        }
+
+        if (confirmNdaWhatsAppBtn) {
+            confirmNdaWhatsAppBtn.addEventListener('click', () => {
+                const client = ndaClientInput?.value.trim() || 'Client Legal Signatory';
+                const company = ndaCompanyInput?.value.trim() || 'Client Organization';
+                const waMsg = encodeURIComponent(
+                    `*Mutual Non-Disclosure Agreement (MNDA) Request*\n\n` +
+                    `*Client Signatory:* ${client}\n` +
+                    `*Company Name:* ${company}\n` +
+                    `*Terms Verified:* 100% Client IP Retention, Mutual Confidentiality, 2-Year Term.\n\n` +
+                    `Hello RC Techno Solution, I generated this mutual NDA and would like to confirm countersigning for our upcoming technical discovery.`
+                );
+                window.open(`https://wa.me/918780628716?text=${waMsg}`, '_blank');
+                ndaModal.classList.remove('show');
+                window.showRCToast?.("🛡️ NDA confirmation sent to WhatsApp!");
+            });
+        }
+    }
+
+    /* --- Feature 6: Interactive Portfolio Device Viewport Simulator Controller --- */
+    const portfolioGrid = document.querySelector('.portfolio-grid');
+    const deviceToggleBtns = document.querySelectorAll('.device-toggle-btn');
+
+    if (portfolioGrid && deviceToggleBtns.length > 0) {
+        deviceToggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                deviceToggleBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const device = btn.getAttribute('data-device');
+                portfolioGrid.classList.remove('view-desktop', 'view-tablet', 'view-mobile');
+
+                if (device === 'tablet') {
+                    portfolioGrid.classList.add('view-tablet');
+                    window.showRCToast?.("📟 Switched to Tablet (iPad) Viewport Frame");
+                } else if (device === 'mobile') {
+                    portfolioGrid.classList.add('view-mobile');
+                    window.showRCToast?.("📱 Switched to Mobile (iPhone) Viewport Frame");
+                } else {
+                    portfolioGrid.classList.add('view-desktop');
+                    window.showRCToast?.("💻 Switched to Desktop MacBook Viewport Frame");
+                }
+            });
+        });
+    }
 });
