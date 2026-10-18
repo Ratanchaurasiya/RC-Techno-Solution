@@ -372,7 +372,7 @@ class RCTechChatbot {
 
         // Intelligent Default
         const nameGreeting = this.userName ? `, ${this.userName}` : '';
-        return `That's a great question${nameGreeting}! At **RC Techno Solution**, our senior engineers specialize in custom digital development. Would you like us to schedule a quick 15-minute discovery call, or would you prefer a direct quote sent to your email?`;
+        return `That's a great question${nameGreeting}! At **RC Techno Solution**, our senior engineers specialize in custom digital development. Would you like us to schedule a quick 15-minute discovery call, or would you prefer a custom architecture roadmap sent to your email?`;
     }
 }
 
