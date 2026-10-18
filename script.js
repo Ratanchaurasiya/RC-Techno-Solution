@@ -1515,30 +1515,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /* --- Feature 6: Interactive Portfolio Device Viewport Simulator Controller --- */
-    const portfolioGrid = document.querySelector('.portfolio-grid');
-    const deviceToggleBtns = document.querySelectorAll('.device-toggle-btn');
-
-    if (portfolioGrid && deviceToggleBtns.length > 0) {
-        deviceToggleBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                deviceToggleBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const device = btn.getAttribute('data-device');
-                portfolioGrid.classList.remove('view-desktop', 'view-tablet', 'view-mobile');
-
-                if (device === 'tablet') {
-                    portfolioGrid.classList.add('view-tablet');
-                    window.showRCToast?.("📟 Switched to Tablet (iPad) Viewport Frame");
-                } else if (device === 'mobile') {
-                    portfolioGrid.classList.add('view-mobile');
-                    window.showRCToast?.("📱 Switched to Mobile (iPhone) Viewport Frame");
-                } else {
-                    portfolioGrid.classList.add('view-desktop');
-                    window.showRCToast?.("💻 Switched to Desktop MacBook Viewport Frame");
-                }
-            });
-        });
-    }
 });
