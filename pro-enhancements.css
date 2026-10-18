@@ -4223,3 +4223,121 @@ html, body {
         justify-content: center !important;
     }
 }
+
+
+/* ==========================================================================
+   ULTRA-RESPONSIVE HERO VIDEO ENGINE FOR MOBILE & TABLET SCREENS
+   Resolves all mobile framing, visibility, height, and playback clipping
+   ========================================================================== */
+
+/* Ensure the hero section always maintains sufficient height to showcase the video */
+.hero {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+@media (max-width: 991px) {
+    .hero {
+        min-height: 100svh !important;
+        min-height: 100vh !important;
+        padding-top: 96px !important;
+        padding-bottom: 60px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .hero-video-wrapper {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100% !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+        pointer-events: none !important;
+    }
+
+    .hero-bg-video {
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        opacity: 0.95 !important;
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    /* Transparent gradient overlay to preserve 70%+ video visibility while keeping text readable */
+    .hero-video-overlay {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(
+            180deg,
+            rgba(9, 13, 24, 0.45) 0%,
+            rgba(9, 13, 24, 0.25) 40%,
+            rgba(9, 13, 24, 0.65) 85%,
+            rgba(9, 13, 24, 0.95) 100%
+        ) !important;
+        z-index: 2 !important;
+        pointer-events: none !important;
+    }
+
+    /* Ensure content is positioned properly above the video */
+    .hero-container {
+        position: relative !important;
+        z-index: 5 !important;
+        width: 100% !important;
+        padding: 0 20px !important;
+    }
+
+    /* Floating Video Sound Toggle Button positioning */
+    .hero-sound-toggle {
+        position: absolute !important;
+        top: 88px !important;
+        right: 18px !important;
+        bottom: auto !important;
+        left: auto !important;
+        z-index: 20 !important;
+        padding: 8px 14px !important;
+        font-size: 0.76rem !important;
+        background: rgba(15, 23, 42, 0.85) !important;
+        backdrop-filter: blur(12px) !important;
+        border: 1px solid rgba(56, 189, 248, 0.35) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+        border-radius: 9999px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 100svh !important;
+        min-height: 100vh !important;
+        padding-top: 86px !important;
+        padding-bottom: 50px !important;
+    }
+
+    .hero-bg-video {
+        /* On narrow phone portrait mode, center the core animation */
+        object-fit: cover !important;
+        object-position: 50% 35% !important;
+    }
+
+    .hero-sound-toggle {
+        top: 82px !important;
+        right: 14px !important;
+        padding: 6px 12px !important;
+        font-size: 0.72rem !important;
+    }
+}
