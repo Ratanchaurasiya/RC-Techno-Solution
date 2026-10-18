@@ -3787,3 +3787,312 @@
         font-size: 0.95rem !important;
     }
 }
+
+
+/* ==========================================================================
+   COMPLETE MOBILE RESPONSIVENESS SUITE (STEPS 1 TO 7)
+   Ultra-polished experience for iPhone, Android, iPad, and small screens
+   ========================================================================== */
+
+/* --- 1. Horizontal Scroll Prevention & Global Safety --- */
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure containers never exceed viewport */
+.container,
+.hero-container,
+.nav-container {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* --- 2. Hero Section Mobile Optimization --- */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 100px !important;
+        padding-bottom: 60px !important;
+        min-height: auto !important;
+    }
+
+    .hero-title {
+        font-size: 2.1rem !important;
+        line-height: 1.25 !important;
+        letter-spacing: -0.02em !important;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 24px !important;
+    }
+
+    .hero-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    .hero-actions a {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 13px 20px !important;
+        font-size: 0.92rem !important;
+    }
+
+    .hero-sound-toggle {
+        top: auto !important;
+        bottom: 84px !important;
+        right: 16px !important;
+        padding: 7px 12px !important;
+        font-size: 0.76rem !important;
+        z-index: 999 !important;
+    }
+
+    .hero-trust-bar {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        padding: 14px !important;
+        margin-top: 28px !important;
+    }
+}
+
+/* --- 3. Swipable Horizontal Category Filter Carousel --- */
+@media (max-width: 768px) {
+    .portfolio-filters {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 6px 4px 14px 4px !important;
+        gap: 8px !important;
+        justify-content: flex-start !important;
+        scrollbar-width: none !important;
+        margin-bottom: 20px !important;
+    }
+
+    .portfolio-filters::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .portfolio-filter-btn {
+        flex: 0 0 auto !important;
+        white-space: nowrap !important;
+        padding: 9px 16px !important;
+        font-size: 0.82rem !important;
+        border-radius: 9999px !important;
+    }
+}
+
+/* --- 4. Interactive Architecture Builder Mobile Vertical Flow --- */
+@media (max-width: 768px) {
+    .arch-studio-container {
+        padding: 16px 12px !important;
+    }
+
+    .arch-diagram-canvas {
+        padding: 20px 14px !important;
+    }
+
+    .arch-node-row {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 16px !important;
+        width: 100% !important;
+    }
+
+    .arch-node {
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+    }
+
+    .arch-connector-arrow {
+        transform: rotate(90deg) !important;
+        margin: 4px 0 !important;
+    }
+
+    .arch-options-grid,
+    .arch-options-grid.arch-grid-3,
+    .arch-checkbox-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    .arch-metric-card {
+        padding: 12px !important;
+    }
+}
+
+/* --- 5. Touch-Optimized Evolution Slider --- */
+.evolution-slider-wrapper {
+    touch-action: pan-y !important;
+}
+
+@media (max-width: 768px) {
+    .evolution-slider-wrapper {
+        min-height: 520px !important;
+        border-radius: 14px !important;
+    }
+
+    .evo-content-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        padding: 18px 14px !important;
+    }
+
+    .evo-metric-badge {
+        font-size: 0.75rem !important;
+        padding: 6px 10px !important;
+    }
+
+    .evo-badge-legacy,
+    .evo-badge-modern {
+        font-size: 0.72rem !important;
+        padding: 4px 10px !important;
+    }
+
+    .evo-drag-handle {
+        width: 38px !important;
+        height: 38px !important;
+    }
+}
+
+/* --- 6. Bottom-Sheet Style Modals on Mobile --- */
+@media (max-width: 768px) {
+    .nda-modal-container,
+    .call-modal-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 20px 20px 0 0 !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+        padding: 22px 18px !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        top: auto !important;
+        margin: 0 !important;
+    }
+
+    .nda-input-row,
+    .nda-signatures-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .nda-actions-row {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .nda-actions-row button {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    .call-slot-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+}
+
+/* --- 7. Sticky Mobile Quick Action Bar (< 768px) --- */
+.mobile-bottom-bar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 64px;
+        background: rgba(9, 13, 24, 0.94);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 6px 12px;
+        z-index: 9998;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] .mobile-bottom-bar {
+        background: rgba(255, 255, 255, 0.95);
+        border-top: 1px solid rgba(15, 23, 42, 0.1);
+        box-shadow: 0 -4px 15px rgba(15, 23, 42, 0.08);
+    }
+
+    .mobile-bar-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        text-decoration: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: #94a3b8;
+        transition: all 0.2s ease;
+        flex: 1;
+        max-width: 85px;
+    }
+
+    [data-theme="light"] .mobile-bar-btn {
+        color: #64748b;
+    }
+
+    .mobile-bar-btn i {
+        font-size: 1.15rem;
+    }
+
+    .mobile-bar-btn.btn-wa i {
+        color: #25d366;
+    }
+
+    .mobile-bar-btn.btn-nda i {
+        color: #34d399;
+    }
+
+    .mobile-bar-btn.btn-cta i {
+        color: #38bdf8;
+    }
+
+    .mobile-bar-btn.btn-call i {
+        color: #a855f7;
+    }
+
+    .mobile-bar-btn:active {
+        transform: scale(0.92);
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Give body padding so content isn't obscured by bottom bar */
+    body {
+        padding-bottom: 70px !important;
+    }
+
+    /* Move back to top & chatbot toggle slightly above bottom bar */
+    #backToTop {
+        bottom: 76px !important;
+        right: 16px !important;
+    }
+
+    .chatbot-toggle-btn {
+        bottom: 76px !important;
+        right: 16px !important;
+    }
+}
