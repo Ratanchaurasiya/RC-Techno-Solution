@@ -34,7 +34,7 @@ class RCTechChatbot {
         this.userName = '';
         this.userContact = '';
         this.chatStep = 0; // 0: greeting, 1: asking contact, 2: open inquiry
-        this.isVoiceMuted = false;
+        this.isVoiceMuted = true;
         this.isListening = false;
         this.recognition = null;
         this.initSpeechRecognition();
@@ -145,8 +145,8 @@ class RCTechChatbot {
                             </div>
                         </div>
                         <div class="rc-chat-header-actions">
-                            <button class="rc-chat-voice-toggle" id="rc-chat-voice-toggle" aria-label="Toggle Voice Readout" title="Toggle AI Voice Readout">
-                                <i class="fas fa-volume-up"></i>
+                            <button class="rc-chat-voice-toggle muted" id="rc-chat-voice-toggle" aria-label="Toggle Voice Readout" title="Toggle AI Voice Readout">
+                                <i class="fas fa-volume-mute"></i>
                             </button>
                             <button class="rc-chat-close" id="rc-chat-close" aria-label="Close Chat">&times;</button>
                         </div>

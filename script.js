@@ -1213,110 +1213,76 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Automatic Video Play on Load (Always cleanly muted so browser never blocks or aborts video)
+        // Auto ON Video & Voice Initialization
         function startHeroVideo() {
             if (isScrolledAway) return;
-            heroBgVideo.muted = true;
-            updateSoundUI(true);
+            heroBgVideo.volume = 1.0;
 
-            const triggerPlay = () => {
-                heroBgVideo.muted = true;
-                const p = heroBgVideo.play();
-                if (p !== undefined) {
-                    p.catch((err) => {
-                        console.warn('Hero video autoplay retry:', err);
-                        // Retry on next frame
-                        requestAnimationFrame(() => {
-                            heroBgVideo.muted = true;
-                            heroBgVideo.play().catch(() => {});
-                        });
-                    });
-                }
+            const tryEnableAudio = () => {
+                if (!userWantsSound || isScrolledAway) return;
+                heroBgVideo.muted = false;
+                heroBgVideo.volume = 1.0;
+                heroBgVideo.play().then(() => {
+                    updateSoundUI(false);
+                }).catch((err) => {
+                    // Browser policy requires user interaction before audio starts
+                    heroBgVideo.muted = true;
+                    updateSoundUI(true);
+                    heroBgVideo.play().catch(() => {});
+                });
             };
 
-            triggerPlay();
-            heroBgVideo.addEventListener('canplay', triggerPlay, { once: true });
-            heroBgVideo.addEventListener('loadeddata', triggerPlay, { once: true });
+            // First attempt unmuted autoplay
+            tryEnableAudio();
 
-            // If user interacts anywhere, attempt to turn on voice if user wants it
-            const handleFirstGesture = () => {
-                ['click', 'touchstart', 'keydown'].forEach(evt => {
-                    window.removeEventListener(evt, handleFirstGesture);
+            // Auto-unmute immediately on first user interaction anywhere (click, touch, scroll, keypress)
+            const autoUnmuteOnFirstGesture = () => {
+                ['click', 'pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+                    window.removeEventListener(evt, autoUnmuteOnFirstGesture, true);
                 });
                 if (userWantsSound && !isScrolledAway) {
                     heroBgVideo.muted = false;
+                    heroBgVideo.volume = 1.0;
                     heroBgVideo.play().then(() => {
                         updateSoundUI(false);
-                    }).catch(() => {
-                        heroBgVideo.muted = true;
-                        updateSoundUI(true);
-                    });
+                    }).catch(() => {});
                 }
             };
 
-            ['click', 'touchstart', 'keydown'].forEach(evt => {
-                window.addEventListener(evt, handleFirstGesture, { passive: true, once: true });
+            ['click', 'pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+                window.addEventListener(evt, autoUnmuteOnFirstGesture, { capture: true, once: true, passive: true });
             });
+
+            heroBgVideo.addEventListener('canplay', tryEnableAudio, { once: true });
+            heroBgVideo.addEventListener('loadeddata', tryEnableAudio, { once: true });
         }
 
         startHeroVideo();
 
-        function playVoiceBriefing() {
-            if (!('speechSynthesis' in window)) return;
-            window.speechSynthesis.cancel();
-
-            const briefingText = "Welcome to RC Techno Solution. We engineer mission-critical cloud backends, custom SaaS architectures, and autonomous AI systems with guaranteed sprint velocity and 100 percent intellectual property ownership.";
-            const utterance = new SpeechSynthesisUtterance(briefingText);
-            utterance.rate = 1.02;
-            utterance.pitch = 1.0;
-
-            const voices = window.speechSynthesis.getVoices();
-            const preferredVoice = voices.find(v => (v.name.includes('Google') || v.name.includes('Natural') || v.lang.startsWith('en')) && v.lang.includes('US'));
-            if (preferredVoice) utterance.voice = preferredVoice;
-
-            utterance.onend = () => {
-                userWantsSound = false;
-                updateSoundUI(true);
-            };
-
-            utterance.onerror = () => {
-                userWantsSound = false;
-                updateSoundUI(true);
-            };
-
-            window.speechSynthesis.speak(utterance);
-        }
-
-        function stopVoiceBriefing() {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-            }
-        }
-
-        // Manual Voice Toggle Button
+        // Manual Video Sound Toggle Button (Controls Video's native voice/audio directly)
         soundToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             if (heroBgVideo.muted) {
                 userWantsSound = true;
                 heroBgVideo.muted = false;
+                heroBgVideo.volume = 1.0;
                 heroBgVideo.play().then(() => {
                     updateSoundUI(false);
-                    playVoiceBriefing();
-                    window.showRCToast?.("🎙️ Playing Executive Voice Briefing...");
-                }).catch(() => {
+                    window.showRCToast?.("🔊 Video Voice: ON");
+                }).catch((err) => {
+                    console.warn('Unmute error:', err);
                     heroBgVideo.muted = true;
                     updateSoundUI(true);
-                    stopVoiceBriefing();
                 });
             } else {
                 userWantsSound = false;
                 heroBgVideo.muted = true;
                 updateSoundUI(true);
-                stopVoiceBriefing();
+                window.showRCToast?.("🔇 Video Voice: OFF");
             }
         });
 
-        // Automatically turn off video & voice when user scrolls down from Home page
+        // Automatically mute/pause video when user scrolls down from Home page
         function handleHeroVisibility(inView) {
             if (inView) {
                 // Scrolled back up to Home page
@@ -1324,19 +1290,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 heroBgVideo.play().catch(() => {});
                 if (userWantsSound) {
                     heroBgVideo.muted = false;
+                    heroBgVideo.volume = 1.0;
                     updateSoundUI(false);
                 } else {
                     heroBgVideo.muted = true;
                     updateSoundUI(true);
                 }
             } else {
-                // Scrolled down from Home page -> Stop video & turn off voice immediately
+                // Scrolled down from Home page -> Stop video & mute immediately
                 if (window.scrollY > 200) {
                     isScrolledAway = true;
                     heroBgVideo.pause();
                     heroBgVideo.muted = true;
                     updateSoundUI(true);
-                    stopVoiceBriefing();
                 }
             }
         }
